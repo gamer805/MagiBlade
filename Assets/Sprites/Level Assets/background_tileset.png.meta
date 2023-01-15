@@ -1,0 +1,1032 @@
+fileFormatVersion: 2
+guid: e46c949eba69f4be9848edd833e3d072
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5905698523013028139
+    second: background_tiles (1)_0
+  - first:
+      213: -3651875420855065215
+    second: background_tiles (1)_1
+  - first:
+      213: 5865021437637569462
+    second: background_tiles (1)_2
+  - first:
+      213: -7124450808620390977
+    second: background_tiles (1)_3
+  - first:
+      213: 1581127616805444469
+    second: background_tiles (1)_4
+  - first:
+      213: -1171805610545621827
+    second: background_tiles (1)_5
+  - first:
+      213: 8530703915689019477
+    second: background_tiles (1)_6
+  - first:
+      213: -7976424710383988177
+    second: background_tiles (1)_7
+  - first:
+      213: -6531818347734646281
+    second: background_tiles (1)_8
+  - first:
+      213: -7294168979431063756
+    second: background_tiles (1)_9
+  - first:
+      213: -1804654970743247865
+    second: background_tiles (1)_10
+  - first:
+      213: -4462021243451964722
+    second: background_tiles (1)_11
+  - first:
+      213: 6816178450142217527
+    second: background_tiles (1)_12
+  - first:
+      213: -1163025170899662580
+    second: background_tiles (1)_13
+  - first:
+      213: -7456504940417685308
+    second: background_tiles (1)_14
+  - first:
+      213: -2619295610865606576
+    second: background_tiles (1)_15
+  - first:
+      213: 8195463461612566277
+    second: background_tiles (1)_16
+  - first:
+      213: -3568019919481563328
+    second: background_tiles (1)_17
+  - first:
+      213: -8111475527430372839
+    second: background_tiles (1)_18
+  - first:
+      213: -7943728975450237197
+    second: background_tiles (1)_19
+  - first:
+      213: 6303026889400351681
+    second: background_tiles (1)_20
+  - first:
+      213: 6215205673892674382
+    second: background_tiles (1)_21
+  - first:
+      213: 4761227861839685081
+    second: background_tiles (1)_22
+  - first:
+      213: 358202573733645566
+    second: background_tiles (1)_23
+  - first:
+      213: -5142343840169638679
+    second: background_tiles (1)_24
+  - first:
+      213: -1024180668153587155
+    second: background_tiles (1)_25
+  - first:
+      213: 2905642730984601287
+    second: background_tiles (1)_26
+  - first:
+      213: -213160968062928273
+    second: background_tiles (1)_27
+  - first:
+      213: 1913303966050086609
+    second: background_tiles (1)_28
+  - first:
+      213: 1917173990975644270
+    second: background_tiles (1)_29
+  - first:
+      213: 2204139484659826414
+    second: background_tiles (1)_30
+  - first:
+      213: -4613585799859279775
+    second: background_tiles (1)_31
+  - first:
+      213: 4264722261933458196
+    second: background_tiles (1)_32
+  - first:
+      213: -592681482996680168
+    second: background_tiles (1)_33
+  - first:
+      213: -7964053426644476849
+    second: background_tiles (1)_34
+  - first:
+      213: 5150307056684079895
+    second: background_tiles (1)_35
+  - first:
+      213: -6638247242160794197
+    second: background_tiles (1)_36
+  - first:
+      213: 8671574082100527325
+    second: background_tiles (1)_37
+  - first:
+      213: 1341196150673832598
+    second: background_tiles (1)_38
+  - first:
+      213: -1919882244412479484
+    second: background_tiles (1)_39
+  - first:
+      213: -9144842053172182142
+    second: background_tiles (1)_40
+  - first:
+      213: -4997322178384282977
+    second: background_tiles (1)_41
+  - first:
+      213: 7293923442571613964
+    second: background_tiles (1)_42
+  - first:
+      213: 4247726927717956082
+    second: background_tiles (1)_43
+  - first:
+      213: -1661751009284046904
+    second: background_tiles (1)_44
+  - first:
+      213: -876336762896082988
+    second: background_tiles (1)_45
+  - first:
+      213: 9172036872453056682
+    second: background_tiles (1)_46
+  - first:
+      213: -5807660674405332212
+    second: background_tiles (1)_47
+  - first:
+      213: 7816241770074171694
+    second: background_tiles (1)_48
+  - first:
+      213: 7989059967913128343
+    second: background_tiles (1)_49
+  - first:
+      213: 7164249554137219966
+    second: background_tiles (1)_50
+  - first:
+      213: 8520757347780831231
+    second: background_tiles (1)_51
+  - first:
+      213: 8398815551402436637
+    second: background_tiles (1)_52
+  - first:
+      213: -5617787455975353922
+    second: background_tiles (1)_53
+  - first:
+      213: 4349089883506285443
+    second: background_tiles (1)_54
+  - first:
+      213: 3025727521410789192
+    second: background_tiles (1)_55
+  - first:
+      213: 6710531122089466528
+    second: background_tiles (1)_56
+  - first:
+      213: -2085238643877417818
+    second: background_tiles (1)_57
+  - first:
+      213: -7309330896186811469
+    second: background_tiles (1)_58
+  - first:
+      213: -6024153098524439547
+    second: background_tiles (1)_59
+  - first:
+      213: 245689789787294470
+    second: background_tiles (1)_60
+  - first:
+      213: 7555399052174860195
+    second: background_tiles (1)_61
+  - first:
+      213: 8432068970120554054
+    second: background_tiles (1)_62
+  - first:
+      213: -6661537925511845850
+    second: background_tiles (1)_63
+  - first:
+      213: -8524876068307534999
+    second: background_tiles (1)_64
+  - first:
+      213: -1531411871057733670
+    second: background_tiles (1)_65
+  - first:
+      213: 6668484606694376525
+    second: background_tiles (1)_66
+  - first:
+      213: -4614731708039725263
+    second: background_tiles (1)_67
+  - first:
+      213: 2672414853507232777
+    second: background_tiles (1)_68
+  - first:
+      213: 5127067930888824336
+    second: background_tiles (1)_69
+  - first:
+      213: -5752356027037572186
+    second: background_tiles (1)_70
+  - first:
+      213: -4685182178358072487
+    second: background_tiles (1)_71
+  - first:
+      213: 1908689457496946476
+    second: background_tiles (1)_72
+  - first:
+      213: -1335639971928294057
+    second: background_tiles (1)_73
+  - first:
+      213: 3693873688457626203
+    second: background_tiles (1)_74
+  - first:
+      213: 5797342859645618440
+    second: background_tiles (1)_75
+  - first:
+      213: 1531343525256693330
+    second: background_tiles (1)_76
+  - first:
+      213: -619280803727662178
+    second: background_tiles (1)_77
+  - first:
+      213: -244062274400987065
+    second: background_tiles (1)_78
+  - first:
+      213: 8081038649144215904
+    second: background_tiles (1)_79
+  - first:
+      213: 8032021471009766055
+    second: background_tiles (1)_80
+  - first:
+      213: 1897062614145762092
+    second: background_tiles (1)_81
+  - first:
+      213: 144274299642781806
+    second: background_tiles (1)_82
+  - first:
+      213: -3714838753364520563
+    second: background_tiles (1)_83
+  - first:
+      213: 1850409779515810129
+    second: background_tiles (1)_84
+  - first:
+      213: 5756619029104267514
+    second: background_tiles (1)_85
+  - first:
+      213: 2642560816181295573
+    second: background_tiles (1)_86
+  - first:
+      213: -4525676721193375011
+    second: background_tiles (1)_87
+  - first:
+      213: 3057660389251557556
+    second: background_tiles (1)_88
+  - first:
+      213: 3637013513183519784
+    second: background_tiles (1)_89
+  - first:
+      213: 8749915269514183418
+    second: background_tiles (1)_90
+  - first:
+      213: 2105140629724490069
+    second: background_tiles (1)_91
+  - first:
+      213: -4980873852306264324
+    second: background_tiles (1)_92
+  - first:
+      213: -4021593786134613777
+    second: background_tiles (1)_93
+  - first:
+      213: 5450133391710029167
+    second: background_tiles (1)_94
+  - first:
+      213: -4786602353923184724
+    second: background_tiles (1)_95
+  - first:
+      213: -1825959165504633517
+    second: background_tiles (1)_96
+  - first:
+      213: 7456631892954874747
+    second: background_tiles (1)_97
+  - first:
+      213: -4301869735958738964
+    second: background_tiles (1)_98
+  - first:
+      213: 1988023350080362507
+    second: background_tiles (1)_99
+  - first:
+      213: -3763873851710976982
+    second: background_tiles (1)_100
+  - first:
+      213: -3053384463192441696
+    second: background_tiles (1)_101
+  - first:
+      213: -2436457836965161258
+    second: background_tiles (1)_102
+  - first:
+      213: -6522865905994815721
+    second: background_tiles (1)_103
+  - first:
+      213: -7352495626069752381
+    second: background_tiles (1)_104
+  - first:
+      213: 6443597311791508898
+    second: background_tiles (1)_105
+  - first:
+      213: -4053393127913170877
+    second: background_tiles (1)_106
+  - first:
+      213: -3048820642168958864
+    second: background_tiles (1)_107
+  - first:
+      213: -3461870438370577850
+    second: background_tiles (1)_108
+  - first:
+      213: -2765334511736733829
+    second: background_tiles (1)_109
+  - first:
+      213: -7955172067949801022
+    second: background_tiles (1)_110
+  - first:
+      213: -4576581174158121468
+    second: background_tiles (1)_111
+  - first:
+      213: 3862981981813447113
+    second: background_tiles (1)_112
+  - first:
+      213: 6232140992756891753
+    second: background_tiles (1)_113
+  - first:
+      213: -1002067828922859300
+    second: background_tiles (1)_114
+  - first:
+      213: 394612502916855282
+    second: background_tiles (1)_115
+  - first:
+      213: 1624542115670207314
+    second: background_tiles (1)_116
+  - first:
+      213: 1080041184542593873
+    second: background_tiles (1)_117
+  - first:
+      213: -5861680157922758180
+    second: background_tiles (1)_118
+  - first:
+      213: 8411208672393411858
+    second: background_tiles (1)_119
+  - first:
+      213: 6182257823805672074
+    second: background_tiles (1)_120
+  - first:
+      213: 3889082756572140949
+    second: background_tiles (1)_121
+  - first:
+      213: 5650349575131929646
+    second: background_tiles (1)_122
+  - first:
+      213: 4976379469082216914
+    second: background_tiles (1)_123
+  - first:
+      213: 5930083568718904850
+    second: background_tiles (1)_124
+  - first:
+      213: -2639641821155445549
+    second: background_tiles (1)_125
+  - first:
+      213: 6659277305368268549
+    second: background_tiles (1)_126
+  - first:
+      213: 3051468214391599279
+    second: background_tiles (1)_127
+  - first:
+      213: 2717341294154516988
+    second: background_tiles (1)_128
+  - first:
+      213: -945278148644291640
+    second: background_tiles (1)_129
+  - first:
+      213: 8541249761046808119
+    second: background_tiles (1)_130
+  - first:
+      213: -2825574949911002623
+    second: background_tiles (1)_131
+  - first:
+      213: -3725169557573431387
+    second: background_tiles (1)_132
+  - first:
+      213: -1662623602684631435
+    second: background_tiles (1)_133
+  - first:
+      213: 158533267052306237
+    second: background_tiles (1)_134
+  - first:
+      213: 8882046552140035739
+    second: background_tiles (1)_135
+  - first:
+      213: -5082408131173373901
+    second: background_tiles (1)_136
+  - first:
+      213: 7875444806684459852
+    second: background_tiles (1)_137
+  - first:
+      213: -1534851306709764502
+    second: background_tiles (1)_138
+  - first:
+      213: -2468043208731106257
+    second: background_tiles (1)_139
+  - first:
+      213: -4969601079524770348
+    second: background_tiles (1)_140
+  - first:
+      213: -3523732123045669652
+    second: background_tiles (1)_141
+  - first:
+      213: 4869342323989906747
+    second: background_tiles (1)_142
+  - first:
+      213: -6326621788133478307
+    second: background_tiles (1)_143
+  - first:
+      213: -6776307836115879474
+    second: background_tiles (1)_144
+  - first:
+      213: 7571036566740078415
+    second: background_tiles (1)_145
+  - first:
+      213: -6412368827157941252
+    second: background_tiles (1)_146
+  - first:
+      213: -926508858389270963
+    second: background_tiles (1)_147
+  - first:
+      213: 8907727485333948486
+    second: background_tiles (1)_148
+  - first:
+      213: 8693846924553799251
+    second: background_tiles (1)_149
+  - first:
+      213: 4707383244033203612
+    second: background_tiles (1)_150
+  - first:
+      213: 6546315091386645873
+    second: background_tiles (1)_151
+  - first:
+      213: -7266242432357591288
+    second: background_tiles (1)_152
+  - first:
+      213: -8437769383992635399
+    second: background_tiles (1)_153
+  - first:
+      213: -2699059400716003312
+    second: background_tiles (1)_154
+  - first:
+      213: 8412661669190791573
+    second: background_tiles (1)_155
+  - first:
+      213: 4839823291168198482
+    second: background_tiles (1)_156
+  - first:
+      213: 7489741930208554232
+    second: background_tiles (1)_157
+  - first:
+      213: 2831954068675059049
+    second: background_tiles (1)_158
+  - first:
+      213: 2099150880162426484
+    second: background_tiles (1)_159
+  - first:
+      213: 6672917452297015968
+    second: background_tiles (1)_160
+  - first:
+      213: -5290816909321318781
+    second: background_tiles (1)_161
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: background_tiles (1)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d66249ab7eba0ea0800000000000000
+      internalID: -5905698523013028139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 48
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18524f737aee15dc0800000000000000
+      internalID: -3651875420855065215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bb207e5cedb46150800000000000000
+      internalID: 5865021437637569462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 48
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb5ef6c8cbdd02d90800000000000000
+      internalID: -7124450808620390977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57b9f38b03b41f510800000000000000
+      internalID: 1581127616805444469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 48
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db45e957109ecbfe0800000000000000
+      internalID: -1171805610545621827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5588da28306236670800000000000000
+      internalID: 8530703915689019477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f221aef9cfb0e4190800000000000000
+      internalID: -7976424710383988177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_8
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f1c5edd1d15a55a0800000000000000
+      internalID: -6531818347734646281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_9
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f765995f7e5ca90800000000000000
+      internalID: -7294168979431063756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_10
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70ca4b69dd394f6e0800000000000000
+      internalID: -1804654970743247865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_11
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec28cc3e157b312c0800000000000000
+      internalID: -4462021243451964722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 735466ecf2ee79e50800000000000000
+      internalID: 6816178450142217527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_13
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0900bfd4ca1cdfe0800000000000000
+      internalID: -1163025170899662580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_14
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c86570534c258890800000000000000
+      internalID: -7456504940417685308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_15
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 050ad90058466abd0800000000000000
+      internalID: -2619295610865606576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_16
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5073c1fc8922cb170800000000000000
+      internalID: 8195463461612566277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_tiles (1)_17
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04798c399c8db7ec0800000000000000
+      internalID: -3568019919481563328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 128cda9d578804452b038680504e254b, type: 3}
+      name: _NormalMap
+    nameFileIdTable:
+      background_tiles (1)_15: -2619295610865606576
+      background_tiles (1)_7: -7976424710383988177
+      background_tiles (1)_6: 8530703915689019477
+      background_tiles (1)_11: -4462021243451964722
+      background_tiles (1)_1: -3651875420855065215
+      background_tiles (1)_16: 8195463461612566277
+      background_tiles (1)_9: -7294168979431063756
+      background_tiles (1)_8: -6531818347734646281
+      background_tiles (1)_10: -1804654970743247865
+      background_tiles (1)_12: 6816178450142217527
+      background_tiles (1)_3: -7124450808620390977
+      background_tiles (1)_5: -1171805610545621827
+      background_tiles (1)_17: -3568019919481563328
+      background_tiles (1)_4: 1581127616805444469
+      background_tiles (1)_2: 5865021437637569462
+      background_tiles (1)_14: -7456504940417685308
+      background_tiles (1)_0: -5905698523013028139
+      background_tiles (1)_13: -1163025170899662580
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

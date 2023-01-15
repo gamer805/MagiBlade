@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Troop
+  - PlayerProjHold
+  - Trophy
+  - chest
+  - key
+  - ladder
+  - music
+  - mainThemeSupport
+  - checkpoint
+  - bow
+  - Explosion
+  - PlayerFoot
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - PixelUI
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - PlayerSpells
+  - Troop
+  - Melee
+  - Enemy
+  - Bound
+  - Camera
+  - PlayerHurtbox
+  - EnemyHurtbox
+  - Climbable
+  - Platform
+  - Semisolid
+  - FallingPlat
+  - Ghost
+  - Floor
+  - Bow
+  - Flying
+  - EnemyProj
+  - Sawblade
+  - PlayerNoEnemies
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 705004149
+    locked: 0
+  - name: NoLight
+    uniqueID: 331633965
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2840261643
+    locked: 0
+  - name: Foreground
+    uniqueID: 1060033039
+    locked: 0

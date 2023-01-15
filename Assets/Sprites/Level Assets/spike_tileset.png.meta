@@ -1,0 +1,427 @@
+fileFormatVersion: 2
+guid: ae96ae8b874da4663b50ff244ebb0ba5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3236599793647249121
+    second: spike_tiles_0
+  - first:
+      213: 5701594481497081072
+    second: spike_tiles_1
+  - first:
+      213: -5093657893657078494
+    second: spike_tiles_2
+  - first:
+      213: -5950573645266614291
+    second: spike_tiles_3
+  - first:
+      213: 8055368634073964250
+    second: spike_tiles_0
+  - first:
+      213: 3281461555463706992
+    second: spike_tiles_1
+  - first:
+      213: 298696367081908346
+    second: spike_tiles_2
+  - first:
+      213: -4843290699915209146
+    second: spike_tiles_3
+  - first:
+      213: 8817364723973779184
+    second: spike_tiles_4
+  - first:
+      213: -8898348365878983585
+    second: spike_tiles_5
+  - first:
+      213: -5464240272672108352
+    second: spike_tiles_6
+  - first:
+      213: 5997066653170712571
+    second: spike_tiles_7
+  - first:
+      213: -1554283582428223608
+    second: spike_tiles_8
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spike_tiles_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 14
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: 2}
+        - {x: 2, y: 2}
+        - {x: 2, y: 0}
+        - {x: 1, y: 0}
+        - {x: 1, y: -2}
+        - {x: 0, y: -2}
+        - {x: 0, y: 0}
+        - {x: -1, y: 0}
+        - {x: -1, y: 2}
+        - {x: -2, y: 2}
+        - {x: -2, y: 0}
+        - {x: -3, y: 0}
+        - {x: -3, y: -2}
+        - {x: -4, y: -2}
+        - {x: -4, y: -4}
+        - {x: 4, y: -4}
+        - {x: 4, y: 0}
+        - {x: 3, y: 0}
+      physicsShape:
+      - - {x: -2, y: 0}
+        - {x: -3, y: 0}
+        - {x: -3, y: -2}
+        - {x: -3, y: -2}
+        - {x: -3, y: -4}
+        - {x: 3, y: -4}
+        - {x: 3, y: 0}
+        - {x: 3, y: 0}
+        - {x: 3, y: 1}
+        - {x: 2, y: 1}
+        - {x: 2, y: 0}
+        - {x: 1, y: 0}
+        - {x: 1, y: -2}
+        - {x: -1, y: -2}
+        - {x: -1, y: 0}
+        - {x: -1, y: 0}
+        - {x: -1, y: 1}
+        - {x: -2, y: 1}
+      tessellationDetail: 1
+      bones: []
+      spriteID: ade5dc0f71b6acf60800000000000000
+      internalID: -3236599793647249121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spike_tiles_1
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 14
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 4}
+        - {x: 0, y: 3}
+        - {x: -2, y: 3}
+        - {x: -2, y: 2}
+        - {x: 0, y: 2}
+        - {x: 0, y: 1}
+        - {x: 2, y: 1}
+        - {x: 2, y: 0}
+        - {x: 0, y: 0}
+        - {x: 0, y: -1}
+        - {x: -2, y: -1}
+        - {x: -2, y: -2}
+        - {x: 0, y: -2}
+        - {x: 0, y: -3}
+        - {x: 2, y: -3}
+        - {x: 2, y: -4}
+        - {x: 4, y: -4}
+        - {x: 4, y: 4}
+      physicsShape:
+      - - {x: 0, y: 3}
+        - {x: 0, y: 3}
+        - {x: -1, y: 3}
+        - {x: -1, y: 2}
+        - {x: 0, y: 2}
+        - {x: 0, y: 1}
+        - {x: 2, y: 1}
+        - {x: 2, y: -1}
+        - {x: 0, y: -1}
+        - {x: 0, y: -1}
+        - {x: -1, y: -1}
+        - {x: -1, y: -2}
+        - {x: 0, y: -2}
+        - {x: 0, y: -3}
+        - {x: 2, y: -3}
+        - {x: 2, y: -3}
+        - {x: 4, y: -3}
+        - {x: 4, y: 3}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 079d38516e71a8d20800000000000000
+      internalID: 5701594481497081072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spike_tiles_2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4, y: 4}
+        - {x: -4, y: 0}
+        - {x: -3, y: 0}
+        - {x: -3, y: -2}
+        - {x: -2, y: -2}
+        - {x: -2, y: 0}
+        - {x: -1, y: 0}
+        - {x: -1, y: 2}
+        - {x: 0, y: 2}
+        - {x: 0, y: 0}
+        - {x: 1, y: 0}
+        - {x: 1, y: -2}
+        - {x: 2, y: -2}
+        - {x: 2, y: 0}
+        - {x: 3, y: 0}
+        - {x: 3, y: 2}
+        - {x: 4, y: 2}
+        - {x: 4, y: 4}
+      physicsShape:
+      - - {x: -3, y: 4}
+        - {x: -3, y: 0}
+        - {x: -3, y: 0}
+        - {x: -3, y: -1}
+        - {x: -2, y: -1}
+        - {x: -2, y: 0}
+        - {x: -1, y: 0}
+        - {x: -1, y: 2}
+        - {x: 1, y: 2}
+        - {x: 1, y: 0}
+        - {x: 1, y: 0}
+        - {x: 1, y: -1}
+        - {x: 2, y: -1}
+        - {x: 2, y: 0}
+        - {x: 3, y: 0}
+        - {x: 3, y: 2}
+        - {x: 3, y: 2}
+        - {x: 3, y: 4}
+      - - {x: -3, y: 0}
+        - {x: -3, y: 0}
+        - {x: -3, y: 0}
+        - {x: -3, y: 0}
+      tessellationDetail: 1
+      bones: []
+      spriteID: a78ed9763ce252400800000000000000
+      internalID: -5093657893657078494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spike_tiles_3
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 2
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4, y: 4}
+        - {x: -4, y: -4}
+        - {x: 0, y: -4}
+        - {x: 0, y: -3}
+        - {x: 2, y: -3}
+        - {x: 2, y: -2}
+        - {x: 0, y: -2}
+        - {x: 0, y: -1}
+        - {x: -2, y: -1}
+        - {x: -2, y: 0}
+        - {x: 0, y: 0}
+        - {x: 0, y: 1}
+        - {x: 2, y: 1}
+        - {x: 2, y: 2}
+        - {x: 0, y: 2}
+        - {x: 0, y: 3}
+        - {x: -2, y: 3}
+        - {x: -2, y: 4}
+      physicsShape:
+      - - {x: -4, y: 3}
+        - {x: -4, y: -3}
+        - {x: 0, y: -3}
+        - {x: 0, y: -3}
+        - {x: 1, y: -3}
+        - {x: 1, y: -2}
+        - {x: 0, y: -2}
+        - {x: 0, y: -1}
+        - {x: -2, y: -1}
+        - {x: -2, y: 1}
+        - {x: 0, y: 1}
+        - {x: 0, y: 1}
+        - {x: 1, y: 1}
+        - {x: 1, y: 2}
+        - {x: 0, y: 2}
+        - {x: 0, y: 3}
+        - {x: -2, y: 3}
+        - {x: -2, y: 3}
+      - - {x: -2, y: 3}
+        - {x: -2, y: 3}
+        - {x: -2, y: 3}
+        - {x: -2, y: 3}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 646d99fe4cc29ccb0800000000000000
+      internalID: -5950573645266614291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      spike_tiles_0: -3236599793647249121
+      spike_tiles_3: -5950573645266614291
+      spike_tiles_2: -5093657893657078494
+      spike_tiles_1: 5701594481497081072
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

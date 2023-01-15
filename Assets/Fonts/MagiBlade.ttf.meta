@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6a5b3bca81b874b7ba5087a1612e1cf0
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 18
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - MagiBlade
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e7c681bfb1f004bce9e2ab0f7d7e40eb, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
