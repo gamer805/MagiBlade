@@ -230,7 +230,7 @@ Transform:
   m_GameObject: {fileID: 4912497208641875935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -19.9, y: -34.53, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4912497208616646872}
@@ -240,7 +240,7 @@ Transform:
   - {fileID: 4920449905156369058}
   - {fileID: 4920449903702106875}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4912497208641875923
 MonoBehaviour:
@@ -259,7 +259,6 @@ MonoBehaviour:
   jumpSpeed: 16
   grounded: 1
   rb: {fileID: 0}
-  movingRight: 0
   bodyCollider: {fileID: 4912497208641875920}
   footCollider: {fileID: 4920449903702106872}
   groundLayer:
@@ -382,6 +381,7 @@ MonoBehaviour:
   hitHurt: {fileID: 4920449904850784925}
   deathSound: {fileID: 3717060196910982128}
   fade: {fileID: 0}
+  PlayerPrefab: {fileID: 4912497208641875935}
 --- !u!114 &4920449904459093190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5631,7 +5631,7 @@ GameObject:
   - component: {fileID: 4920449903702106875}
   - component: {fileID: 4920449903702106872}
   - component: {fileID: 9173047359884046857}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Foot
   m_TagString: PlayerFoot
   m_Icon: {fileID: 0}
