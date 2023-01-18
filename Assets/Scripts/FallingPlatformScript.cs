@@ -31,6 +31,9 @@ public class FallingPlatformScript : MonoBehaviour
         {
             Invoke("Reinstate", 1f);
         }
+        if(rbody.isKinematic){
+            rbody.velocity = Vector2.zero;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
