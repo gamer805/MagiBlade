@@ -75,6 +75,7 @@ public class FallingPlatformScript : MonoBehaviour
         GameObject clone = Instantiate(selfPrefab, initLoc, Quaternion.identity);
         clone.GetComponent<Animator>().SetTrigger("Initialize");
         clone.GetComponent<FallingPlatformScript>().ReinstateAudio.playOnAwake = true;
+        clone.transform.parent = transform.parent;
          Destroy(gameObject);
         
     }

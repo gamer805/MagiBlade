@@ -19,8 +19,10 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         SetItem(itemName);
-        displayImg.sprite = defaultSprite;
-        lastSprite = defaultSprite;
+        if(defaultSprite != null && displayImg != null){
+            displayImg.sprite = defaultSprite;
+            lastSprite = defaultSprite;
+        } 
 
     }
 

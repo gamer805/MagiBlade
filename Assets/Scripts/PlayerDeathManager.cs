@@ -10,7 +10,7 @@ public class PlayerDeathManager : MonoBehaviour
     public Transform checkpoint;
     public float deathTime = 0.3f;
     GameObject weaponHolder;
-    public bool dead = false;
+    public static bool dead = false;
     public KeyScript keyData;
     public GameObject keyPref;
     Damagable damager;

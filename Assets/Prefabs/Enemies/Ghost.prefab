@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 7750267317683543132}
   - component: {fileID: 5463112085961446352}
   - component: {fileID: 44594687481089835}
+  - component: {fileID: -8586992320522836997}
   m_Layer: 12
   m_Name: Ghost
   m_TagString: Enemy
@@ -505,6 +506,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8586992320522836997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750267317683543123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityPrefab: {fileID: 7750267317683543123}
 --- !u!1 &7750267317979010181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1300,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -4682,6 +4697,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -5514,6 +5530,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 7750267317683543141}
     m_Modifications:
     - target: {fileID: 140814026703713419, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
@@ -5569,6 +5586,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7750267317683543128}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
 --- !u!4 &1372861091114006884 stripped
 Transform:

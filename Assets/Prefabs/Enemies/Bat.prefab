@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 27849254564649729}
   - component: {fileID: 27849254564649728}
   - component: {fileID: -4319645371145935535}
+  - component: {fileID: -328664493718421198}
   m_Layer: 12
   m_Name: Bat
   m_TagString: Enemy
@@ -473,6 +474,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2774b17d60c2e45b5b504d9a314047da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-328664493718421198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27849254564649743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityPrefab: {fileID: 27849254564649743}
 --- !u!1 &27849254860510169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1230,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -4612,6 +4627,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -5538,6 +5554,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 27849254564649785}
     m_Modifications:
     - target: {fileID: 140814026703713419, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
@@ -5593,6 +5610,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 27849254564649732}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
 --- !u!4 &2047262162458215075 stripped
 Transform:

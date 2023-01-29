@@ -23,7 +23,7 @@ public class SemisolidScript : MonoBehaviour
         }
         if (Input.GetAxis("Jump") > 0 ||
         Input.GetAxis("Vertical") > 0 ||
-        player.GetComponent<PlayerDeathManager>().dead == true)
+        PlayerDeathManager.dead)
         {
             ReinstateLayer();
         }
@@ -37,6 +37,7 @@ public class SemisolidScript : MonoBehaviour
         }
             
     }
+
     void OnCollisionExit2D(Collision2D col)
     {
         if (col.gameObject.tag == "PlayerFoot")

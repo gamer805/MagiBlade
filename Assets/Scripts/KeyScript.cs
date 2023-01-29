@@ -12,6 +12,7 @@ public class KeyScript : MonoBehaviour
     GameObject[] chests;
     public Vector3 lastKeyLoc;
     public AudioSource acquireKeySound;
+    public Color greyedColor;
 
     void Start(){
         bodyCollider = GameObject.Find("Player").GetComponent<CharacterController>().bodyCollider;
@@ -41,7 +42,7 @@ public class KeyScript : MonoBehaviour
                 if(!c.open) {
                     c.Open();
                     hasKey = false;
-                    if(UI != null) UI.color = Color.black;
+                    if(UI != null) UI.color = greyedColor;
                 }
             }
         }
