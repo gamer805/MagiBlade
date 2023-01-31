@@ -77,6 +77,7 @@ public class FallingPlatformScript : MonoBehaviour
     }
 
     void OnBecameInvisible(){
-        Reinstate();
+        RoomResetScript roomScript = transform.parent.GetComponent<RoomResetScript>();
+        if(roomScript != null && roomScript.activated && fell) Reinstate();
     }
 }

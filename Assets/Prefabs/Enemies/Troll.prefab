@@ -5169,7 +5169,6 @@ GameObject:
   - component: {fileID: 5124644811037472616}
   - component: {fileID: 5124644811037472628}
   - component: {fileID: 5124644811037472627}
-  - component: {fileID: -7087209959010302448}
   - component: {fileID: 3694265754007289840}
   - component: {fileID: -5544656859873831297}
   m_Layer: 12
@@ -5370,18 +5369,6 @@ MonoBehaviour:
   attackCooldown: 0
   attackPoint: {fileID: 5124644811475413205}
   height: {fileID: 7746450600973688168}
---- !u!114 &-7087209959010302448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5124644811037472619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2774b17d60c2e45b5b504d9a314047da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &3694265754007289840
 AudioSource:
   m_ObjectHideFlags: 0

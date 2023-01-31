@@ -8,12 +8,6 @@ public class Explosion : MonoBehaviour
     public float knockback = 3f;
     public bool isEnemyExplosive;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     void OnTriggerEnter2D(Collider2D col)
     {
         if (isEnemyExplosive)

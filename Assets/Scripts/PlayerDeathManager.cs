@@ -118,7 +118,7 @@ public class PlayerDeathManager : MonoBehaviour
     void OnTriggerStay2D(Collider2D col){
         if(col.gameObject.tag == "checkpoint" && checkpoint != col.gameObject.transform){
             checkpoint = col.gameObject.transform;
-            checkpoint.GetComponent<RegionCameraSet>().switchCam();
+            checkpoint.GetComponent<CheckpointScript>().switchCam();
         }
     }
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 27849253543508441}
-  m_Layer: 12
+  m_Layer: 18
   m_Name: Ground Detection
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 27849253550289017}
-  m_Layer: 12
+  m_Layer: 18
   m_Name: attack_point
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -81,9 +81,8 @@ GameObject:
   - component: {fileID: 27849254564649730}
   - component: {fileID: 27849254564649729}
   - component: {fileID: 27849254564649728}
-  - component: {fileID: -4319645371145935535}
   - component: {fileID: -328664493718421198}
-  m_Layer: 12
+  m_Layer: 18
   m_Name: Bat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -462,18 +461,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-4319645371145935535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 27849254564649743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2774b17d60c2e45b5b504d9a314047da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-328664493718421198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityPrefab: {fileID: 27849254564649743}
+  initCoords: {x: 0, y: 0, z: 0}
 --- !u!1 &27849254860510169
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,7 +484,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 27849254860510170}
-  m_Layer: 12
+  m_Layer: 18
   m_Name: ProjectileHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495206293328990669}
   - component: {fileID: 2049544409004889054}
-  m_Layer: 12
+  m_Layer: 18
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +628,7 @@ GameObject:
   - component: {fileID: 844237879267267742}
   - component: {fileID: 390633187357663668}
   - component: {fileID: 4667948289057590750}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Blood PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5467,7 +5455,7 @@ GameObject:
   - component: {fileID: 8216448712174006832}
   - component: {fileID: 8095537987577665205}
   - component: {fileID: 7720181030901080560}
-  m_Layer: 12
+  m_Layer: 18
   m_Name: JumpDmgDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5601,14 +5589,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1292813656177285038, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 1605327491600141300, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
       propertyPath: m_Name
       value: Health Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605327491600141300, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409588070758817186, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062758845407985376, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7740956749398001308, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
       propertyPath: damageManager
       value: 
       objectReference: {fileID: 27849254564649732}
+    - target: {fileID: 8449860175288379633, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}

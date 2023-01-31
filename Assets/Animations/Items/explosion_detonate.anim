@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: explosion_detonate
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -49,6 +49,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: -7558673754538462546, guid: 863c7d8c7bcfd4873a5d45840d0e7256, type: 3}
     - {fileID: 201767957516689898, guid: 863c7d8c7bcfd4873a5d45840d0e7256, type: 3}
@@ -85,13 +86,6 @@ AnimationClip:
     functionName: Dissipate
     data: 
     objectReferenceParameter: {fileID: 2373343604997803418, guid: 46c8cf73227224087b95122a6b1c8364, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.41666666
-    functionName: 
-    data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 31e095ff16fac4dfcada0eef1c2f84bf, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1779350012888590001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1779350012888589999}
+  - component: {fileID: 1779350012888589998}
+  m_Layer: 0
+  m_Name: Room
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1779350012888589999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779350012888590001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1779350012888589998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779350012888590001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba219b71a7e7148939c373828bd235cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpoint: {fileID: 0}
+  activated: 0
+  respawnDeadEnemies: 0
+  enemyPrefabDict:
+  - {fileID: 27849254564649743, guid: 6595a232a864d431db25fa340ffcd9f4, type: 3}
+  - {fileID: 4787298143427262513, guid: c52c1b67dbf1a4255bcbd8bd26592065, type: 3}
+  - {fileID: 7750267317683543123, guid: a4ae18488f507476d850c42ea857c6d9, type: 3}
+  - {fileID: 1458582585323081006, guid: 4dd588f5beaea47fd8a5377e1b3cf609, type: 3}
+  - {fileID: 7358574056981590486, guid: 4f4ec056bba09402abea439c448d5fae, type: 3}
+  - {fileID: 5124644811037472619, guid: d2c0b5439b75842c6a788cddce93a6f5, type: 3}
+  enemyList: []
+  enemyBackups: []
+  enemyPosBackups: []
+  enemyNameBackups: []
