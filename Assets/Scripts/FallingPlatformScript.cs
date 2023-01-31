@@ -27,10 +27,6 @@ public class FallingPlatformScript : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.y < initLoc.y-10f)
-        {
-            Invoke("Reinstate", 1f);
-        }
         if(rbody.isKinematic){
             rbody.velocity = Vector2.zero;
         }
@@ -76,7 +72,11 @@ public class FallingPlatformScript : MonoBehaviour
         clone.GetComponent<Animator>().SetTrigger("Initialize");
         clone.GetComponent<FallingPlatformScript>().ReinstateAudio.playOnAwake = true;
         clone.transform.parent = transform.parent;
-         Destroy(gameObject);
-        
+        clone.name = transform.name;
+        Destroy(gameObject);
+    }
+
+    void OnBecameInvisible(){
+        Reinstate();
     }
 }

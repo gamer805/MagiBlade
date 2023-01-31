@@ -240,7 +240,7 @@ Transform:
   - {fileID: 4920449905156369058}
   - {fileID: 4920449903702106875}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4912497208641875923
 MonoBehaviour:
@@ -256,9 +256,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundingChecker: 0
   maxWalkSpeed: 10
-  jumpSpeed: 16
+  jumpSpeed: 18
   grounded: 1
-  rb: {fileID: 0}
+  rb: {fileID: 4912497208641875925}
   movingRight: 0
   bodyCollider: {fileID: 4912497208641875920}
   footCollider: {fileID: 4920449903702106872}
@@ -286,12 +286,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &3717060196910982129
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -375,7 +375,6 @@ MonoBehaviour:
   healthDisplay: {fileID: 0}
   checkpoint: {fileID: 0}
   deathTime: 0.3
-  dead: 0
   keyData: {fileID: 0}
   keyPref: {fileID: 7032522461831535831, guid: 8385af382752c4aa3af218eb348b11c3, type: 3}
   Blood: {fileID: 4920449903132187945}

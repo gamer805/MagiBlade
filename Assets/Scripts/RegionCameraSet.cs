@@ -9,6 +9,12 @@ public class RegionCameraSet : MonoBehaviour
     //reference to collider component
     public BoxCollider2D col;
 
+    public bool checkpointCamActive = false;
+
+    void Update(){
+        checkpointCamActive = camScript.enabled;
+    }
+
     //draws collider size in editor
     public void OnDrawGizmosSelected(){
         //get collider component

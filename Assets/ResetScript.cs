@@ -14,6 +14,7 @@ public class ResetScript : MonoBehaviour
     public void Reset(){
         GameObject newObj = Instantiate(entityPrefab, initCoords, Quaternion.identity);
         newObj.transform.SetParent(transform.parent);
+        newObj.name = gameObject.name;
         Debug.Log("Entity Reset");
         Destroy(gameObject);
 
