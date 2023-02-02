@@ -19,6 +19,7 @@ public class CharacterController : MonoBehaviour
 
     public Collider2D bodyCollider;
     public Collider2D footCollider;
+    public Collider2D wallCollider;
     public LayerMask groundLayer;
 
     public float coyoteTime = 0.3f;
@@ -39,6 +40,9 @@ public class CharacterController : MonoBehaviour
     bool canDecelerate = false;
     bool decelerating = false;
 
+    public bool onWall = false;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -49,6 +53,8 @@ public class CharacterController : MonoBehaviour
     }
 
     void Update(){
+        onWall = wallCollider.IsTouchingLayers(groundLayer);
+
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0 && !decelerating)
             rb.velocity = new Vector2(Input.GetAxis("Horizontal")*maxWalkSpeed, rb.velocity.y);
         else

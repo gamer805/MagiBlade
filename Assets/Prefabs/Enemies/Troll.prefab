@@ -5368,6 +5368,7 @@ MonoBehaviour:
     m_Bits: 131072
   attackCooldown: 0
   attackPoint: {fileID: 5124644811475413205}
+  wallCheckpoint: {fileID: 0}
   height: {fileID: 7746450600973688168}
 --- !u!82 &3694265754007289840
 AudioSource:
@@ -5478,6 +5479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityPrefab: {fileID: 5124644811037472619}
+  initCoords: {x: 0, y: 0, z: 0}
 --- !u!1 &5124644811475413204
 GameObject:
   m_ObjectHideFlags: 0

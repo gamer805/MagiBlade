@@ -5456,7 +5456,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityPrefabPath: Prefabs/Enemies/Skeleton
   entityPrefab: {fileID: 7358574056981590486}
+  initCoords: {x: 0, y: 0, z: 0}
 --- !u!1 &7358574057674952272
 GameObject:
   m_ObjectHideFlags: 0

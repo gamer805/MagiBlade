@@ -50,6 +50,7 @@ public class npcMoveScript : MonoBehaviour
     public bool attackCooldown = false;
 
     public Transform attackPoint;
+    public Transform wallCheckpoint;
 
     npcAttackScript npc;
 
@@ -68,6 +69,12 @@ public class npcMoveScript : MonoBehaviour
             rb.gravityScale = 0;
         npc = GetComponent<npcAttackScript>();
         dmgScript = GetComponent<Damagable>();
+
+        if (footCollider == null && bodyCollider != null){
+            footCollider = bodyCollider;
+        }
+
+        if(wallCheckpoint == null) wallCheckpoint = attackPoint;
         
     }
     // Update is called once per frame
@@ -174,7 +181,7 @@ public class npcMoveScript : MonoBehaviour
         }
                 
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 0.1f, groundLayer);
-        bool wallInfo = Physics2D.OverlapCircle(attackPoint.position, wallBuffer, groundLayer);
+        bool wallInfo = Physics2D.OverlapCircle(wallCheckpoint.position, wallBuffer, groundLayer);
 
         if ((groundInfo.collider == null && detectPlatformEdges && grounded) || wallInfo)
         {
@@ -302,10 +309,13 @@ public class npcMoveScript : MonoBehaviour
 
             VariateMovement("flip");
             RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 0.2f, groundLayer);
-            bool wallInfo = Physics2D.OverlapCircle(attackPoint.position, wallBuffer, groundLayer);
+            bool wallInfo = Physics2D.OverlapCircle(wallCheckpoint.position, wallBuffer, groundLayer);
+            Collider2D col = Physics2D.OverlapCircle(wallCheckpoint.position, wallBuffer, groundLayer);
             
             if ((groundInfo.collider == null && detectPlatformEdges && grounded) || wallInfo)
             {
+                if(groundInfo.collider == null && detectPlatformEdges && grounded) Debug.Log("Flipped on lack of ground.");
+                if(col != null) Debug.Log("Wanderer flipped on wall on the following: " + col.gameObject.name);
                 Flip();
             }
             VariateMovement("idle");
@@ -340,10 +350,6 @@ public class npcMoveScript : MonoBehaviour
         if (currentTarget.transform.position.y - transform.position.y > 1.5f && grounded && !attackCooldown)
         {
             vel.y = jumpSpeed;
-        }
-        else
-        {
-            vel.y = rb.velocity.y;
         }
     }
 
@@ -381,6 +387,7 @@ public class npcMoveScript : MonoBehaviour
         {
             if (type == "flip")
             {
+                Debug.Log("Wanderer flipped on variate.");
                 Flip();
             }
             else if (type == "idle")
@@ -439,7 +446,7 @@ public class npcMoveScript : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, range);
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(attackPoint.position, wallBuffer);
+        Gizmos.DrawWireSphere(wallCheckpoint.position, wallBuffer);
         Gizmos.color = Color.white;
         Vector3 sightDist = new Vector3(attackPoint.position.x - sight, attackPoint.position.y, attackPoint.position.z);
         Vector3 sightDist2 = new Vector3(attackPoint.position.x + sight, attackPoint.position.y, attackPoint.position.z);

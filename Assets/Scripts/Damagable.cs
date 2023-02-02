@@ -31,6 +31,11 @@ public class Damagable : MonoBehaviour
     public float zoomAmt = 0.2f;
 
     public bool canBeHurt = true;
+
+    public float deathDelay = 0f;
+    public Sprite deathSprite;
+
+    public GameObject dependent;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,12 +56,22 @@ public class Damagable : MonoBehaviour
 
         if (health <= 0)
         {
-            if(DropPrefab != null) {
-                Instantiate(DropPrefab, transform.position, Quaternion.identity);
-                Debug.Log("created");
+            if(gameObject.tag != "Player"){
+                Component[] components = gameObject.GetComponents(typeof(Behaviour));
+                foreach(Behaviour component in components) {
+                    if(component != GetComponent<Rigidbody2D>() &&
+                    component != GetComponent<Collider2D>() &&
+                    component != GetComponent<SpriteRenderer>() &&
+                    component != gameObject.transform) {
+                        component.enabled = false;
+                    }
+                }
+                if(deathSprite != null) {
+                    GetComponent<SpriteRenderer>().sprite = deathSprite;
+                }
             }
-            if(gameObject.tag != "Player")
-                Destroy(gameObject);
+            
+            Invoke("Kill", deathDelay);
         }
         
     }
@@ -174,6 +189,19 @@ public class Damagable : MonoBehaviour
         }
         
     }
+
+    void Kill(){
+        if(DropPrefab != null) {
+            Instantiate(DropPrefab, transform.position, Quaternion.identity);
+            Debug.Log("created");
+        }
+        
+        if(dependent != null) dependent.GetComponent<CobwebScript>().Disintigrate();
+
+        if(gameObject.tag != "Player")
+            Destroy(gameObject);
+    }
+
     void CreateBlood(){
         Blood.Play();
     }

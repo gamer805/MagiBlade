@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4912497208616646872}
   - component: {fileID: 4912497208616646875}
+  - component: {fileID: 1794025261134142427}
   m_Layer: 8
   m_Name: ProjectileHolder
   m_TagString: Untagged
@@ -193,6 +194,32 @@ MonoBehaviour:
   itemName: Dagger
   defaultSprite: {fileID: -5232962937916053866, guid: 375279dcdfb4e4d76a2e697f54877f8c, type: 3}
   displayImg: {fileID: 0}
+--- !u!61 &1794025261134142427
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912497208616646873}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: f7a44d348bd72475996ba987281321c2, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.45223904, y: 0.03334999}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.9350605, y: 0.16843796}
+  m_EdgeRadius: 0
 --- !u!1 &4912497208641875935
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +267,7 @@ Transform:
   - {fileID: 4920449905156369058}
   - {fileID: 4920449903702106875}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4912497208641875923
 MonoBehaviour:
@@ -262,6 +289,7 @@ MonoBehaviour:
   movingRight: 0
   bodyCollider: {fileID: 4912497208641875920}
   footCollider: {fileID: 4920449903702106872}
+  wallCollider: {fileID: 1794025261134142427}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8261633
@@ -271,6 +299,7 @@ MonoBehaviour:
   JumpAudio: {fileID: 4920449903556904347}
   DoubleJumpAudio: {fileID: 4920449904850784924}
   heightAnim: {fileID: 4920449903657709547}
+  onWall: 0
 --- !u!50 &4912497208641875925
 Rigidbody2D:
   serializedVersion: 4
@@ -360,6 +389,9 @@ MonoBehaviour:
   sprite: {fileID: 4133814170917104733}
   zoomAmt: 0.2
   canBeHurt: 1
+  deathDelay: 0
+  deathSprite: {fileID: 0}
+  dependent: {fileID: 0}
 --- !u!114 &4920449904381636825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2100,7 +2132,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0, b: 0, a: 1}
-        key1: {r: 1, g: 0, b: 0, a: 0}
+        key1: {r: 0.21698111, g: 0.111561045, b: 0.111561045, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -2814,7 +2846,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2

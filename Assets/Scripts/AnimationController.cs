@@ -36,7 +36,7 @@ public class AnimationController : MonoBehaviour
     void Update()
     {
         // Set the Speed and ClimbSpeed parameters in the Animator component based on the character's velocity
-        anim.SetFloat("Speed", Mathf.Abs(character.rb.velocity.x));
+        if(!character.onWall) anim.SetFloat("Speed", Mathf.Abs(character.rb.velocity.x));
         anim.SetFloat("ClimbSpeed", Mathf.Abs(character.rb.velocity.y));
 
         // Set the IsJumping parameter in
