@@ -8,6 +8,7 @@ public class SpiderScript : MonoBehaviour
     Rigidbody2D rb;
     npcMoveScript moveScript;
     npcAttackScript attackScript;
+    Damagable damageScript;
 
     public Collider2D dropTrigger;
 
@@ -17,10 +18,12 @@ public class SpiderScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         attackScript = GetComponent<npcAttackScript>();
         moveScript = GetComponent<npcMoveScript>();
+        damageScript = GetComponent<Damagable>();
 
         rb.bodyType = RigidbodyType2D.Static;
         attackScript.enabled = false;
         moveScript.enabled = false;
+        damageScript.enabled = false;
     }
 
     public void Drop(){
@@ -28,6 +31,7 @@ public class SpiderScript : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
         attackScript.enabled = true;
         moveScript.enabled = true;
+        damageScript.enabled = true;
         sleeping = false;
     }
 

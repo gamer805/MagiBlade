@@ -132,11 +132,9 @@ public class Damagable : MonoBehaviour
         }
     }
 
-    public void ApplyDamage(float damage, GameObject enemy, float knockback, Vector2 knockAttributes)
+    void AppDmgBase(float damage, GameObject enemy, float knockback, Vector2 knockAttributes)
     {
-        if(canBeHurt)
-        {
-            Debug.Log(enemy.name + " hit " + gameObject.name + " at " + Time.time + ".");
+        if(canBeHurt && this.enabled){
             if (gameObject.name == "Player")
                 canBeHurt = false;
                 Invoke("cancelDamagePrevent", 1.5f);
@@ -149,45 +147,25 @@ public class Damagable : MonoBehaviour
             applyKnock((int) knockAttributes.x, knockAttributes.y);
             Camera.main.GetComponent<CameraZoom>().Zoom(zoomAmt);
             Camera.main.GetComponent<CameraZoom>().Reset();
-            StartCoroutine(colorFlash(flashNum, flashTime));
-        }
-    }
-    public void ApplyDamage(float damage, GameObject enemy, float knockback)
-    {   
-        if(canBeHurt)
-        {   
-            Debug.Log(enemy.name + " hit " + gameObject.name + " at " + Time.time + ".");
-            if (gameObject.name == "Player")
-                canBeHurt = false;
-                Invoke("cancelDamagePrevent", 1.5f);
-            if(Blood != null && hitHurt != null) {CreateBlood(); hitHurt.Play();}
-            timer = 0;
-            damageDealer = enemy;
-            health -= damage;
-            knockedBack = true;
-            knockValue = knockback;
-            applyKnock();
-            Camera.main.GetComponent<CameraZoom>().Zoom(zoomAmt);
-            Camera.main.GetComponent<CameraZoom>().Reset();
-            StartCoroutine(colorFlash(flashNum, flashTime));
-        }
-    }
-    public void AppDmgNoColor(float damage, GameObject enemy, float knockback)
-    {
-        if(canBeHurt){
-            Debug.Log(enemy.name + " hit " + gameObject.name + " at " + Time.time + ".");
-            if (gameObject.name == "Player")
-                canBeHurt = false;
-                Invoke("cancelDamagePrevent", 1.5f);
-            if(Blood != null && hitHurt != null) {CreateBlood(); hitHurt.Play();}
-            timer = 0;
-            damageDealer = enemy;
-            health -= damage;
-            knockedBack = true;
-            knockValue = knockback;
-            applyKnock();
         }
         
+    }
+
+    public void ApplyDamage(float damage, GameObject enemy, float knockback, Vector2 knockAttributes)
+    {
+        AppDmgBase(damage, enemy, knockback, knockAttributes);
+        if(canBeHurt && this.enabled) StartCoroutine(colorFlash(flashNum, flashTime));
+    }
+    
+    public void AppDmgNoColor(float damage, GameObject enemy, float knockback)
+    {
+        AppDmgBase(damage, enemy, knockback, Vector2.zero);
+    }
+
+    public void ApplyDamage(float damage, GameObject enemy, float knockback)
+    {   
+        AppDmgBase(damage, enemy, knockback, Vector2.zero);
+        if(canBeHurt && this.enabled) StartCoroutine(colorFlash(flashNum, flashTime));
     }
 
     void Kill(){
