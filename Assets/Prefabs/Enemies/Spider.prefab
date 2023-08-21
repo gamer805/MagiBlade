@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 939547484464900731}
   - component: {fileID: 2147089756479482546}
-  m_Layer: 0
+  - component: {fileID: 880811237151884356}
+  - component: {fileID: 124195468217050245}
+  m_Layer: 7
   m_Name: attack_point
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -58,6 +60,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 5}
   m_EdgeRadius: 0
+--- !u!58 &880811237151884356
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939547484464900732}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.75
+--- !u!58 &124195468217050245
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939547484464900732}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 5
 --- !u!1 &939547485304396396
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,8 +537,6 @@ MonoBehaviour:
   initSpeed: 0
   jumpSpeed: 10
   climbSpeed: 4
-  range: 1.75
-  sight: 5
   wallBuffer: 0.61
   engaged: 0
   inRange: 0
@@ -514,12 +546,14 @@ MonoBehaviour:
   canClimb: 1
   detectPlatformEdges: 1
   wanders: 1
+  sightRange: {fileID: 124195468217050245}
+  attackRange: {fileID: 880811237151884356}
   targets: []
+  targetCols: []
   currentTarget: {fileID: 0}
-  defaultTarget: {fileID: 0}
   avgWanderTime: 2
   variationFactor: 3
-  targetTag: Troop
+  targetTag: Player
   groundDetection: {fileID: 939547485304396395}
   grounded: 1
   vel: {x: 0, y: 0, z: 0}

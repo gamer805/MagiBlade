@@ -5,14 +5,7 @@ using UnityEngine;
 public class SemisolidScript : MonoBehaviour
 {
     public bool onPlayer = false;
-    GameObject player;
     public AudioSource WoodThunk;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.Find("Player");
-    }
 
     // Update is called once per frame
     void Update()
@@ -34,6 +27,9 @@ public class SemisolidScript : MonoBehaviour
         if (col.gameObject.tag == "PlayerFoot"){
             WoodThunk.Play();
             onPlayer = true;
+        } else if (col.gameObject.tag == "Player") {
+            foreach(Collider2D wallCol in col.gameObject.GetComponent<WallCollider>().WallCols)
+                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), wallCol);
         }
             
     }

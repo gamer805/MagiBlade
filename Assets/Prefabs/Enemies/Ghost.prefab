@@ -294,6 +294,9 @@ MonoBehaviour:
   sprite: {fileID: 0}
   zoomAmt: 0.2
   canBeHurt: 1
+  deathDelay: 0
+  deathSprite: {fileID: 0}
+  dependent: {fileID: 0}
 --- !u!114 &7750267317683543135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,8 +336,6 @@ MonoBehaviour:
   initSpeed: 0
   jumpSpeed: 5
   climbSpeed: 4
-  range: 0.64
-  sight: 3.11
   wallBuffer: 0.27
   engaged: 0
   inRange: 0
@@ -344,12 +345,14 @@ MonoBehaviour:
   canClimb: 0
   detectPlatformEdges: 0
   wanders: 1
+  sightRange: {fileID: 9219864848716655594}
+  attackRange: {fileID: 7300493070544582050}
   targets: []
+  targetCols: []
   currentTarget: {fileID: 0}
-  defaultTarget: {fileID: 0}
   avgWanderTime: 2
   variationFactor: 3
-  targetTag: Troop
+  targetTag: Player
   groundDetection: {fileID: 7750267319245700741}
   grounded: 1
   vel: {x: 0, y: 0, z: 0}
@@ -363,6 +366,7 @@ MonoBehaviour:
     m_Bits: 131072
   attackCooldown: 0
   attackPoint: {fileID: 7750267319218272037}
+  wallCheckpoint: {fileID: 0}
   height: {fileID: 0}
 --- !u!114 &7750267317683543133
 MonoBehaviour:
@@ -505,7 +509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPrefabPath: Prefabs/Enemies/Ghost
   entityPrefab: {fileID: 7750267317683543123}
   initCoords: {x: 0, y: 0, z: 0}
 --- !u!1 &7750267317979010181
@@ -548,7 +551,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7750267319218272037}
-  m_Layer: 12
+  - component: {fileID: 7300493070544582050}
+  - component: {fileID: 9219864848716655594}
+  m_Layer: 7
   m_Name: attack_point
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -570,6 +575,38 @@ Transform:
   m_Father: {fileID: 7750267317683543141}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &7300493070544582050
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750267319218272036}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
+--- !u!58 &9219864848716655594
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750267319218272036}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.1
 --- !u!1 &7750267319245700740
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,13 +704,37 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0
   m_Vertices:
-  - position: {x: 0, y: 0, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 0}
+  - position: {x: 0.9985302, y: 0.9985302, z: 0}
+    color: {r: 0.70710677, g: 0.70710677, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  m_Triangles: 0000
+  - position: {x: 0.9985302, y: 0.9985302, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9985302, y: 0.9985302, z: 0}
+    color: {r: -0.70710677, g: 0.70710677, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9985302, y: 0.9985302, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.99853003, y: -0.9985304, z: 0}
+    color: {r: -0.70710665, g: -0.7071069, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.99853003, y: -0.9985304, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.99853003, y: -0.9985304, z: 0}
+    color: {r: 0.70710665, g: -0.7071069, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.99853003, y: -0.9985304, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: 0, y: 0, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  m_Triangles: 030001000800020000000100030002000100050003000800040002000300050004000300070005000800060004000500070006000500010007000800000006000700010000000700
   m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

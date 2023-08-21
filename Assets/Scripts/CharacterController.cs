@@ -4,47 +4,51 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    public bool groundingChecker = false;
-    public float maxWalkSpeed = 12f;
+    // Feature Refs
 
-    public float jumpSpeed;
-    public static int level = 1;
-    public bool grounded;
-    public Rigidbody2D rb;
-    Damagable dmgScript;
+    public Rigidbody2D rb;  // Reference to the Rigidbody2D component
+    Damagable dmgScript;  // Reference to the Damagable script
+    Transform t;  // Reference to the Transform component
 
-    public static float direction;
-    Transform t;
-    public bool movingRight;
+    public Collider2D bodyCollider, footCollider, wallCollider;  // Reference to the colliders on the character's body
+    public LayerMask groundLayer;  // Layer mask to determine the ground layer
 
-    public Collider2D bodyCollider;
-    public Collider2D footCollider;
-    public Collider2D wallCollider;
-    public LayerMask groundLayer;
+    GameObject Cam;  // Reference to the main camera
 
-    public float coyoteTime = 0.3f;
-    float coyoteCounter;
+    public ParticleSystem Dust;  // Reference to the particle system for dust effects
+    public AudioSource JumpAudio, DoubleJumpAudio;  // Reference to the audio sources for jump sounds
+    public Animator heightAnim;  // Reference to the animator for height animation
+    
+    // Public variables
 
-    public float bufferTime = 0.2f;
-    float bufferCounter;
+    public bool groundingChecker = false;  // A flag to check if the character is grounded
+    public float walkSpeed = 12f;  // The maximum walking speed of the character
 
-    bool doublejump;
+    public float jumpSpeed;  // The speed at which the character jumps
+    public static int level = 1;  // A static variable representing the current level
+    public bool grounded;  // A flag to check if the character is grounded
 
-    GameObject Cam;
+    public static float direction;  // The current movement direction of the character
+    public bool movingRight;  // A flag to check if the character is moving to the right
 
-    public ParticleSystem Dust;
-    public AudioSource JumpAudio;
-    public AudioSource DoubleJumpAudio;
-    public Animator heightAnim;
+    //Coyote Time - The duration in seconds after leaving a ground where the character can still jump
+    // Buffer Time - The duration in seconds to buffer the jump input
+    public float coyoteTime, bufferTime = 0.3f;  // 
+    float coyoteCounter, bufferCounter;  // Counters for coyote time and bufferTime
 
-    bool canDecelerate = false;
-    bool decelerating = false;
+    bool doublejump;  // A flag to check if the character can perform a double jump
 
+    
+
+    // canDecelerate - A flag to check if the character can decelerate
+    // decelerating - A flag to check if the character is currently decelerating
+    // onWall - A flag to check if the character is currently on a wall
+    bool canDecelerate, decelerating = false;
     public bool onWall = false;
-
 
     void Start()
     {
+        // Initialize references to components and objects
         rb = GetComponent<Rigidbody2D>();
         dmgScript = GetComponent<Damagable>();
         t = transform;
@@ -52,111 +56,119 @@ public class CharacterController : MonoBehaviour
         Cam = Camera.main.gameObject;
     }
 
-    void Update(){
+    void Update()
+    {
+        // Check if the character is touching a wall
         onWall = wallCollider.IsTouchingLayers(groundLayer);
 
+        // Update character's horizontal velocity based on input
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0 && !decelerating)
-            rb.velocity = new Vector2(Input.GetAxis("Horizontal")*maxWalkSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(Input.GetAxis("Horizontal") * walkSpeed, rb.velocity.y);
         else
-        {
             rb.velocity = new Vector2(0, rb.velocity.y);
-        }
 
-        if(Mathf.Abs(Input.GetAxis("Horizontal")) == 1){
+        // Handle Deceleration
+
+        // Check if the character can decelerate or is currently decelerating
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 1) {
             canDecelerate = true;
         }
-        if(Mathf.Abs(Input.GetAxis("Horizontal")) == 0){
+        else if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0) {
             canDecelerate = false;
             decelerating = false;
-        }
-        if(rb.velocity.x == 0 && IsGrounded()){
-            decelerating = false;
-        }
-        if(Mathf.Abs(Input.GetAxis("Horizontal")) < 0.1 && canDecelerate){
+        } else if (Mathf.Abs(Input.GetAxis("Horizontal")) < 0.1 && canDecelerate)
+        {
             decelerating = true;
         }
 
+        //Handle Direction
 
-        if((IsGrounded() || bodyCollider.IsTouchingLayers(groundLayer))){
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
-        }
 
+        // Update character's movement direction
         direction = rb.velocity.x;
-        
-        if(direction <= -0.1 || direction >= 0.1)
+
+        // Flip the character's sprite based on movement direction
+        if (direction <= -0.1 || direction >= 0.1)
         {
             if ((movingRight && direction < 0) || (!movingRight && direction > 0))
                 Flip();
         }
 
-        if(IsGrounded()){
-            if(!grounded){
+        // Handle character's grounded state and coyote time
+        if (IsGrounded())
+        {
+            // Check if the character has stopped moving and is grounded
+            if (rb.velocity.x == 0) decelerating = false;
+            // Adjust character's rotation when grounded
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+
+            if (!grounded)
+            {
                 heightAnim.SetTrigger("squash");
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
             }
             coyoteCounter = coyoteTime;
             doublejump = true;
-        } else {
+        }
+        else
+        {
             coyoteCounter -= Time.deltaTime;
         }
 
-        grounded = IsGrounded();
+        // Check if the character's feet are touching the ground
+        groundingChecker = footCollider.IsTouchingLayers(groundLayer);
 
-        if(Input.GetButtonDown("Jump")){
-            bufferCounter = bufferTime;
-        } else {
-            bufferCounter -= Time.deltaTime;
-        }
+        grounded = IsGrounded();  // Update character's grounded state
 
-        if(bufferCounter > 0 && coyoteCounter > 0){
+        // Buffer jump input for a certain duration after leaving the ground
+        bufferCounter = Input.GetButtonDown("Jump") ? bufferTime : bufferCounter - Time.deltaTime;
+
+        // Perform buffered jump if within buffer time and coyote time
+        if (bufferCounter > 0 && coyoteCounter > 0)
+        {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             bufferCounter = 0;
             CreateDust();
             JumpAudio.Play();
         }
-        if(Input.GetButtonDown("Jump") && CanDoubleJump()){
-            doublejump = false;
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            CreateDust();
-            DoubleJumpAudio.Play();
-        }
 
-        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0){
+        // Perform double jump if jump input is detected and character can double jump
+        if (Input.GetButtonDown("Jump") && CanDoubleJump()) Jump(); 
+
+        // Reduce upward velocity if jump input is released before reaching the peak of the jump
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
+        {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             coyoteCounter = 0;
         }
-        
 
-        if(dmgScript.knockedBack){
-            dmgScript.applyKnock();
-        }
+        // Apply knockback if the character is being knocked back
+        if (dmgScript.knockedBack) dmgScript.applyKnock();
+
     }
 
-    void FixedUpdate(){
-        
-        groundingChecker = footCollider.IsTouchingLayers(groundLayer);
-        
-    }
-    bool IsGrounded(){
+    // Check if the character is grounded
+    bool IsGrounded()
+    {
         return groundingChecker;
     }
 
-    public void Jump(){
+    // Perform a jump
+    public void Jump()
+    {
         rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
         bufferCounter = 0;
         CreateDust();
         JumpAudio.Play();
     }
-    
 
-    bool CanDoubleJump(){
-        if(!IsGrounded() && doublejump == true){
-            return true;
-        } else {
-            return false;
-        }
+    // Check if the character can perform a double jump
+    bool CanDoubleJump()
+    {
+        return (!IsGrounded() && doublejump == true);
     }
 
+    // Flip the character's sprite horizontally
     void Flip()
     {
         CreateDust();
@@ -172,9 +184,9 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-
-
-    void CreateDust(){
+    // Create dust particle effects
+    void CreateDust()
+    {
         Dust.Play();
     }
 }

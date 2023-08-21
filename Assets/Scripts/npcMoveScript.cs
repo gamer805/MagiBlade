@@ -9,8 +9,6 @@ public class npcMoveScript : MonoBehaviour
     public float jumpSpeed;
     public float climbSpeed;
 
-    public float range;
-    public float sight;
     public float wallBuffer;
     public bool engaged;
     public bool inRange;
@@ -24,9 +22,11 @@ public class npcMoveScript : MonoBehaviour
     public bool wanders = true;
     int moveDir = 0;
 
+    public Collider2D sightRange;
+    public Collider2D attackRange;
     public List<GameObject> targets;
+    public List<Collider2D> targetCols;
     public GameObject currentTarget;
-    public GameObject defaultTarget;
 
     public float avgWanderTime = 2f;
     public float variationFactor = 3f;
@@ -60,9 +60,6 @@ public class npcMoveScript : MonoBehaviour
     void Start()
     {
         initSpeed = speed;
-        targets = new List<GameObject>(GameObject.FindGameObjectsWithTag(targetTag));
-        if (defaultTarget != null)
-            targets.Add(defaultTarget);
         SetTarget();
         rb = GetComponent<Rigidbody2D>();
         if (canFly)
@@ -94,13 +91,6 @@ public class npcMoveScript : MonoBehaviour
             }
         }
         
-        
-        
-        if(!(targets.Contains(GameObject.Find("Player"))) && gameObject.tag == "Enemy")
-        {
-            targets.Add(GameObject.Find("Player"));
-            SetTarget();
-        }
         timer += Time.deltaTime;
 
         if(!grounded) vel.y = rb.velocity.y;
@@ -122,8 +112,14 @@ public class npcMoveScript : MonoBehaviour
 
         if (canFly)
             CalibrateFlight();
-        if (canClimb)
-            CalculateClimb();
+        if (canClimb && bodyCollider.IsTouchingLayers(climbLayer))
+        {
+            if (currentTarget.transform.position.y - transform.position.y > 1.5f &&
+                !grounded && canJump && !canFly && engaged && !inRange)
+            {
+                vel.y = climbSpeed;
+            }
+        }
 
         CheckGrounding();
 
@@ -246,53 +242,20 @@ public class npcMoveScript : MonoBehaviour
     {
         if (Random.Range(0, 10f) < variationFactor / 10)
         {
-            float tempRand = Random.Range(0, 1f);
-            if (tempRand > 0.66f)
-            {
-                moveDir = 0;
-            }
-            else if (tempRand > 0.33f)
-            {
-                moveDir = 1;
-            }
-            else if (tempRand > 0)
-            {
-                moveDir = 2;
-            }
+            moveDir = Random.Range(0, 3);
         }
         if (bodyCollider.IsTouchingLayers(groundLayer))
         {
             float tempRand = Random.Range(0, 1f);
             if (tempRand > 0.5f)
             {
-                if (moveDir == 0)
-                {
-                    moveDir = 1;
-                }
-                else if (moveDir == 1)
-                {
-                    moveDir = 2;
-                }
-                else if (moveDir == 2)
-                {
-                    moveDir = 0;
-                }
-
+                moveDir += 1;
+                if (moveDir == 3) moveDir = 0;
             }
             else
             {
-                if (moveDir == 0)
-                {
-                    moveDir = 2;
-                }
-                else if (moveDir == 1)
-                {
-                    moveDir = 0;
-                }
-                else if (moveDir == 2)
-                {
-                    moveDir = 1;
-                }
+                moveDir -= 1;
+                if (moveDir == -1) moveDir = 2;
             }
         }
     }
@@ -314,10 +277,9 @@ public class npcMoveScript : MonoBehaviour
             
             if ((groundInfo.collider == null && detectPlatformEdges && grounded) || wallInfo)
             {
-                if(groundInfo.collider == null && detectPlatformEdges && grounded) Debug.Log("Flipped on lack of ground.");
-                if(col != null) Debug.Log("Wanderer flipped on wall on the following: " + col.gameObject.name);
                 Flip();
             }
+
             VariateMovement("idle");
         }
         else
@@ -331,18 +293,13 @@ public class npcMoveScript : MonoBehaviour
         SetTarget();
         if (currentTarget != null)
         {
-            engaged = CheckTargetDist(currentTarget, sight);
-            inRange = CheckTargetDist(currentTarget, range);
+            engaged = TargetInRange(currentTarget, sightRange);
+            inRange = TargetInRange(currentTarget, attackRange);
         }
         else
         {
             engaged = false;
         }
-
-        targets = new List<GameObject>(GameObject.FindGameObjectsWithTag(targetTag));
-        if (defaultTarget != null)
-            targets.Add(defaultTarget);
-        SetTarget();
     }
 
     void CalculateJump()
@@ -387,7 +344,6 @@ public class npcMoveScript : MonoBehaviour
         {
             if (type == "flip")
             {
-                Debug.Log("Wanderer flipped on variate.");
                 Flip();
             }
             else if (type == "idle")
@@ -404,60 +360,45 @@ public class npcMoveScript : MonoBehaviour
 
     void SetTarget()
     {
-        if (targets.Count > 0)
-        {
-            foreach (GameObject target in targets)
-            {
-                if (target == null)
-                {
-                    targets.Remove(target);
-                    SetTarget();
-                } else
-                {
-                    if (currentTarget == null || Vector3.Distance(target.transform.position, attackPoint.transform.position)
-                        <= Vector3.Distance(currentTarget.transform.position, attackPoint.transform.position))
-                    {
-                        currentTarget = target;
-                    }
+        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Player")){
+            if(!targets.Contains(obj)) targets.Add(obj);
+        }
+
+        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Troop")){
+            if(!targets.Contains(obj)) targets.Add(obj);
+        }
+
+        foreach(GameObject obj in targets){
+            foreach(Collider2D col in obj.GetComponents<Collider2D>()){
+                if(sightRange.IsTouching(col)){
+                    if(!targetCols.Contains(col)) targetCols.Add(col);
                 }
-                    
-                
+            }
+        }
+
+        foreach(GameObject obj in targets){
+            if(currentTarget == null || GetTargetDistance(obj) < GetTargetDistance(currentTarget)){
+                currentTarget = obj;
             }
         }
     }
 
-    bool CheckTargetDist(GameObject target, float dist)
+    public float GetTargetDistance(GameObject target){
+        return Vector2.Distance(new Vector2(target.transform.position.x - 0.65f * Mathf.Round((target.transform.position-attackPoint.transform.position).normalized.x), target.transform.position.y), attackPoint.transform.position);
+    }
+
+    bool TargetInRange(GameObject target, Collider2D col)
     {
-        if (Vector2.Distance(new Vector2(target.transform.position.x - 0.65f * Mathf.Round((target.transform.position-attackPoint.transform.position).normalized.x), target.transform.position.y), attackPoint.transform.position) <= dist)
+        foreach(Collider2D targetCol in target.GetComponents<Collider2D>())  
         {
-            return true;
+            if (col.IsTouching(targetCol)) return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
-            return;
-        
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, range);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(wallCheckpoint.position, wallBuffer);
-        Gizmos.color = Color.white;
-        Vector3 sightDist = new Vector3(attackPoint.position.x - sight, attackPoint.position.y, attackPoint.position.z);
-        Vector3 sightDist2 = new Vector3(attackPoint.position.x + sight, attackPoint.position.y, attackPoint.position.z);
-        Vector3 sightDist3 = new Vector3(attackPoint.position.x, attackPoint.position.y - sight, attackPoint.position.z);
-        Vector3 sightDist4 = new Vector3(attackPoint.position.x, attackPoint.position.y + sight, attackPoint.position.z);
-        Vector3 groundDist = groundDetection.position;
-        groundDist.y -= 0.5f;
-        Gizmos.DrawLine(groundDetection.position, groundDist);
-        Gizmos.DrawLine(attackPoint.position, sightDist);
-        Gizmos.DrawLine(attackPoint.position, sightDist2);
-        Gizmos.DrawLine(attackPoint.position, sightDist3);
-        Gizmos.DrawLine(attackPoint.position, sightDist4);
     }
 }

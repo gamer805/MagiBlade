@@ -5079,7 +5079,7 @@ Transform:
   - {fileID: 7454445687245049654}
   - {fileID: 5338603808125252902}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7358574056981590476
 SpriteRenderer:
@@ -5232,6 +5232,9 @@ MonoBehaviour:
   sprite: {fileID: 0}
   zoomAmt: 0.2
   canBeHurt: 1
+  deathDelay: 0
+  deathSprite: {fileID: 0}
+  dependent: {fileID: 0}
 --- !u!114 &7358574056981590487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5271,8 +5274,6 @@ MonoBehaviour:
   initSpeed: 0
   jumpSpeed: 5
   climbSpeed: 4
-  range: 0.48
-  sight: 3.39
   wallBuffer: 0.28
   engaged: 0
   inRange: 0
@@ -5282,12 +5283,14 @@ MonoBehaviour:
   canClimb: 0
   detectPlatformEdges: 1
   wanders: 0
+  sightRange: {fileID: 6651089592792551219}
+  attackRange: {fileID: 4236001670615762115}
   targets: []
+  targetCols: []
   currentTarget: {fileID: 0}
-  defaultTarget: {fileID: 0}
   avgWanderTime: 2
   variationFactor: 3
-  targetTag: Troop
+  targetTag: Player
   groundDetection: {fileID: 7358574058731131660}
   grounded: 1
   vel: {x: 0, y: 0, z: 0}
@@ -5301,6 +5304,7 @@ MonoBehaviour:
     m_Bits: 131072
   attackCooldown: 0
   attackPoint: {fileID: 7358574057959760668}
+  wallCheckpoint: {fileID: 0}
   height: {fileID: 0}
 --- !u!114 &89644215784636253
 MonoBehaviour:
@@ -5456,7 +5460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPrefabPath: Prefabs/Enemies/Skeleton
   entityPrefab: {fileID: 7358574056981590486}
   initCoords: {x: 0, y: 0, z: 0}
 --- !u!1 &7358574057674952272
@@ -5499,7 +5502,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7358574057959760668}
-  m_Layer: 12
+  - component: {fileID: 4236001670615762115}
+  - component: {fileID: 6651089592792551219}
+  m_Layer: 7
   m_Name: attack_point
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -5521,6 +5526,38 @@ Transform:
   m_Father: {fileID: 7358574056981590477}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &4236001670615762115
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358574057959760667}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!58 &6651089592792551219
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358574057959760667}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.4
 --- !u!1 &7358574058731131659
 GameObject:
   m_ObjectHideFlags: 0

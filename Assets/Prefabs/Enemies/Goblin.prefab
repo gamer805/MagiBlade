@@ -230,6 +230,9 @@ MonoBehaviour:
   sprite: {fileID: 0}
   zoomAmt: 0.2
   canBeHurt: 1
+  deathDelay: 0
+  deathSprite: {fileID: 0}
+  dependent: {fileID: 0}
 --- !u!114 &1458582585323081007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,8 +272,6 @@ MonoBehaviour:
   initSpeed: 0
   jumpSpeed: 5
   climbSpeed: 4
-  range: 0.48
-  sight: 1.31
   wallBuffer: 0.28
   engaged: 0
   inRange: 0
@@ -280,12 +281,15 @@ MonoBehaviour:
   canClimb: 1
   detectPlatformEdges: 1
   wanders: 1
+  sightRange: {fileID: 0}
+  attackRange: {fileID: 0}
   targets: []
+  targetCols: []
   currentTarget: {fileID: 0}
   defaultTarget: {fileID: 0}
   avgWanderTime: 6
   variationFactor: 3
-  targetTag: Troop
+  targetTag: Player
   groundDetection: {fileID: 1458582586201272308}
   grounded: 1
   vel: {x: 0, y: 0, z: 0}
@@ -299,6 +303,7 @@ MonoBehaviour:
     m_Bits: 131072
   attackCooldown: 0
   attackPoint: {fileID: 1458582586435739620}
+  wallCheckpoint: {fileID: 0}
   height: {fileID: 0}
 --- !u!114 &8294926604179129253
 MonoBehaviour:
@@ -358,6 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2774b17d60c2e45b5b504d9a314047da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomMode: 0
 --- !u!82 &547010161014574411
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1117,6 +1123,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -4513,6 +4520,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -5345,6 +5353,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1458582585323081013}
     m_Modifications:
     - target: {fileID: 3271304634626843792, guid: 709a20088b0e24cb6ad0c8303c557062, type: 3}
@@ -5400,6 +5409,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 709a20088b0e24cb6ad0c8303c557062, type: 3}
 --- !u!4 &2524355409722061056 stripped
 Transform:
