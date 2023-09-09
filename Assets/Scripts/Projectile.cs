@@ -62,7 +62,7 @@ public class Projectile : MonoBehaviour
 	public void LookAtMouse()
     {
 		Vector3 mouse_pos = Input.mousePosition;
-		mouse_pos.z = -10f; //The distance between the camera and object
+		mouse_pos.z = -10f; //The distance between the CameraManager and object
 		Vector3 object_pos = Camera.main.WorldToScreenPoint(transform.position);
 		mouse_pos.x = mouse_pos.x - object_pos.x;
 		mouse_pos.y = mouse_pos.y - object_pos.y;
@@ -104,7 +104,7 @@ public class Projectile : MonoBehaviour
 			damageApplied = true;
 			Debug.Log(col.gameObject);
 			//scripts
-			Damagable dmgScript = col.gameObject.GetComponent<Damagable>();
+			DamageHandler dmgScript = col.gameObject.GetComponent<DamageHandler>();
 			spellEffector spellScript = col.gameObject.GetComponent<spellEffector>();
 
 			//spell

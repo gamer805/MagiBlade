@@ -22,7 +22,7 @@ public class Bomb : MonoBehaviour
         if (isEnemyProjectile)
         {
             if (col.gameObject.tag == "Player")
-                col.gameObject.GetComponent<Damagable>().ApplyDamage(attackDamage, gameObject, knockback);
+                col.gameObject.GetComponent<DamageHandler>().ApplyDamage(attackDamage, gameObject, knockback);
         }
         if(impactDissipation)
             Detonate();

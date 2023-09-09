@@ -13,7 +13,7 @@ public class Explosion : MonoBehaviour
         if (isEnemyExplosive)
         {
             if (col.gameObject.tag == "Player")
-                col.gameObject.GetComponent<Damagable>().ApplyDamage(attackDamage, gameObject, knockback);
+                col.gameObject.GetComponent<DamageHandler>().ApplyDamage(attackDamage, gameObject, knockback);
         }
     }
 

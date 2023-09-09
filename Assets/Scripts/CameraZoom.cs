@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
 {
-    public Camera camera;
+    public Camera CameraManager;
     float goalSize;
     float startSize;
     public float zoomSpeed;
@@ -12,16 +12,16 @@ public class CameraZoom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
-        goalSize = camera.orthographicSize;
-        startSize = camera.orthographicSize;
+        CameraManager = Camera.main;
+        goalSize = CameraManager.orthographicSize;
+        startSize = CameraManager.orthographicSize;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Mathf.Abs(goalSize - camera.orthographicSize) > 0.05){
-            camera.orthographicSize = Mathf.MoveTowards(camera.orthographicSize, goalSize, zoomSpeed*Time.deltaTime);
+        if(Mathf.Abs(goalSize - CameraManager.orthographicSize) > 0.05){
+            CameraManager.orthographicSize = Mathf.MoveTowards(CameraManager.orthographicSize, goalSize, zoomSpeed*Time.deltaTime);
         } else if (resetting){
             resetting = false;
             goalSize = startSize;

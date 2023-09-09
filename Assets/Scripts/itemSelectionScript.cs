@@ -7,7 +7,7 @@ public class itemSelectionScript : MonoBehaviour
 {
     public Transform child;
     public GameObject overlay;
-    public itemBarScript itemBar;
+    public ItemHotBar itemBar;
     public int childID = 0;
     // Start is called before the first frame update
     void Start()

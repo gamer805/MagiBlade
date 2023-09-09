@@ -40,7 +40,7 @@ public class npcMoveScript : MonoBehaviour
 
     public Vector3 vel;
     Rigidbody2D rb;
-    Damagable dmgScript;
+    DamageHandler dmgScript;
 
     public Collider2D bodyCollider;
     public LayerMask groundLayer;
@@ -61,7 +61,7 @@ public class npcMoveScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (canFly) rb.gravityScale = 0;
 
-        dmgScript = GetComponent<Damagable>();
+        dmgScript = GetComponent<DamageHandler>();
 
         if(wallCheckpoint == null) wallCheckpoint = attackPoint;
         

@@ -64,7 +64,7 @@ public class InventoryManager : MonoBehaviour
                 item.GetComponent<ItemMenuParameters>().Clear();
                 item.transform.SetSiblingIndex(item.GetComponent<ItemMenuParameters>().id);
             }
-            GetComponent<itemBarScript>().openItemID = 0;
+            GetComponent<ItemHotBar>().openItemID = 0;
             itemBar.GetComponent<itemSelectionScript>().childID = 0;
             activeItems = new GameObject[4];
             overlay.SetActive(true);

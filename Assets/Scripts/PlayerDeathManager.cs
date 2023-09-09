@@ -11,11 +11,11 @@ public class PlayerDeathManager : MonoBehaviour
     public float deathTime = 0.3f;
     GameObject weaponHolder;
     public static bool dead = false;
-    public KeyScript keyData;
+    public Key keyData;
     public GameObject keyPref;
-    Damagable damager;
+    DamageHandler damager;
     SpriteRenderer renderer;
-    CharacterController controller;
+    PlayerMovementHandler controller;
     Rigidbody2D rb;
     public ParticleSystem Blood;
     public AudioSource hitHurt;
@@ -24,12 +24,12 @@ public class PlayerDeathManager : MonoBehaviour
 
     void Start()
     {
-        damager = GetComponent<Damagable>();
+        damager = GetComponent<DamageHandler>();
         renderer = damager.sprite.GetComponent<SpriteRenderer>();
-        controller = GetComponent<CharacterController>();
+        controller = GetComponent<PlayerMovementHandler>();
         rb = GetComponent<Rigidbody2D>();
         weaponHolder = transform.GetChild(0).gameObject;
-        healthPercentage = Mathf.RoundToInt(GetComponent<Damagable>().health / 500) * 100;
+        healthPercentage = Mathf.RoundToInt(GetComponent<DamageHandler>().health / 500) * 100;
         if (healthDisplay == null)
         {
 
@@ -41,7 +41,7 @@ public class PlayerDeathManager : MonoBehaviour
     void Update()
     {
         
-        healthPercentage = Mathf.RoundToInt(gameObject.GetComponent<Damagable>().health / 5);
+        healthPercentage = Mathf.RoundToInt(gameObject.GetComponent<DamageHandler>().health / 5);
         if(healthPercentage <= 0) healthPercentage = 0;
         if(healthDisplay != null)
             healthDisplay.GetComponent<UnityEngine.UI.Text>().text = "Health: " + healthPercentage + "%";
@@ -50,7 +50,7 @@ public class PlayerDeathManager : MonoBehaviour
 
             healthDisplay = GameObject.Find("Player Health");
         }
-        if (gameObject.GetComponent<Damagable>().health <= 0)
+        if (gameObject.GetComponent<DamageHandler>().health <= 0)
         {
             StartCoroutine(KillPlayer());
             
@@ -60,9 +60,9 @@ public class PlayerDeathManager : MonoBehaviour
 
     public IEnumerator KillPlayer(){
         if(!dead){
-            Damagable damager = GetComponent<Damagable>();
+            DamageHandler damager = GetComponent<DamageHandler>();
             SpriteRenderer renderer = damager.sprite.GetComponent<SpriteRenderer>();
-            CharacterController controller = GetComponent<CharacterController>();
+            PlayerMovementHandler controller = GetComponent<PlayerMovementHandler>();
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             if(Blood != null && hitHurt != null) {CreateBlood(); hitHurt.Play();}
 
@@ -94,7 +94,7 @@ public class PlayerDeathManager : MonoBehaviour
         
     }
 
-    public void Respawn(Damagable damager, SpriteRenderer renderer, CharacterController controller, Rigidbody2D rb){
+    public void Respawn(DamageHandler damager, SpriteRenderer renderer, PlayerMovementHandler controller, Rigidbody2D rb){
         transform.position = checkpoint.position;
         controller.movingRight = true;
         transform.eulerAngles = new Vector3(0, 0, 0);
@@ -118,7 +118,7 @@ public class PlayerDeathManager : MonoBehaviour
     void OnTriggerStay2D(Collider2D col){
         if(col.gameObject.tag == "checkpoint" && checkpoint != col.gameObject.transform){
             checkpoint = col.gameObject.transform;
-            checkpoint.GetComponent<CheckpointScript>().switchCam();
+            checkpoint.GetComponent<Checkpoint>().switchCam();
         }
     }
 

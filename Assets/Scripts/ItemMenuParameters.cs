@@ -42,9 +42,9 @@ public class ItemMenuParameters : MonoBehaviour
         {
             descriptionText.fontSize = 25;
 
-            descriptionText.text += "Attack: " + prefab.GetComponent<Melee>().damage
-                + " hp\n\n" + "Reload: " + prefab.GetComponent<Melee>().reloadTime
-                + " s\n\n" + "Knockback: " + prefab.GetComponent<Melee>().knockback + " m";
+            descriptionText.text += "Attack: " + prefab.GetComponent<MeleeWeapon>().damage
+                + " hp\n\n" + "Reload: " + prefab.GetComponent<MeleeWeapon>().reloadTime
+                + " s\n\n" + "Knockback: " + prefab.GetComponent<MeleeWeapon>().knockback + " m";
         }
         else if (type == "projectile")
         {
@@ -67,7 +67,7 @@ public class ItemMenuParameters : MonoBehaviour
             GameObject troop = prefab.GetComponent<Projectile>().resultPrefab;
             npcAttackScript attackStats = troop.GetComponent<npcAttackScript>();
             npcMoveScript mobilityStats = troop.GetComponent<npcMoveScript>();
-            Damagable healthStats = troop.GetComponent<Damagable>();
+            DamageHandler healthStats = troop.GetComponent<DamageHandler>();
 
             descriptionText.fontSize = 15;
 

@@ -16,7 +16,7 @@ public class TrophyManager : MonoBehaviour
     public AudioSource acquireTrophySound;
 
     void Start(){
-        bodyCollider = GameObject.Find("Player").GetComponent<CharacterController>().bodyCollider;
+        bodyCollider = GameObject.Find("Player").GetComponent<PlayerMovementHandler>().bodyCollider;
     }
 
     // Update is called once per frame

@@ -69,7 +69,7 @@ public class npcAttackScript : MonoBehaviour
     }
     void DealDamage()
     {
-        target.GetComponent<Damagable>().ApplyDamage(attackDamage, gameObject, knockback);
+        target.GetComponent<DamageHandler>().ApplyDamage(attackDamage, gameObject, knockback);
         if (attackLimit)
             attackLimitNum--;
 
