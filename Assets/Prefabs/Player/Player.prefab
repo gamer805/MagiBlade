@@ -242,7 +242,6 @@ GameObject:
   - component: {fileID: 4920449904850784925}
   - component: {fileID: 3717060196910982128}
   - component: {fileID: 90585010183087896}
-  - component: {fileID: 1377867383805964890}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -283,24 +282,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb934c6ecfbd4d12ad73af78d3f254a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundingChecker: 0
-  maxWalkSpeed: 10
-  jumpSpeed: 18
-  grounded: 1
   rb: {fileID: 4912497208641875925}
-  movingRight: 0
   bodyCollider: {fileID: 4912497208641875920}
-  footCollider: {fileID: 4920449903702106872}
-  wallCollider: {fileID: 1794025261134142427}
+  wallCollider: {fileID: 3717060196910982129}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8261633
-  coyoteTime: 0.3
-  bufferTime: 0.2
   Dust: {fileID: 6423861561160568823}
   JumpAudio: {fileID: 4920449903556904347}
   DoubleJumpAudio: {fileID: 4920449904850784924}
   heightAnim: {fileID: 4920449903657709547}
+  isGrounded: 0
+  isGroundedDelay: 0
+  walkSpeed: 12
+  jumpSpeed: 18
+  movingRight: 0
+  coyoteTime: 0.3
+  bufferTime: 0.2
   onWall: 0
 --- !u!50 &4912497208641875925
 Rigidbody2D:
@@ -322,7 +320,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!58 &3717060196910982129
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -352,7 +350,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.051404953, y: -0.09417379}
+  m_Offset: {x: -0.051404953, y: -0.1776104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -363,7 +361,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8050995, y: 0.56128764}
+  m_Size: {x: 0.8050995, y: 0.72816086}
   m_EdgeRadius: 0
 --- !u!114 &4920449904796291725
 MonoBehaviour:
@@ -440,6 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
+  onLadder: 0
   isClimbing: 0
   gScale: 0
   Weapon: {fileID: 4912497208616646873}
@@ -455,7 +454,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a40926dfc8b00420ba17d64f869677cd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1.2
   Loop: 0
   Mute: 0
@@ -551,8 +550,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 28a774d73564f4a1d871de63e22ca7ef, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1.2
+  m_Volume: 0.6
+  m_Pitch: 1.4
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -647,7 +646,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f856ead6ad3f84d278d662c9f80b7af1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -743,7 +742,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 53955578a68d247cbb081b02e5920a71, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -842,32 +841,6 @@ MonoBehaviour:
   WallCols:
   - {fileID: 4912497208641875920}
   - {fileID: 1794025261134142427}
---- !u!61 &1377867383805964890
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4912497208641875935}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: dd2011db26e98483eb4611556341fc2f, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.056077003, y: -0.14680481}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.125, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.41792107, y: 0.78705597}
-  m_EdgeRadius: 0
 --- !u!1 &4920449903132187946
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class CharacterController : MonoBehaviour
     Damagable dmgScript;  // Reference to the Damagable script
     Transform t;  // Reference to the Transform component
 
-    public Collider2D bodyCollider, footCollider, wallCollider;  // Reference to the colliders on the character's body
+    public Collider2D bodyCollider, wallCollider;  // Reference to the colliders on the character's body
     public LayerMask groundLayer;  // Layer mask to determine the ground layer
 
     GameObject Cam;  // Reference to the main camera
@@ -21,12 +21,12 @@ public class CharacterController : MonoBehaviour
     
     // Public variables
 
-    public bool groundingChecker = false;  // A flag to check if the character is grounded
+    public bool isGrounded = false;  // A flag to check if the character is grounded
+    public bool isGroundedDelay = false;  // A flag to check if the character is grounded
     public float walkSpeed = 12f;  // The maximum walking speed of the character
 
     public float jumpSpeed;  // The speed at which the character jumps
     public static int level = 1;  // A static variable representing the current level
-    public bool grounded;  // A flag to check if the character is grounded
 
     public static float direction;  // The current movement direction of the character
     public bool movingRight;  // A flag to check if the character is moving to the right
@@ -58,25 +58,27 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
+        float x_input = Input.GetAxis("Horizontal");
+
         // Check if the character is touching a wall
         onWall = wallCollider.IsTouchingLayers(groundLayer);
 
         // Update character's horizontal velocity based on input
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0 && !decelerating)
-            rb.velocity = new Vector2(Input.GetAxis("Horizontal") * walkSpeed, rb.velocity.y);
+        if (Mathf.Abs(x_input) > 0 && !decelerating)
+            rb.velocity = new Vector2(x_input * walkSpeed, rb.velocity.y);
         else
             rb.velocity = new Vector2(0, rb.velocity.y);
 
         // Handle Deceleration
 
         // Check if the character can decelerate or is currently decelerating
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) == 1) {
+        if (Mathf.Abs(x_input) == 1) {
             canDecelerate = true;
         }
-        else if (Mathf.Abs(Input.GetAxis("Horizontal")) == 0) {
+        else if (Mathf.Abs(x_input) == 0) {
             canDecelerate = false;
             decelerating = false;
-        } else if (Mathf.Abs(Input.GetAxis("Horizontal")) < 0.1 && canDecelerate)
+        } else if (Mathf.Abs(x_input) < 0.1 && canDecelerate)
         {
             decelerating = true;
         }
@@ -88,21 +90,23 @@ public class CharacterController : MonoBehaviour
         direction = rb.velocity.x;
 
         // Flip the character's sprite based on movement direction
-        if (direction <= -0.1 || direction >= 0.1)
-        {
-            if ((movingRight && direction < 0) || (!movingRight && direction > 0))
-                Flip();
+        if ((movingRight && direction <= -0.1) || (!movingRight && direction >= 0.1)) {
+            Flip();
         }
 
         // Handle character's grounded state and coyote time
-        if (IsGrounded())
+
+        // Check if the character's feet are touching the ground
+        isGrounded = bodyCollider.IsTouchingLayers(groundLayer);
+
+        if (isGrounded)
         {
             // Check if the character has stopped moving and is grounded
             if (rb.velocity.x == 0) decelerating = false;
             // Adjust character's rotation when grounded
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
 
-            if (!grounded)
+            if (!isGroundedDelay)
             {
                 heightAnim.SetTrigger("squash");
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
@@ -115,10 +119,7 @@ public class CharacterController : MonoBehaviour
             coyoteCounter -= Time.deltaTime;
         }
 
-        // Check if the character's feet are touching the ground
-        groundingChecker = footCollider.IsTouchingLayers(groundLayer);
-
-        grounded = IsGrounded();  // Update character's grounded state
+        isGroundedDelay = isGrounded;  // Update character's grounded state
 
         // Buffer jump input for a certain duration after leaving the ground
         bufferCounter = Input.GetButtonDown("Jump") ? bufferTime : bufferCounter - Time.deltaTime;
@@ -147,12 +148,6 @@ public class CharacterController : MonoBehaviour
 
     }
 
-    // Check if the character is grounded
-    bool IsGrounded()
-    {
-        return groundingChecker;
-    }
-
     // Perform a jump
     public void Jump()
     {
@@ -165,23 +160,15 @@ public class CharacterController : MonoBehaviour
     // Check if the character can perform a double jump
     bool CanDoubleJump()
     {
-        return (!IsGrounded() && doublejump == true);
+        return (!isGrounded && doublejump == true);
     }
 
     // Flip the character's sprite horizontally
     void Flip()
     {
         CreateDust();
-        if (movingRight)
-        {
-            t.eulerAngles = new Vector3(0, -180, 0);
-            movingRight = false;
-        }
-        else
-        {
-            t.eulerAngles = new Vector3(0, 0, 0);
-            movingRight = true;
-        }
+        t.eulerAngles = new Vector3(0, movingRight ? -180 : 0, 0);
+        movingRight = !movingRight;
     }
 
     // Create dust particle effects

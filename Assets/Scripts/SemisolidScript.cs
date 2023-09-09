@@ -24,19 +24,16 @@ public class SemisolidScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "PlayerFoot"){
+        if (col.gameObject.tag == "Player"){
             WoodThunk.Play();
             onPlayer = true;
-        } else if (col.gameObject.tag == "Player") {
-            foreach(Collider2D wallCol in col.gameObject.GetComponent<WallCollider>().WallCols)
-                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), wallCol);
         }
             
     }
 
     void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.tag == "PlayerFoot")
+        if (col.gameObject.tag == "Player")
         {
             onPlayer = false;
         }

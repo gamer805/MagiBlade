@@ -7,13 +7,17 @@ public class FallingPlatformScript : MonoBehaviour
 
     Rigidbody2D rbody;
     Animator anim;
-    public float gScale = 2f;
-    Vector3 initLoc;
-    bool inContact = false;
+    
     public GameObject selfPrefab;
-    public float contactTime = 0.2f;
     public AudioSource CrumbleAudio;
     public AudioSource ReinstateAudio;
+
+    public float gScale = 2f;
+    public float contactTime = 0.2f;
+    public float resetDelay = 0.5f;
+
+    Vector3 initLoc;
+    bool inContact = false;
     bool fell = false;
 
     void Start()
@@ -66,8 +70,9 @@ public class FallingPlatformScript : MonoBehaviour
         gameObject.layer = 19;
     }
 
-    void Reinstate()
+    IEnumerator Reinstate()
     {
+        yield return new WaitForSeconds(resetDelay);
         GameObject clone = Instantiate(selfPrefab, initLoc, Quaternion.identity);
         clone.GetComponent<Animator>().SetTrigger("Initialize");
         clone.GetComponent<FallingPlatformScript>().ReinstateAudio.playOnAwake = true;
@@ -78,6 +83,8 @@ public class FallingPlatformScript : MonoBehaviour
 
     void OnBecameInvisible(){
         RoomResetScript roomScript = transform.parent.GetComponent<RoomResetScript>();
-        if(roomScript != null && roomScript.activated && fell) Reinstate();
+        if(roomScript != null && roomScript.activated && fell) {
+            StartCoroutine("Reinstate");
+        }
     }
 }

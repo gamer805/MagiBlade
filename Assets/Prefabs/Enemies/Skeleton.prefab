@@ -5010,6 +5010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 10
+  contacting: 0
 --- !u!50 &2959706478284109701
 Rigidbody2D:
   serializedVersion: 4
@@ -5030,7 +5031,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &7358574056981590486
 GameObject:
   m_ObjectHideFlags: 0
@@ -5043,7 +5044,6 @@ GameObject:
   - component: {fileID: 7358574056981590476}
   - component: {fileID: 7358574056981590475}
   - component: {fileID: 7358574056981590474}
-  - component: {fileID: 7358574056981590473}
   - component: {fileID: 7358574056981590472}
   - component: {fileID: 7358574056981590487}
   - component: {fileID: 2656477906371613998}
@@ -5167,7 +5167,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: -0.24921525}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5178,33 +5178,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.375, y: 0.1875}
-  m_EdgeRadius: 0
---- !u!61 &7358574056981590473
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7358574056981590486}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.031179309, y: -0.4677949}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.75, y: 0.9375}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.31235862, y: 0.078089714}
+  m_Size: {x: 0.375, y: 0.42810798}
   m_EdgeRadius: 0
 --- !u!114 &7358574056981590472
 MonoBehaviour:
@@ -5274,7 +5248,7 @@ MonoBehaviour:
   initSpeed: 0
   jumpSpeed: 5
   climbSpeed: 4
-  wallBuffer: 0.28
+  wallBuffer: 0.31
   engaged: 0
   inRange: 0
   moving: 0
@@ -5295,7 +5269,6 @@ MonoBehaviour:
   grounded: 1
   vel: {x: 0, y: 0, z: 0}
   bodyCollider: {fileID: 7358574056981590474}
-  footCollider: {fileID: 7358574056981590473}
   groundLayer:
     serializedVersion: 2
     m_Bits: 6029313
@@ -5304,7 +5277,7 @@ MonoBehaviour:
     m_Bits: 131072
   attackCooldown: 0
   attackPoint: {fileID: 7358574057959760668}
-  wallCheckpoint: {fileID: 0}
+  wallCheckpoint: {fileID: 7358574057959760668}
   height: {fileID: 0}
 --- !u!114 &89644215784636253
 MonoBehaviour:
@@ -5582,7 +5555,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7358574058731131659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49, y: -0.45, z: 0}
+  m_LocalPosition: {x: -0.34, y: -0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -357,7 +357,6 @@ MonoBehaviour:
   grounded: 1
   vel: {x: 0, y: 0, z: 0}
   bodyCollider: {fileID: 7750267317683543130}
-  footCollider: {fileID: 7750267317683543129}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -366,7 +365,7 @@ MonoBehaviour:
     m_Bits: 131072
   attackCooldown: 0
   attackPoint: {fileID: 7750267319218272037}
-  wallCheckpoint: {fileID: 0}
+  wallCheckpoint: {fileID: 7750267319218272037}
   height: {fileID: 0}
 --- !u!114 &7750267317683543133
 MonoBehaviour:

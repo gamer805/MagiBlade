@@ -363,7 +363,6 @@ MonoBehaviour:
   grounded: 1
   vel: {x: 0, y: 0, z: 0}
   bodyCollider: {fileID: 27849254564649734}
-  footCollider: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -372,7 +371,7 @@ MonoBehaviour:
     m_Bits: 131072
   attackCooldown: 0
   attackPoint: {fileID: 27849253550289017}
-  wallCheckpoint: {fileID: 0}
+  wallCheckpoint: {fileID: 27849253550289017}
   height: {fileID: 0}
 --- !u!114 &27849254564649729
 MonoBehaviour:
@@ -5401,7 +5400,7 @@ GameObject:
   - component: {fileID: 8216448712174006832}
   - component: {fileID: 8095537987577665205}
   - component: {fileID: 7720181030901080560}
-  m_Layer: 18
+  m_Layer: 12
   m_Name: JumpDmgDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5462,6 +5461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 10
+  contacting: 0
 --- !u!50 &7720181030901080560
 Rigidbody2D:
   serializedVersion: 4

@@ -15,11 +15,11 @@ GameObject:
   - component: {fileID: 1558098300}
   - component: {fileID: 7160077435819244306}
   - component: {fileID: 1054980287731491158}
-  - component: {fileID: -6743593475679560466}
   - component: {fileID: 7726877717774982157}
   - component: {fileID: 6512773881180356920}
   - component: {fileID: 4909380499334831423}
   - component: {fileID: 5497196243864817468}
+  - component: {fileID: 4820876949315907174}
   m_Layer: 18
   m_Name: Platform - Falling
   m_TagString: Untagged
@@ -127,11 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356ebb3a9a13f44fcac709e8c93f28e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gScale: 3.75
   selfPrefab: {fileID: 4141591655158230686}
-  contactTime: 0.2
   CrumbleAudio: {fileID: 7726877717774982157}
   ReinstateAudio: {fileID: 6512773881180356920}
+  gScale: 3.75
+  contactTime: 0.2
+  resetDelay: 0.5
 --- !u!95 &1558098300
 Animator:
   serializedVersion: 4
@@ -181,32 +182,10 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!68 &-6743593475679560466
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4141591655158230686}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.375}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -1.35, y: 0}
-  - {x: 1.35, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!82 &7726877717774982157
 AudioSource:
   m_ObjectHideFlags: 0
@@ -219,13 +198,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3655b3e7375b4481ab80adf02a62d52f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 4
   MinDistance: 1
   MaxDistance: 500
@@ -315,13 +294,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b0e59669107134ee581281a0c0350122, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 3
   MinDistance: 1
   MaxDistance: 500
@@ -417,7 +396,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -507,6 +486,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPrefabPath: Prefabs/Enemies/Platform - Falling
   entityPrefab: {fileID: 4141591655158230686}
   initCoords: {x: 0, y: 0, z: 0}
+--- !u!61 &4820876949315907174
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4141591655158230686}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.31555796}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.2, y: 0.095402}
+  m_EdgeRadius: 0

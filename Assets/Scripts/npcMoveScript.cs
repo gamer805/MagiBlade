@@ -43,7 +43,6 @@ public class npcMoveScript : MonoBehaviour
     Damagable dmgScript;
 
     public Collider2D bodyCollider;
-    public Collider2D footCollider;
     public LayerMask groundLayer;
     public LayerMask climbLayer;
 
@@ -51,8 +50,6 @@ public class npcMoveScript : MonoBehaviour
 
     public Transform attackPoint;
     public Transform wallCheckpoint;
-
-    npcAttackScript npc;
 
     public Animator height;
 
@@ -62,34 +59,16 @@ public class npcMoveScript : MonoBehaviour
         initSpeed = speed;
         SetTarget();
         rb = GetComponent<Rigidbody2D>();
-        if (canFly)
-            rb.gravityScale = 0;
-        npc = GetComponent<npcAttackScript>();
-        dmgScript = GetComponent<Damagable>();
+        if (canFly) rb.gravityScale = 0;
 
-        if (footCollider == null && bodyCollider != null){
-            footCollider = bodyCollider;
-        }
+        dmgScript = GetComponent<Damagable>();
 
         if(wallCheckpoint == null) wallCheckpoint = attackPoint;
         
     }
     // Update is called once per frame
     void Update()
-    {   
-        if(!facingRight){
-            if(transform.eulerAngles.z < -30f){
-                transform.eulerAngles = new Vector3(0f, 0f, -30f);
-            }else if(transform.eulerAngles.z > 30f){
-                transform.eulerAngles = new Vector3(0f, 0f, 30f);
-            }
-        } else {
-            if(transform.eulerAngles.z < -30f){
-                transform.eulerAngles = new Vector3(0f, 180f, -30f);
-            }else if(transform.eulerAngles.z > 30f){
-                transform.eulerAngles = new Vector3(0f, 180f, 30f);
-            }
-        }
+    {
         
         timer += Time.deltaTime;
 
@@ -102,7 +81,7 @@ public class npcMoveScript : MonoBehaviour
         } else {
             if (wanders)
             {
-                CalculateWander();
+                Wander();
             } else
             {
                 Patrol();
@@ -110,8 +89,6 @@ public class npcMoveScript : MonoBehaviour
             
         }
 
-        if (canFly)
-            CalibrateFlight();
         if (canClimb && bodyCollider.IsTouchingLayers(climbLayer))
         {
             if (currentTarget.transform.position.y - transform.position.y > 1.5f &&
@@ -121,8 +98,21 @@ public class npcMoveScript : MonoBehaviour
             }
         }
 
-        CheckGrounding();
-
+        if (bodyCollider.IsTouchingLayers(groundLayer))
+        {
+            if(height != null && !grounded){
+                height.SetTrigger("squash");
+            }
+            grounded = true;
+            
+        }
+        else
+        {
+            if(height != null && grounded){
+                height.SetTrigger("stretch");
+            }
+            grounded = false;
+        }
         
         if(grounded) {
             rb.rotation = 0f;
@@ -174,13 +164,15 @@ public class npcMoveScript : MonoBehaviour
     {
         if(canFly){
             vel.y = 0;
+            ManageFlight();
         }
                 
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 0.25f, groundLayer);
         bool wallInfo = Physics2D.OverlapCircle(wallCheckpoint.position, wallBuffer, groundLayer);
 
         if ((groundInfo.collider == null && detectPlatformEdges && grounded) || wallInfo)
         {
+            Debug.Log("flip");
             Flip();
         }
         Move();
@@ -193,7 +185,7 @@ public class npcMoveScript : MonoBehaviour
             Move();
             if (canJump && !canFly)
             {
-                CalculateJump();
+                Jump();
             } else if (canFly)
             {
                 if(currentTarget.transform.position.y - transform.position.y > 0.3f)
@@ -219,26 +211,7 @@ public class npcMoveScript : MonoBehaviour
 
     }
 
-    void CheckGrounding()
-    {
-        if (footCollider.IsTouchingLayers(groundLayer))
-        {
-            if(height != null && !grounded){
-                height.SetTrigger("squash");
-            }
-            grounded = true;
-            
-        }
-        else
-        {
-            if(height != null && grounded){
-                height.SetTrigger("stretch");
-            }
-            grounded = false;
-        }
-    }
-
-    void CalibrateFlight()
+    void ManageFlight()
     {
         if (Random.Range(0, 10f) < variationFactor / 10)
         {
@@ -260,17 +233,29 @@ public class npcMoveScript : MonoBehaviour
         }
     }
 
-    void CalculateWander()
+    void Wander()
     {
         if (moving)
         {
             if(canFly){
-                vel.y = 0;
+                ManageFlight();
+                if (moveDir == 0)
+                {
+                    vel.y = 0;
+                    Move();
+                } else if (moveDir == 1) {
+                    vel.y = speed;
+                } else if (moveDir == 2) {
+                    vel.y = -speed;
+                }
+            } else {
+                Move();
             }
-                
-            CalibrateFlightDir();
 
-            VariateMovement("flip");
+            if (canShift()) {
+                Flip();
+                timer = 0f;
+            }
             RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 0.2f, groundLayer);
             bool wallInfo = Physics2D.OverlapCircle(wallCheckpoint.position, wallBuffer, groundLayer);
             Collider2D col = Physics2D.OverlapCircle(wallCheckpoint.position, wallBuffer, groundLayer);
@@ -280,11 +265,17 @@ public class npcMoveScript : MonoBehaviour
                 Flip();
             }
 
-            VariateMovement("idle");
+            if (canShift()) {
+                Idle();
+                timer = 0f;
+            }
         }
         else
         {
-            VariateMovement("move");
+            if (canShift()) {
+                Move();
+                timer = 0f;
+            }
         }
     }
 
@@ -302,7 +293,7 @@ public class npcMoveScript : MonoBehaviour
         }
     }
 
-    void CalculateJump()
+    void Jump()
     {
         if (currentTarget.transform.position.y - transform.position.y > 1.5f && grounded && !attackCooldown)
         {
@@ -310,7 +301,7 @@ public class npcMoveScript : MonoBehaviour
         }
     }
 
-    void CalculateClimb()
+    void Climb()
     {
         if (bodyCollider.IsTouchingLayers(climbLayer))
         {
@@ -322,40 +313,9 @@ public class npcMoveScript : MonoBehaviour
         }
     }
 
-    void CalibrateFlightDir()
+    bool canShift()
     {
-        if (!canFly || moveDir == 0)
-        {
-            Move();
-        }
-        else if (canFly && moveDir == 1)
-        {
-            vel.y = speed;
-        }
-        else if (canFly && moveDir == 2)
-        {
-            vel.y = -speed;
-        }
-    }
-
-    void VariateMovement(string type)
-    {
-        if (timer > avgWanderTime * Random.Range(1 / variationFactor, variationFactor))
-        {
-            if (type == "flip")
-            {
-                Flip();
-            }
-            else if (type == "idle")
-            {
-                Idle();
-            }
-            else if (type == "move")
-            {
-                Move();
-            }
-            timer = 0f;
-        }
+        return (timer > avgWanderTime * Random.Range(1 / variationFactor, variationFactor));
     }
 
     void SetTarget()

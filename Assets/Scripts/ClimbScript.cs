@@ -7,7 +7,7 @@ public class ClimbScript : MonoBehaviour
     float vertical;
     float jump;
     public float speed = 8f;
-    bool isLadder;
+    public bool onLadder;
     public bool isClimbing;
     Rigidbody2D rb;
     public float gScale;
@@ -25,32 +25,28 @@ public class ClimbScript : MonoBehaviour
     {
         vertical = Input.GetAxis("Vertical");
 
-        if(isLadder && Mathf.Abs(vertical) > 0){
+        if(onLadder){
             isClimbing = true;
+            rb.gravityScale = 0f;
+            rb.velocity = new Vector2(rb.velocity.x, vertical*speed);
+        } else {
+            rb.gravityScale = gScale;
+            isClimbing = false;
         }
 
         Weapon.SetActive(!isClimbing);
     }
 
-    void FixedUpdate(){
-        if(isClimbing){
-            rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, vertical*speed);
-        } else {
-            rb.gravityScale = gScale;
-        }
-    }
-
     void OnTriggerEnter2D(Collider2D col){
-        if(col.CompareTag("ladder")){
-            isLadder = true;
-            isClimbing = true;
+        if(col.gameObject.tag == "ladder"){
+            onLadder = true;
             GetComponent<CharacterController>().rb.velocity = Vector2.zero;
         }
     }
 
     void OnTriggerStay2D(Collider2D col){
-        if(col.CompareTag("ladder")){
+        if(col.gameObject.tag == "ladder"){
+            onLadder = true;
             GetComponent<CharacterController>().rb.velocity = new Vector2(0, rb.velocity.y);
             Vector3 newPos = transform.position;
             newPos.x = col.gameObject.transform.position.x;
@@ -60,8 +56,7 @@ public class ClimbScript : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col){
         if(col.CompareTag("ladder")){
-            isLadder = false;
-            isClimbing = false;
+            onLadder = false;
         }
     }
 }

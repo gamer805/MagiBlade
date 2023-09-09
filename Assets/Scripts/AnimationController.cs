@@ -41,7 +41,7 @@ public class AnimationController : MonoBehaviour
 
         // Set the IsJumping parameter in
         // Set the IsJumping parameter in the Animator component based on whether the character is grounded
-        anim.SetBool("IsJumping", !character.grounded);
+        anim.SetBool("IsJumping", !character.isGrounded);
 
         // Set the IsClimbing parameter in the Animator component based on whether the character is climbing
         anim.SetBool("IsClimbing", climbData.isClimbing);
