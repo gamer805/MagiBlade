@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,31 +19,16 @@ public class RoomResetHandler : MonoBehaviour
 
     void Start(){
         if(respawnDeadEnemies){
-            foreach(Transform enemy in transform){
-                if(enemy.tag == "Enemy" && enemy.GetComponent<AssetResetHandler>() != null){
-                    enemyList.Add(enemy.gameObject);
-
-                    GameObject enemyPrefab = enemy.GetComponent<AssetResetHandler>().entityPrefab;
-                    foreach(GameObject prefab in enemyPrefabDict){
-                        if(prefab.name == enemyPrefab.name.Split(new char[] { ' ' })[0]){
-                            enemyBackups.Add(prefab);
-                        }
-                    }
-                    
-                    enemyPosBackups.Add(enemy.GetComponent<AssetResetHandler>().initCoords);
-                    enemyNameBackups.Add(enemy.name);
-                }
-            }
+            CollectEnemyRefs();
         }
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
         activated = checkpoint.GetComponent<Checkpoint>().checkpointCamActive;
 
         if(activated && !activeOnLastFrame){
+
             if(respawnDeadEnemies) ReplaceDeadEnemies();
             
             GameObject[] rooms = GameObject.FindGameObjectsWithTag("Room");
@@ -54,23 +40,7 @@ public class RoomResetHandler : MonoBehaviour
         }
 
         if(PlayerDeathManager.dead && !hasReset && activated){
-
-            if(respawnDeadEnemies) ReplaceDeadEnemies();
-            hasReset = true;
-
-            List<Transform> roomEntities = new List<Transform>();
-
-            foreach(Transform entity in transform){
-                roomEntities.Add(entity);
-            }
-
-            foreach(Transform entity in roomEntities){
-
-                if(entity.GetComponent<AssetResetHandler>() != null){
-                    StartCoroutine(DelayedReset(entity.gameObject));
-                }
-            }
-
+            Reset();
         } else if(!PlayerDeathManager.dead && hasReset && activated){
             hasReset = false;
         }
@@ -79,10 +49,24 @@ public class RoomResetHandler : MonoBehaviour
 
     }
 
+    void CollectEnemyRefs(){
+        foreach(Transform enemy in transform){
+            if(enemy.tag == "Enemy" && enemy.GetComponent<AssetResetHandler>() != null) {
+                enemyList.Add(enemy.gameObject);
+
+                GameObject selfPrefab = enemy.GetComponent<AssetResetHandler>().entityPrefab;
+                string prefabName = selfPrefab.name.Split(new char[] { ' ' })[0];
+                IEnumerable<GameObject> rawEnemyBackups = from prefab in enemyPrefabDict where prefab.name == prefabName select prefab;
+                enemyBackups = rawEnemyBackups.ToList();
+                
+                enemyPosBackups.Add(enemy.GetComponent<AssetResetHandler>().initCoords);
+                enemyNameBackups.Add(enemy.name);
+            }
+        }
+    }
     void ReplaceDeadEnemies(){
         foreach(GameObject enemy in enemyList){
             if(enemy == null){
-                Debug.Log("Empty Spot Found");
                 GameObject entityPrefab = enemyBackups[enemyList.IndexOf(enemy)];
                 Vector3 initCoords = enemyPosBackups[enemyList.IndexOf(enemy)];
                 GameObject newObj = Instantiate(entityPrefab, initCoords, Quaternion.identity);
@@ -93,9 +77,18 @@ public class RoomResetHandler : MonoBehaviour
         }
     }
 
-    IEnumerator DelayedReset(GameObject entity){
+    void Reset() {
+        if(respawnDeadEnemies) ReplaceDeadEnemies();
+        hasReset = true;
+        IEnumerable<Transform> roomEntities = from Transform entity in transform where entity.GetComponent<AssetResetHandler>() != null select entity;
+
+        foreach(Transform entity in roomEntities) {
+            StartCoroutine(DelayedReset(entity.gameObject));
+        }
+    }
+
+    IEnumerator DelayedReset(GameObject entity) {
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("attempted delayed reset");
         int listID = 0;
         if(entity != null){
             if(respawnDeadEnemies) {
@@ -108,10 +101,6 @@ public class RoomResetHandler : MonoBehaviour
             if(respawnDeadEnemies && listID >= 0) {
                 enemyList[listID] = newEntity;
             }
-            Debug.Log(newEntity.name + " Reset");
-        }
-            
-            
-            
+        }   
     }
 }
