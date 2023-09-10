@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class npcAttackScript : MonoBehaviour
+public class EnemyAttackHandler : MonoBehaviour
 {
     public bool attackLimit = false;
     public int attackLimitNum = 5;
@@ -19,14 +19,14 @@ public class npcAttackScript : MonoBehaviour
 
     public float cooldownTime = 0f;
 
-    npcMoveScript npc;
+    EnemyMovementHandler npc;
     GameObject target;
     public bool attacking = false;
     public bool animateAttack = false;
 
     void Start()
     {
-        npc = GetComponent<npcMoveScript>();
+        npc = GetComponent<EnemyMovementHandler>();
         if (meleeWeapon != null)
             meleeAnim = meleeWeapon.GetComponent<Animator>();
     }

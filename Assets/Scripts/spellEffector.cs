@@ -6,19 +6,19 @@ using UnityEngine;
 public class spellEffector : MonoBehaviour
 {
     SpriteRenderer renderer;
-    npcMoveScript moveStats;
-    npcAttackScript attackStats;
+    EnemyMovementHandler moveStats;
+    EnemyAttackHandler attackStats;
     public GameObject parent;
     // Start is called before the first frame update
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
         if(parent == null){
-            moveStats = GetComponent<npcMoveScript>();
-            attackStats = GetComponent<npcAttackScript>();
+            moveStats = GetComponent<EnemyMovementHandler>();
+            attackStats = GetComponent<EnemyAttackHandler>();
         } else {
-            moveStats = parent.GetComponent<npcMoveScript>();
-            attackStats = parent.GetComponent<npcAttackScript>();
+            moveStats = parent.GetComponent<EnemyMovementHandler>();
+            attackStats = parent.GetComponent<EnemyAttackHandler>();
         }
        
     }

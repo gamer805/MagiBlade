@@ -81,8 +81,8 @@ public class PlayerDeathManager : MonoBehaviour
             controller.enabled = false;
             rb.bodyType = RigidbodyType2D.Static;
             weaponHolder.SetActive(false);
-            npcMoveScript[] npcs = FindObjectsOfType(typeof(npcMoveScript)) as npcMoveScript[];
-            foreach(npcMoveScript npc in npcs){
+            EnemyMovementHandler[] npcs = FindObjectsOfType(typeof(EnemyMovementHandler)) as EnemyMovementHandler[];
+            foreach(EnemyMovementHandler npc in npcs){
                 npc.targets.Clear();
                 npc.currentTarget = null;
             }
@@ -102,9 +102,9 @@ public class PlayerDeathManager : MonoBehaviour
         damager.enabled = true;
         damager.health = 500f;
         
-        if(damager.damageDealer != null && damager.damageDealer.GetComponent<npcMoveScript>() != null){
-            damager.damageDealer.GetComponent<npcMoveScript>().inRange = false;
-            damager.damageDealer.GetComponent<npcMoveScript>().engaged = false;
+        if(damager.damageDealer != null && damager.damageDealer.GetComponent<EnemyMovementHandler>() != null){
+            damager.damageDealer.GetComponent<EnemyMovementHandler>().inRange = false;
+            damager.damageDealer.GetComponent<EnemyMovementHandler>().engaged = false;
         }
         
         controller.enabled = true;

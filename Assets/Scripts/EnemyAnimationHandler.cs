@@ -6,8 +6,8 @@ using UnityEngine;
 public class EnemyAnimationHandler : MonoBehaviour
 {
     Animator anim;
-    npcMoveScript npcMove;
-    npcAttackScript npcAttack;
+    EnemyMovementHandler npcMove;
+    EnemyAttackHandler npcAttack;
     public GameObject parent;
 
     // Start is called before the first frame update
@@ -15,11 +15,11 @@ public class EnemyAnimationHandler : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         if(parent == null){
-            npcMove = GetComponent<npcMoveScript>();
-            npcAttack = GetComponent<npcAttackScript>();
+            npcMove = GetComponent<EnemyMovementHandler>();
+            npcAttack = GetComponent<EnemyAttackHandler>();
         } else {
-            npcMove = parent.GetComponent<npcMoveScript>();
-            npcAttack = parent.GetComponent<npcAttackScript>();
+            npcMove = parent.GetComponent<EnemyMovementHandler>();
+            npcAttack = parent.GetComponent<EnemyAttackHandler>();
         }
         
     }

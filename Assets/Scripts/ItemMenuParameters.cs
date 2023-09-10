@@ -65,8 +65,8 @@ public class ItemMenuParameters : MonoBehaviour
         else if (type == "troop")
         {
             GameObject troop = prefab.GetComponent<Projectile>().resultPrefab;
-            npcAttackScript attackStats = troop.GetComponent<npcAttackScript>();
-            npcMoveScript mobilityStats = troop.GetComponent<npcMoveScript>();
+            EnemyAttackHandler attackStats = troop.GetComponent<EnemyAttackHandler>();
+            EnemyMovementHandler mobilityStats = troop.GetComponent<EnemyMovementHandler>();
             DamageHandler healthStats = troop.GetComponent<DamageHandler>();
 
             descriptionText.fontSize = 15;

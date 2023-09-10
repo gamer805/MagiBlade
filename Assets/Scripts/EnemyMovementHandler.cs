@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class npcMoveScript : MonoBehaviour
+public class EnemyMovementHandler : MonoBehaviour
 {
     public float speed;
     [HideInInspector] public float initSpeed;
@@ -69,7 +71,8 @@ public class npcMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 0.2f, groundLayer);
+        bool wallInfo = Physics2D.OverlapCircle(wallCheckpoint.position, wallBuffer, groundLayer);
         timer += Time.deltaTime;
 
         if(!grounded) vel.y = rb.velocity.y;
@@ -79,39 +82,36 @@ public class npcMoveScript : MonoBehaviour
         {
             Engage();
         } else {
-            if (wanders)
-            {
-                Wander();
-            } else
-            {
-                Patrol();
+            if (wanders) {
+                if (moving) {
+                    Wander(groundInfo, wallInfo);
+                }  else if (canShift()) {
+                    Move();
+                    timer = 0f;
+                }
+            } else {
+                Patrol(groundInfo, wallInfo);
             }
             
         }
 
-        if (canClimb && bodyCollider.IsTouchingLayers(climbLayer))
-        {
-            if (currentTarget.transform.position.y - transform.position.y > 1.5f &&
-                !grounded && canJump && !canFly && engaged && !inRange)
-            {
-                vel.y = climbSpeed;
-            }
-        }
+        if (bodyCollider.IsTouchingLayers(groundLayer)) {
 
-        if (bodyCollider.IsTouchingLayers(groundLayer))
-        {
+            if (canClimb) {
+                Climb();
+            }
             if(height != null && !grounded){
                 height.SetTrigger("squash");
             }
             grounded = true;
-            
-        }
-        else
-        {
+
+        } else {
+
             if(height != null && grounded){
                 height.SetTrigger("stretch");
             }
             grounded = false;
+            
         }
         
         if(grounded) {
@@ -124,24 +124,15 @@ public class npcMoveScript : MonoBehaviour
 
     void Flip()
     {
-        if (facingRight)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            facingRight = false;
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3(0, -180, 0);
-            facingRight = true;
-        }
+        transform.eulerAngles = new Vector3(0, facingRight ? 0 : 180, 0);
+        facingRight = !facingRight;
     }
 
     void Idle()
     {
         moving = false;
         vel.x = 0;
-        if (canFly)
-        {
+        if (canFly) {
             vel.y = 0;
         }
             
@@ -150,25 +141,15 @@ public class npcMoveScript : MonoBehaviour
     void Move()
     {
         moving = true;
-        if (facingRight)
-        {
-            vel.x = speed;
-        }
-        else
-        {
-            vel.x = -speed;
-        }       
+        vel.x = facingRight ? speed : -speed; 
     }
 
-    void Patrol()
+    void Patrol(RaycastHit2D groundInfo, bool wallInfo)
     {
         if(canFly){
             vel.y = 0;
             ManageFlight();
         }
-                
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 0.25f, groundLayer);
-        bool wallInfo = Physics2D.OverlapCircle(wallCheckpoint.position, wallBuffer, groundLayer);
 
         if ((groundInfo.collider == null && detectPlatformEdges && grounded) || wallInfo)
         {
@@ -178,34 +159,53 @@ public class npcMoveScript : MonoBehaviour
         Move();
     }
 
+    void Wander(RaycastHit2D groundInfo, bool wallInfo)
+    {
+        if(canFly){
+            if (moveDir == 0) {
+                vel.y = 0;
+                Move();
+            } else if (moveDir == 1) {
+                vel.y = speed;
+            } else {
+                vel.y = -speed;
+            }
+            ManageFlight();
+        } else {
+            Move();
+        }
+        
+        if ((groundInfo.collider == null && detectPlatformEdges && grounded) || wallInfo) {
+            Flip();
+        }
+
+        if (canShift()) {
+            Flip();
+            timer = 0f;
+        }else if (canShift()) {
+            Idle();
+            timer = 0f;
+        }
+    }
+
     void Engage()
     {
-        if (!inRange)
-        {
+        float yDist = currentTarget.transform.position.y - transform.position.y;
+        if (!inRange) {
             Move();
-            if (canJump && !canFly)
-            {
-                Jump();
-            } else if (canFly)
-            {
-                if(currentTarget.transform.position.y - transform.position.y > 0.3f)
-                {
-                    vel.y = speed;
-                } else if (currentTarget.transform.position.y - transform.position.y < -0.3f)
-                {
-                    vel.y = -speed;
+            if (canFly) {
+                if(Mathf.Abs(yDist) > 0.3f) {
+                    vel.y = yDist > 0 ? speed : -speed;
                 }
+            } else if (canJump) {
+                Jump();
             }
                 
-        }
-        else
-        {
+        } else {
             Idle();
         }
 
-        if ((facingRight && currentTarget.transform.position.x - transform.position.x < -0.3f) ||
-        (!facingRight && currentTarget.transform.position.x - transform.position.x > 0.3f))
-        {
+        if ((facingRight && yDist < -0.3f) || (!facingRight && yDist > 0.3f)) {
             Flip();
         }
 
@@ -229,52 +229,6 @@ public class npcMoveScript : MonoBehaviour
             {
                 moveDir -= 1;
                 if (moveDir == -1) moveDir = 2;
-            }
-        }
-    }
-
-    void Wander()
-    {
-        if (moving)
-        {
-            if(canFly){
-                ManageFlight();
-                if (moveDir == 0)
-                {
-                    vel.y = 0;
-                    Move();
-                } else if (moveDir == 1) {
-                    vel.y = speed;
-                } else if (moveDir == 2) {
-                    vel.y = -speed;
-                }
-            } else {
-                Move();
-            }
-
-            if (canShift()) {
-                Flip();
-                timer = 0f;
-            }
-            RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 0.2f, groundLayer);
-            bool wallInfo = Physics2D.OverlapCircle(wallCheckpoint.position, wallBuffer, groundLayer);
-            Collider2D col = Physics2D.OverlapCircle(wallCheckpoint.position, wallBuffer, groundLayer);
-            
-            if ((groundInfo.collider == null && detectPlatformEdges && grounded) || wallInfo)
-            {
-                Flip();
-            }
-
-            if (canShift()) {
-                Idle();
-                timer = 0f;
-            }
-        }
-        else
-        {
-            if (canShift()) {
-                Move();
-                timer = 0f;
             }
         }
     }
@@ -303,13 +257,8 @@ public class npcMoveScript : MonoBehaviour
 
     void Climb()
     {
-        if (bodyCollider.IsTouchingLayers(climbLayer))
-        {
-            if (currentTarget.transform.position.y - transform.position.y > 1.5f &&
-                !grounded && canJump && !canFly && engaged && !inRange)
-            {
-                vel.y = climbSpeed;
-            }
+        if (currentTarget.transform.position.y - transform.position.y > 1.5f && !grounded && canJump && !canFly && engaged && !inRange) {
+            vel.y = climbSpeed;
         }
     }
 

@@ -6,8 +6,8 @@ public class Spider : MonoBehaviour
 {
     bool sleeping = true;
     Rigidbody2D rb;
-    npcMoveScript moveScript;
-    npcAttackScript attackScript;
+    EnemyMovementHandler moveScript;
+    EnemyAttackHandler attackScript;
     DamageHandler damageScript;
 
     public Collider2D dropTrigger;
@@ -16,8 +16,8 @@ public class Spider : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        attackScript = GetComponent<npcAttackScript>();
-        moveScript = GetComponent<npcMoveScript>();
+        attackScript = GetComponent<EnemyAttackHandler>();
+        moveScript = GetComponent<EnemyMovementHandler>();
         damageScript = GetComponent<DamageHandler>();
 
         rb.bodyType = RigidbodyType2D.Static;
