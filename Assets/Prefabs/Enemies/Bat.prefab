@@ -5460,7 +5460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53f665d84f37422eb46fdb72b66085b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 10
+  attackDamage: 10
   contacting: 0
 --- !u!50 &7720181030901080560
 Rigidbody2D:
@@ -5551,6 +5551,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 2319667641884866964, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
+      propertyPath: damageManager
+      value: 
+      objectReference: {fileID: 27849254564649732}
     - target: {fileID: 6409588070758817186, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
       propertyPath: m_Layer
       value: 18

@@ -6,8 +6,7 @@ public class PlayerAnimationHandler : MonoBehaviour
 {
     Animator anim; // Animator component for the character
     Rigidbody2D rb; // Rigidbody2D component for the character
-    PlayerMovementHandler character; // PlayerMovementHandler script for the character
-    PlayerClimbingHandler climbData; // PlayerClimbingHandler for the character
+    PlayerMovementHandler movementData; // PlayerMovementHandler script for the character
 
     // Reference to the character's parent GameObject, used to access the character's components if the script is attached to a child object
     public GameObject parent;
@@ -15,35 +14,25 @@ public class PlayerAnimationHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Get the Animator, Rigidbody2D, PlayerMovementHandler, and PlayerClimbingHandler components from either the current object or its parent
-        if (parent == null)
-        {
-            anim = GetComponent<Animator>();
+        if (parent == null) {
             rb = GetComponent<Rigidbody2D>();
-            character = GetComponent<PlayerMovementHandler>();
-            climbData = GetComponent<PlayerClimbingHandler>();
-        }
-        else
-        {
-            anim = GetComponent<Animator>();
+            movementData = GetComponent<PlayerMovementHandler>();
+        } else {
+            
             rb = parent.GetComponent<Rigidbody2D>();
-            character = parent.GetComponent<PlayerMovementHandler>();
-            climbData = parent.GetComponent<PlayerClimbingHandler>();
+            movementData = parent.GetComponent<PlayerMovementHandler>();
         }
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Set the Speed and ClimbSpeed parameters in the Animator component based on the character's velocity
-        if(!character.onWall) anim.SetFloat("Speed", Mathf.Abs(character.rb.velocity.x));
-        anim.SetFloat("ClimbSpeed", Mathf.Abs(character.rb.velocity.y));
+        if(!movementData.onWall) {
+            anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+        }
+        anim.SetFloat("ClimbSpeed", Mathf.Abs(rb.velocity.y));
 
-        // Set the IsJumping parameter in
-        // Set the IsJumping parameter in the Animator component based on whether the character is grounded
-        anim.SetBool("IsJumping", !character.isGrounded);
-
-        // Set the IsClimbing parameter in the Animator component based on whether the character is climbing
-        anim.SetBool("IsClimbing", climbData.isClimbing);
+        anim.SetBool("IsJumping", !movementData.isGrounded);
+        anim.SetBool("IsClimbing", movementData.isClimbing);
     }
 }

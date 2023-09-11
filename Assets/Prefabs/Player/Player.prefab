@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 4912497208616646875}
   - component: {fileID: 1794025261134142427}
   m_Layer: 8
-  m_Name: ProjectileHolder
+  m_Name: Weapon Container
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -288,18 +288,26 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8261633
+  climbLayer:
+    serializedVersion: 2
+    m_Bits: 131072
   Dust: {fileID: 6423861561160568823}
   JumpAudio: {fileID: 4920449903556904347}
   DoubleJumpAudio: {fileID: 4920449904850784924}
   heightAnim: {fileID: 4920449903657709547}
+  Weapon: {fileID: 4912497208616646873}
   isGrounded: 0
   isGroundedDelay: 0
+  onWall: 0
+  onLadder: 0
   walkSpeed: 12
   jumpSpeed: 18
+  climbSpeed: 12
   movingRight: 0
   coyoteTime: 0.3
   bufferTime: 0.2
-  onWall: 0
+  canDoubleJump: 0
+  isClimbing: 0
 --- !u!50 &4912497208641875925
 Rigidbody2D:
   serializedVersion: 4
@@ -432,7 +440,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4912497208641875935}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a75f869d8ca4f407483d85db2ce7ab25, type: 3}
   m_Name: 

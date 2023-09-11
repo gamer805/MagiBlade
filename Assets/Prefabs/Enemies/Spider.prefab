@@ -558,7 +558,6 @@ MonoBehaviour:
   grounded: 1
   vel: {x: 0, y: 0, z: 0}
   bodyCollider: {fileID: 939547485468506285}
-  footCollider: {fileID: 939547485468506286}
   groundLayer:
     serializedVersion: 2
     m_Bits: 4980737
@@ -655,7 +654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2378356398550858817}
-  - component: {fileID: 55387320483082590}
+  - component: {fileID: 6896140172145190736}
   m_Layer: 5
   m_Name: Health Bar
   m_TagString: Untagged
@@ -681,7 +680,7 @@ Transform:
   m_Father: {fileID: 939547485468506282}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &55387320483082590
+--- !u!114 &6896140172145190736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -690,9 +689,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3941388332105810750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea14010d423d4f4b994e515bdb600ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e0eddee6e7594b608e0f1b36d5d87be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageManager: {fileID: 939547485468506287}
 --- !u!1 &4723433834707031583
 GameObject:
   m_ObjectHideFlags: 0
@@ -5786,7 +5786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53f665d84f37422eb46fdb72b66085b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 10
+  attackDamage: 10
+  contacting: 0
 --- !u!50 &4757459508856831714
 Rigidbody2D:
   serializedVersion: 4
