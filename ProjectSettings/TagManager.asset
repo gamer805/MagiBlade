@@ -25,28 +25,28 @@ TagManager:
   - PixelUI
   - Water
   - UI
-  - PlayerFoot
-  - Detector
+  - Foot
+  - 
   - Player
-  - PlayerSpells
+  - Spell
   - Troop
-  - Melee
+  - MeleeWeapon
   - Enemy
   - Bound
   - Camera
-  - PlayerHurtbox
-  - EnemyHurtbox
-  - Climbable
+  - 
+  - 
+  - Ladder
   - Platform
   - Semisolid
-  - FallingPlat
-  - Ghost
-  - Floor
+  - 
+  - 
+  - Ground
   - Bow
-  - Flying
+  - 
   - EnemyProj
   - Sawblade
-  - PlayerNoEnemies
+  - Invulnerable
   - 
   - 
   - 

@@ -112,7 +112,7 @@ public class Projectile : MonoBehaviour
             {
 				//damage w/o color
 				if (dmgScript != null)
-					dmgScript.AppDmgNoColor(damage, gameObject, knockback);
+					dmgScript.ApplyDamage(damage, gameObject, knockback, applyFlash:false);
 
 				//apply effect
 				if (effect == "freeze")

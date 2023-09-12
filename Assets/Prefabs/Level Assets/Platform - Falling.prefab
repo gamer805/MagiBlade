@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 7726877717774982157}
   - component: {fileID: 6512773881180356920}
   - component: {fileID: 4909380499334831423}
-  - component: {fileID: 5497196243864817468}
   - component: {fileID: 4820876949315907174}
   m_Layer: 18
   m_Name: Platform - Falling
@@ -130,6 +129,8 @@ MonoBehaviour:
   selfPrefab: {fileID: 4141591655158230686}
   CrumbleAudio: {fileID: 7726877717774982157}
   ReinstateAudio: {fileID: 6512773881180356920}
+  baseLayer: Platform
+  fallingLayer: Semisolid
   gScale: 3.75
   contactTime: 0.2
   resetDelay: 0.5
@@ -474,20 +475,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5497196243864817468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4141591655158230686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityPrefab: {fileID: 4141591655158230686}
-  initCoords: {x: 0, y: 0, z: 0}
 --- !u!61 &4820876949315907174
 BoxCollider2D:
   m_ObjectHideFlags: 0

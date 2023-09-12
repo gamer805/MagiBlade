@@ -12,6 +12,9 @@ public class FallingPlatform : MonoBehaviour
     public AudioSource CrumbleAudio;
     public AudioSource ReinstateAudio;
 
+    public string baseLayer;
+    public string fallingLayer;
+
     public float gScale = 2f;
     public float contactTime = 0.2f;
     public float resetDelay = 0.5f;
@@ -26,7 +29,7 @@ public class FallingPlatform : MonoBehaviour
         anim = GetComponent<Animator>();
         rbody.isKinematic = true;
         initLoc = transform.position;
-        gameObject.layer = 18;
+        gameObject.layer = LayerMask.NameToLayer(baseLayer);
     }
 
     void Update()
@@ -67,7 +70,7 @@ public class FallingPlatform : MonoBehaviour
         rbody.isKinematic = false;
         CrumbleAudio.Play();
         inContact = false;
-        gameObject.layer = 19;
+        gameObject.layer = LayerMask.NameToLayer(fallingLayer);
     }
 
     IEnumerator Reinstate()

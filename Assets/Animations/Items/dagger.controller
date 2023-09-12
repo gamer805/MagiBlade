@@ -2,12 +2,12 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1102 &-6898169401530074364
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sword_idle
+  m_Name: dagger_idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -53,12 +53,12 @@ AnimatorStateTransition:
   m_CanTransitionToSelf: 1
 --- !u!1102 &-111498065208956589
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sword_swipe
+  m_Name: dagger_swipe
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -130,7 +130,7 @@ AnimatorStateTransition:
   m_CanTransitionToSelf: 1
 --- !u!1107 &3150344960141273313
 AnimatorStateMachine:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

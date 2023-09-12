@@ -124,8 +124,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 25
   knockback: 0.75
-  source: Player
-  enemy: Enemy
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 266240
   reloadTime: 0.5
   reloadCol: {r: 1, g: 1, b: 1, a: 0.5019608}
   defaultCol: {r: 1, g: 1, b: 1, a: 1}

@@ -14,7 +14,7 @@ public class PlayerMovementHandler : MonoBehaviour
     public LayerMask groundLayer, climbLayer;
 
     public ParticleSystem Dust;
-    public AudioSource JumpAudio, DoubleJumpAudio;
+    public AudioSource JumpAudio;
     public Animator heightAnim;
     public GameObject Weapon;
     
@@ -94,7 +94,7 @@ public class PlayerMovementHandler : MonoBehaviour
                 decelerating = false;
             }
 
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            t.eulerAngles = new Vector3(t.eulerAngles.x, t.eulerAngles.y, 0);
 
             coyoteCounter = coyoteTime;
             canDoubleJump = true;
@@ -113,7 +113,7 @@ public class PlayerMovementHandler : MonoBehaviour
         }
 
         if (dmgScript.knockedBack) {
-            dmgScript.applyKnock();
+            dmgScript.applyKnockback();
         }
 
         if(onLadder){

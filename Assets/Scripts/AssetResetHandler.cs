@@ -23,8 +23,8 @@ public class AssetResetHandler : MonoBehaviour
         GameObject newObj = Instantiate(entityPrefab, initCoords, Quaternion.identity);
         newObj.transform.SetParent(transform.parent);
         newObj.name = gameObject.name;
-        if(GetComponent<DamageHandler>().dependent != null)
-            newObj.GetComponent<DamageHandler>().dependent = GetComponent<DamageHandler>().dependent;
+        if(GetComponent<DamageHandler>().dependentAsset != null)
+            newObj.GetComponent<DamageHandler>().dependentAsset = GetComponent<DamageHandler>().dependentAsset;
         return newObj;
 
     }

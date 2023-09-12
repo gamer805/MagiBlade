@@ -151,9 +151,7 @@ public class EnemyMovementHandler : MonoBehaviour
             ManageFlight();
         }
 
-        if ((groundInfo.collider == null && detectPlatformEdges && grounded) || wallInfo)
-        {
-            Debug.Log("flip");
+        if ((groundInfo.collider == null && detectPlatformEdges && grounded) || wallInfo) {
             Flip();
         }
         Move();
@@ -190,6 +188,7 @@ public class EnemyMovementHandler : MonoBehaviour
 
     void Engage()
     {
+        float xDist = currentTarget.transform.position.x - transform.position.x;
         float yDist = currentTarget.transform.position.y - transform.position.y;
         if (!inRange) {
             Move();
@@ -205,7 +204,7 @@ public class EnemyMovementHandler : MonoBehaviour
             Idle();
         }
 
-        if ((facingRight && yDist < -0.3f) || (!facingRight && yDist > 0.3f)) {
+        if ((facingRight && xDist < -0.3f) || (!facingRight && xDist > 0.3f)) {
             Flip();
         }
 

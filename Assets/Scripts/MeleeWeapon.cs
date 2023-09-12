@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Threading;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,14 +7,21 @@ public class MeleeWeapon : MonoBehaviour
 {
     public float damage;
     public float knockback;
-    public string source;
-    public string enemy;
+    public LayerMask targetLayer;
+
     public float reloadTime;
+    public float extensionTime = 0.1f;
+
+    float reloadTimer;
+    float extensionTimer;
+
     public Color reloadCol;
     public Color defaultCol;
-    float timer;
-    public bool extended = false;
-    public float extensionTime;
+    
+
+    public bool canDamage = false;
+    public bool canSwing = true;
+
     public Vector3 offset;
 
     Animator anim;
@@ -23,7 +31,8 @@ public class MeleeWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = reloadTime;
+        reloadTimer = reloadTime;
+        extensionTimer = extensionTime;
         transform.localPosition = offset;
         anim = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
@@ -32,41 +41,45 @@ public class MeleeWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        reloadTimer += Time.deltaTime;
+        extensionTimer += Time.deltaTime;
 
-        if(timer < reloadTime)
-        {
+        if(reloadTimer < reloadTime) {
             renderer.color = reloadCol;
+            canSwing = false;
         } else
         {
             renderer.color = defaultCol;
+            canSwing = true;
         }
 
-        if (Input.GetButtonDown("Fire1") && timer >= reloadTime && !extended && gameObject.layer != 23)
+        if (extensionTimer < extensionTime) {
+            canDamage = true;
+        } else {
+            canDamage = false;
+        }
+
+        if (Input.GetButtonDown("Fire1") && canSwing)
         {
-            extended = true;
-            timer = 0;
+            reloadTimer = 0;
+            extensionTimer = 0;
             anim.SetTrigger("Used");
-            Invoke("Rescend", extensionTime);
             if(attackSound != null) attackSound.Play();
         }
         
     }
 
-    void Rescend()
-    {
-        extended = false;
-    }
+    
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.tag == enemy && extended)
+        if (( targetLayer & (1 << col.gameObject.layer)) != 0 && canDamage)
         {
-            Rescend();
-            if (col.gameObject.GetComponent<DamageHandler>() != null)
-            {
+            
+            if (col.gameObject.GetComponent<DamageHandler>() != null) {
                 col.gameObject.GetComponent<DamageHandler>().ApplyDamage(damage, gameObject, knockback);
             }
                 
         }
     }
+    
 }
