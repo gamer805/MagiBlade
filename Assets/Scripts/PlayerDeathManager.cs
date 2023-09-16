@@ -25,7 +25,7 @@ public class PlayerDeathManager : MonoBehaviour
     
     
     public AudioSource deathSound;
-    public Animator fade;
+    public Animator screenFadeAnimator;
 
     void Start()
     {
@@ -77,19 +77,13 @@ public class PlayerDeathManager : MonoBehaviour
 
             dead = true;
             deathSound.Play();
-            fade.SetTrigger("Fade");
+            screenFadeAnimator.SetTrigger("Fade");
             damager.health = 0;
             damager.enabled = false;
             renderer.enabled = false;
             controller.enabled = false;
             rb.bodyType = RigidbodyType2D.Static;
             weaponContainer.SetActive(false);
-            EnemyMovementHandler[] npcs = FindObjectsOfType(typeof(EnemyMovementHandler)) as EnemyMovementHandler[];
-            foreach(EnemyMovementHandler npc in npcs){
-                npc.targets.Clear();
-                npc.currentTarget = null;
-            }
-
             yield return new WaitForSeconds(respawnDelay);
             Respawn(damager, renderer, controller, rb);
         }
@@ -107,7 +101,7 @@ public class PlayerDeathManager : MonoBehaviour
         
         if(damager.damageDealer != null && damager.damageDealer.GetComponent<EnemyMovementHandler>() != null){
             damager.damageDealer.GetComponent<EnemyMovementHandler>().inRange = false;
-            damager.damageDealer.GetComponent<EnemyMovementHandler>().engaged = false;
+            damager.damageDealer.GetComponent<EnemyMovementHandler>().inSight = false;
         }
         
         controller.enabled = true;

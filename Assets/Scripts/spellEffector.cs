@@ -13,24 +13,19 @@ public class spellEffector : MonoBehaviour
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
-        if(parent == null){
-            moveStats = GetComponent<EnemyMovementHandler>();
-            attackStats = GetComponent<EnemyAttackHandler>();
-        } else {
-            moveStats = parent.GetComponent<EnemyMovementHandler>();
-            attackStats = parent.GetComponent<EnemyAttackHandler>();
-        }
+        moveStats = GetComponent<EnemyMovementHandler>();
+        attackStats = GetComponent<EnemyAttackHandler>();
        
     }
 
     public IEnumerator courFreeze(Color color, float duration, float speedRedux)
     {
-        float initSpeed = moveStats.initSpeed;
+        float initialSpeed = moveStats.initialSpeed;
         renderer.color = color;
-        moveStats.speed = initSpeed * speedRedux;
+        moveStats.walkSpeed = initialSpeed * speedRedux;
         yield return new WaitForSeconds(duration);
         renderer.color = Color.white;
-        moveStats.speed = initSpeed;
+        moveStats.walkSpeed = initialSpeed;
     }
     public IEnumerator courWeaken(Color color, float duration, float redux)
     {

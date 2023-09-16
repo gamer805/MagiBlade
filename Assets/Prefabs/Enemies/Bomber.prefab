@@ -5044,10 +5044,10 @@ GameObject:
   - component: {fileID: 4787298143427262507}
   - component: {fileID: 4787298143427262508}
   - component: {fileID: 4787298143427262509}
-  - component: {fileID: 4787298143427262511}
-  - component: {fileID: 2688495743325861562}
   - component: {fileID: 4787298143427262514}
   - component: {fileID: -8344100587923082960}
+  - component: {fileID: 4787298143427262511}
+  - component: {fileID: 2688495743325861562}
   - component: {fileID: 2541125491681724158}
   m_Layer: 12
   m_Name: Bomber
@@ -5178,6 +5178,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.375, y: 0.35046846}
   m_EdgeRadius: 0
+--- !u!95 &4787298143427262514
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4787298143427262513}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58a3a3f6673ac4b5c90097d0c2e70f0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-8344100587923082960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4787298143427262513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80c2970670f94347be7d42935b470d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5
+  thrust: 10
+  bomb: {fileID: 281626360456344009, guid: 5cdae6adbcddc401fa57eebdf92386d1, type: 3}
+  projPos: {fileID: 4787298143782455222}
+  resetTime: 2
 --- !u!114 &4787298143427262511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5219,43 +5256,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
---- !u!95 &4787298143427262514
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4787298143427262513}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 58a3a3f6673ac4b5c90097d0c2e70f0c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-8344100587923082960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4787298143427262513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80c2970670f94347be7d42935b470d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 5
-  thrust: 10
-  bomb: {fileID: 281626360456344009, guid: 5cdae6adbcddc401fa57eebdf92386d1, type: 3}
-  projPos: {fileID: 4787298143782455222}
-  resetTime: 2
 --- !u!114 &2541125491681724158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5418,6 +5418,10 @@ PrefabInstance:
     - target: {fileID: 1605327491600141300, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
       propertyPath: m_Name
       value: Health Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605327491600141300, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2319667641884866964, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
       propertyPath: damageManager

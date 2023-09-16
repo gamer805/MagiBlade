@@ -6,7 +6,7 @@ public class FallingPlatform : MonoBehaviour
 {
 
     Rigidbody2D rbody;
-    Animator anim;
+    public Animator anim;
     
     public GameObject selfPrefab;
     public AudioSource CrumbleAudio;
@@ -26,7 +26,6 @@ public class FallingPlatform : MonoBehaviour
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
         rbody.isKinematic = true;
         initLoc = transform.position;
         gameObject.layer = LayerMask.NameToLayer(baseLayer);
@@ -66,28 +65,24 @@ public class FallingPlatform : MonoBehaviour
     public void Fall()
     {
         fell = true;
+        anim.enabled = false;
         rbody.gravityScale = gScale;
         rbody.isKinematic = false;
         CrumbleAudio.Play();
         inContact = false;
         gameObject.layer = LayerMask.NameToLayer(fallingLayer);
+        StartCoroutine("Reinstate");
     }
 
     IEnumerator Reinstate()
     {
         yield return new WaitForSeconds(resetDelay);
         GameObject clone = Instantiate(selfPrefab, initLoc, Quaternion.identity);
-        clone.GetComponent<Animator>().SetTrigger("Initialize");
+        clone.GetComponent<FallingPlatform>().anim.enabled = true;
+        clone.GetComponent<FallingPlatform>().anim.SetTrigger("Initialize");
         clone.GetComponent<FallingPlatform>().ReinstateAudio.playOnAwake = true;
         clone.transform.parent = transform.parent;
         clone.name = transform.name;
         Destroy(gameObject);
-    }
-
-    void OnBecameInvisible(){
-        RoomResetHandler roomScript = transform.parent.GetComponent<RoomResetHandler>();
-        if(roomScript != null && roomScript.activated && fell) {
-            StartCoroutine("Reinstate");
-        }
     }
 }

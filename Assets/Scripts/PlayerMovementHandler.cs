@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,21 +6,17 @@ public class PlayerMovementHandler : MonoBehaviour
 {
 
     [HideInInspector] public Rigidbody2D rb;
-    DamageHandler dmgScript;
-    Transform t;
+    DamageHandler damageHandler;
 
     public Collider2D bodyCollider, wallCollider;
     public LayerMask groundLayer, climbLayer;
 
     public ParticleSystem Dust;
     public AudioSource JumpAudio;
-    public Animator heightAnim;
     public GameObject Weapon;
     
-    // Public variables
 
     public bool isGrounded = false;
-    public bool isGroundedDelay = false;
     public bool onWall = false;
     public bool onLadder = false;
 
@@ -35,6 +30,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     public float coyoteTime, bufferTime = 0.3f;
     float coyoteCounter, bufferCounter;
+    bool shortenJump = false;
 
     public bool canDoubleJump;
     public bool isClimbing;
@@ -46,20 +42,48 @@ public class PlayerMovementHandler : MonoBehaviour
     {
         // Initialize references to components and objects
         rb = GetComponent<Rigidbody2D>();
-        dmgScript = GetComponent<DamageHandler>();
-        t = transform;
+        damageHandler = GetComponent<DamageHandler>();
         gScale = rb.gravityScale;
-        movingRight = t.eulerAngles.y > -180;
+        movingRight = transform.eulerAngles.y > -180;
     }
 
-    void Update()
-    {
-        float x_input = Input.GetAxis("Horizontal");
-        float y_input = Input.GetAxis("Vertical");
+    void Update() {
 
         onWall = wallCollider.IsTouchingLayers(groundLayer);
         isGrounded = bodyCollider.IsTouchingLayers(groundLayer);
         onLadder = bodyCollider.IsTouchingLayers(climbLayer);
+
+        bufferCounter -= Time.deltaTime;
+        if (Input.GetButtonDown("Jump")) {
+            if (!isGrounded && canDoubleJump) {
+                canDoubleJump = false;
+                Jump();
+            } else {
+                bufferCounter = bufferTime;
+            }
+        }
+        if (isGrounded) {
+            coyoteCounter = coyoteTime;
+        } else {
+            coyoteCounter -= Time.deltaTime;
+        }
+        if (bufferCounter > 0 && coyoteCounter > 0){
+            bufferCounter = 0;
+            coyoteCounter = 0;
+            canDoubleJump = true;
+            Jump();
+        }
+        
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0) {
+            shortenJump = true;
+        }
+        
+    }
+
+    void FixedUpdate()
+    {
+        float x_input = Input.GetAxis("Horizontal");
+        float y_input = Input.GetAxis("Vertical");
 
         if (Mathf.Abs(x_input) > 0 && !decelerating)
             rb.velocity = new Vector2(x_input * walkSpeed, rb.velocity.y);
@@ -77,50 +101,25 @@ public class PlayerMovementHandler : MonoBehaviour
         } else if (Mathf.Abs(x_input) < 0.1 && canDecelerate) {
             decelerating = true;
         }
-        
 
         if (!isClimbing && ((movingRight && direction <= -0.1) || (!movingRight && direction >= 0.1))) {
             Flip();
         }
 
-        if (isGrounded)
-        {
-
-            if (!isGroundedDelay) {
-                heightAnim.SetTrigger("squash");
-            }
+        if (isGrounded) {
 
             if (rb.velocity.x == 0) {
                 decelerating = false;
             }
 
-            t.eulerAngles = new Vector3(t.eulerAngles.x, t.eulerAngles.y, 0);
-
-            coyoteCounter = coyoteTime;
-            canDoubleJump = true;
-
-        } else {
-            coyoteCounter -= Time.deltaTime;
-        }
-
-        isGroundedDelay = isGrounded;
-
-        if (Input.GetButtonDown("Jump")) {
-            bufferCounter = bufferTime;
-            Jump();
-        } else {
-            bufferCounter -= Time.deltaTime;
-        }
-
-        if (dmgScript.knockedBack) {
-            dmgScript.applyKnockback();
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
         }
 
         if(onLadder){
             if (!isClimbing) {
                 isClimbing = true;
                 Weapon.SetActive(false);
-                rb.velocity = new Vector2(0, 0);
+                rb.velocity = Vector2.zero;
             } else {
                 rb.velocity = new Vector2(x_input * climbSpeed * 0.25f, y_input*climbSpeed);
                 rb.gravityScale = 0f;
@@ -134,26 +133,24 @@ public class PlayerMovementHandler : MonoBehaviour
             
         }
 
+        if (shortenJump) {
+            shortenJump = false;
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+
     }
 
     public void Jump()
     {
-        if ((bufferCounter > 0 && coyoteCounter > 0) || (!isGrounded && canDoubleJump)){
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            bufferCounter = 0;
-            Dust.Play();
-            JumpAudio.Play();
-            canDoubleJump = false;
-        } else if (rb.velocity.y > 0){
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-            coyoteCounter = 0;
-        }
+        rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+        Dust.Play();
+        JumpAudio.Play();
     }
 
     void Flip()
     {
         Dust.Play();
-        t.eulerAngles = new Vector3(0, movingRight ? -180 : 0, 0);
+        transform.eulerAngles = new Vector3(0, movingRight ? -180 : 0, 0);
         movingRight = !movingRight;
     }
 }

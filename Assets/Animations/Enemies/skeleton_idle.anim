@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: skeleton_idle
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 770891633333027474, guid: 4f2acc7fc1c16415893606214cc15802, type: 3}
+      value: {fileID: -1543432723, guid: 9c05b33dddb214757a37b60ce8a5f639, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -39,8 +39,9 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
-    - {fileID: 770891633333027474, guid: 4f2acc7fc1c16415893606214cc15802, type: 3}
+    - {fileID: -1543432723, guid: 9c05b33dddb214757a37b60ce8a5f639, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

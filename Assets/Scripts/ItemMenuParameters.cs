@@ -73,7 +73,7 @@ public class ItemMenuParameters : MonoBehaviour
 
             descriptionText.text += "Troop Attack: " + attackStats.attackDamage + "hp"
                 + "\n\nTroop Health: " + healthStats.health + "hp"
-                + "\n\nTroop Speed: " + mobilityStats.speed + " m"
+                + "\n\nTroop Speed: " + mobilityStats.walkSpeed + " m"
                 + "\n\nTroop Attack Rate: " + attackStats.attackRate + " s"
                 + "\n\nTroop Knockback: " + attackStats.knockback + " m";
         }

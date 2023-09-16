@@ -84,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -170,12 +170,12 @@ TextureImporter:
       name: skeleton_punch_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 45
-        width: 16
-        height: 15
+        x: 2
+        y: 42
+        width: 11
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,12 +191,12 @@ TextureImporter:
       name: skeleton_punch_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 45
-        width: 16
-        height: 15
+        x: 17
+        y: 42
+        width: 10
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,12 +212,12 @@ TextureImporter:
       name: skeleton_punch_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 45
-        width: 16
-        height: 15
+        x: 31
+        y: 42
+        width: 10
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: skeleton_punch_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 30
-        width: 16
-        height: 15
+        x: 44
+        y: 42
+        width: 11
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,12 +254,12 @@ TextureImporter:
       name: skeleton_punch_4
       rect:
         serializedVersion: 2
-        x: 16
-        y: 30
-        width: 16
-        height: 15
+        x: 2
+        y: 28
+        width: 11
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -275,12 +275,12 @@ TextureImporter:
       name: skeleton_punch_5
       rect:
         serializedVersion: 2
-        x: 32
-        y: 30
-        width: 16
-        height: 15
+        x: 16
+        y: 28
+        width: 11
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -296,12 +296,12 @@ TextureImporter:
       name: skeleton_punch_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 15
-        width: 16
-        height: 15
+        x: 29
+        y: 28
+        width: 12
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -317,12 +317,12 @@ TextureImporter:
       name: skeleton_punch_7
       rect:
         serializedVersion: 2
-        x: 16
-        y: 15
-        width: 16
-        height: 15
+        x: 43
+        y: 28
+        width: 12
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -338,12 +338,12 @@ TextureImporter:
       name: skeleton_punch_8
       rect:
         serializedVersion: 2
-        x: 32
-        y: 15
-        width: 16
-        height: 15
+        x: 1
+        y: 14
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -359,12 +359,12 @@ TextureImporter:
       name: skeleton_punch_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 15
+        x: 16
+        y: 14
+        width: 11
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -380,12 +380,12 @@ TextureImporter:
       name: skeleton_punch_10
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 15
+        x: 30
+        y: 14
+        width: 11
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -401,12 +401,12 @@ TextureImporter:
       name: skeleton_punch_11
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 15
+        x: 44
+        y: 14
+        width: 11
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -414,6 +414,90 @@ TextureImporter:
       bones: []
       spriteID: ef8d03788419c76b0800000000000000
       internalID: -5297199321002747650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_walk_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b6fc7652937460bbc9cd5af2e1f837
+      internalID: -1543432723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_walk_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5166af43eb84416eac0e3bbbd4a9c1f
+      internalID: -1165349859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_walk_2
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37c7618a2e1d34c3296c391d6b42f6c1
+      internalID: -1584075791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_walk_4
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: facf091fde164444d82d06940ef429f3
+      internalID: 1033454111
       vertices: []
       indices: 
       edges: []
@@ -434,10 +518,14 @@ TextureImporter:
       skeleton_punch_4: 3955056507423230780
       skeleton_punch_1: 3133951188836683712
       skeleton_punch_7: -752155269621558236
+      skeleton_walk_4: 1033454111
       skeleton_punch_9: 8176894355430279097
       skeleton_punch_3: -5825951315275615110
+      skeleton_walk_1: -1165349859
       skeleton_punch_6: 9009504213600990673
       skeleton_punch_11: -5297199321002747650
+      skeleton_walk_0: -1543432723
+      skeleton_walk_2: -1584075791
       skeleton_punch_8: -3391227050574383021
       skeleton_punch_0: -4468627506801091713
       skeleton_punch_10: -8619915126603180449

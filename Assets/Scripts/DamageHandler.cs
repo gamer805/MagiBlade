@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System.Security.Cryptography;
+using System.Xml.Schema;
+using System.Threading;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,10 +19,12 @@ public class DamageHandler : MonoBehaviour
     [HideInInspector] public bool knockedBack = false;
     public float baseKnockback = 3f;
     public Vector2 knockbackSpeed;
+    Vector2 knockbackModifier;
+    bool knockbackApplied = false;
 
-    float alphaReduc = 0.5f;
-    Color baseC;
-    Color tempC;
+    float transparencyModifier = 0.5f;
+    Color baseColor;
+    Color damagedColor;
 
     [HideInInspector] public GameObject damageDealer;
 
@@ -28,6 +32,7 @@ public class DamageHandler : MonoBehaviour
     SpriteRenderer renderer;
     float invulnerabilityTimer = 0f;
     public float invulnerabilityLength = 0.5f;
+    bool isInvulnerable = true;
 
     public ParticleSystem Blood;
     public AudioSource hitAudio;
@@ -35,12 +40,18 @@ public class DamageHandler : MonoBehaviour
     public GameObject sprite;
     public float zoomAmount = 0.2f;
 
-    bool canBeDamaged = true;
 
     public float deathDelay = 0f;
     public Sprite deathSprite;
 
     public GameObject dependentAsset;
+
+    public enum EntityType {
+        Enemy,
+        Player
+    }
+    public EntityType entityType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,25 +62,19 @@ public class DamageHandler : MonoBehaviour
         else
             renderer = sprite.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        baseC = renderer.color;
-        tempC = renderer.color;
-        tempC.a = alphaReduc;
+        baseColor = renderer.color;
+        damagedColor = renderer.color;
+        damagedColor.a = transparencyModifier;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+
         invulnerabilityTimer += Time.deltaTime;
 
-        if (invulnerabilityTimer < invulnerabilityLength) {
-            canBeDamaged = false;
-        } else {
-            canBeDamaged = true;
-        }
+        isInvulnerable = (invulnerabilityTimer < invulnerabilityLength);
 
-        if (health <= 0)
-        {
-            if(gameObject.tag != "Player"){
+        if (health <= 0) {
+            if(entityType == EntityType.Enemy) {
                 Component[] components = gameObject.GetComponents(typeof(Behaviour));
                 foreach(Behaviour component in components) {
                     if(component != GetComponent<Rigidbody2D>() &&
@@ -86,52 +91,46 @@ public class DamageHandler : MonoBehaviour
             
             Invoke("Kill", deathDelay);
         }
-        
     }
 
-    void cancelKnockback()
-    {
-        if(gameObject.tag == "Player"){
-                gameObject.layer = LayerMask.NameToLayer("Player");
-                
-            }
-        knockedBack = false;
-    }
+    void FixedUpdate() {
+        if (knockedBack) {
+            if(damageDealer != null){
+                if (entityType == EntityType.Player) {
+                    GetComponent<PlayerMovementHandler>().enabled = true;
+                } else {
+                    GetComponent<EnemyMovementHandler>().enabled = true;
+                }
+                float moveDirection = (transform.position - damageDealer.transform.position).normalized.x;
+                rb.velocity = new Vector2(moveDirection * baseKnockback * knockbackSpeed.x + knockbackModifier.x * knockbackSpeed.x, baseKnockback * knockbackModifier.y * knockbackSpeed.y);
 
-    public void applyKnockback(float xKnockMod = 0, float yKnockMod = 1)
-    {
-        if(damageDealer != null){
-            float moveDirection = (transform.position - damageDealer.transform.position).normalized.x;
-
-            if(gameObject.tag == "Player"){
-                gameObject.layer = LayerMask.NameToLayer("Invulnerable");
-                rb.velocity = new Vector2(moveDirection * baseKnockback * knockbackSpeed.x, baseKnockback * knockbackSpeed.y);
-            } else {
-                rb.velocity = new Vector2(moveDirection * baseKnockback * knockbackSpeed.x + xKnockMod * knockbackSpeed.x, baseKnockback * knockbackSpeed.y * yKnockMod);
+                StartCoroutine(cancelKnockback());
             }
-            
-            Invoke("cancelKnockback", 0.1f);
-            
         }
+    }
+
+    IEnumerator cancelKnockback() {
+        yield return new WaitForSeconds(0.1f);
+        knockedBack = false;
     }
 
     IEnumerator colorFlash(int num, float time)
     {
         for (int i = 0; i < num; i++)
         {
-            renderer.color = tempC;
+            renderer.color = damagedColor;
             yield return new WaitForSeconds(time);
-            renderer.color = baseC;
+            renderer.color = baseColor;
             yield return new WaitForSeconds(time);
         }
     }
 
     public void ApplyDamage(float damage, GameObject enemy, float knockbackPower, Vector2? knockbackSpeed = null, bool applyFlash = true)
     {
-        if(canBeDamaged && this.enabled){
-            if (gameObject.name == "Player")
-                canBeDamaged = false;
-                invulnerabilityTimer = 0;
+        if(!isInvulnerable && this.enabled){
+
+            isInvulnerable = true;
+            invulnerabilityTimer = 0;
                 
             if(Blood != null && hitAudio != null) {
                 Blood.Play();
@@ -143,8 +142,12 @@ public class DamageHandler : MonoBehaviour
             
             knockedBack = true;
             baseKnockback = knockbackPower;
-            Vector2 effectiveKnockbackSpeed = knockbackSpeed ?? new Vector2(0, 1);
-            applyKnockback(effectiveKnockbackSpeed.x, effectiveKnockbackSpeed.y);
+            knockbackModifier = knockbackSpeed ?? new Vector2(0, 1);
+            if (entityType == EntityType.Player) {
+                GetComponent<PlayerMovementHandler>().enabled = false;
+            } else {
+                GetComponent<EnemyMovementHandler>().enabled = false;
+            }
             
             Camera.main.GetComponent<CameraZoom>().Zoom(zoomAmount);
             Camera.main.GetComponent<CameraZoom>().Reset();
@@ -160,10 +163,10 @@ public class DamageHandler : MonoBehaviour
         }
         
         if(dependentAsset != null) {
-            dependentAsset.GetComponent<Cobweb>().Disintigrate();
+            dependentAsset.GetComponent<DependencyHandler>().UseBehavior();
         }
 
-        if(gameObject.tag != "Player") {
+        if(entityType == EntityType.Enemy) {
             Destroy(gameObject);
         }
     }

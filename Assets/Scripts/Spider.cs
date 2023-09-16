@@ -27,16 +27,22 @@ public class Spider : MonoBehaviour
     }
 
     public void Drop(){
-        dropTrigger.enabled = false;
+        
         rb.bodyType = RigidbodyType2D.Dynamic;
+
         attackScript.enabled = true;
         moveScript.enabled = true;
         damageScript.enabled = true;
+
+        dropTrigger.enabled = false;
         sleeping = false;
+        
     }
 
     public void Jump(){
-        if(moveScript.grounded) moveScript.vel.y = moveScript.jumpSpeed;
+        if(moveScript.isGrounded) {
+            moveScript.currentVelocity.y = moveScript.jumpSpeed;
+        } 
     }
 
     void OnTriggerEnter2D(Collider2D col){

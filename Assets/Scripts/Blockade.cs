@@ -2,41 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DependencyHandler))]
 public class Blockade : MonoBehaviour
 {
     Animator Anim;
     BoxCollider2D collider;
 
-    public GameObject dependantAsset;
-    GameObject cam;
+    DependencyHandler dependencyHandler;
+    GameObject cameraRef;
 
     bool opened = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main.gameObject;
+        cameraRef = Camera.main.gameObject;
         Anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
+        dependencyHandler = GetComponent<DependencyHandler>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!opened && dependantAsset == null){
+        if(!opened && !dependencyHandler.dependencyExists){
+            opened = true;
             OpenDoor();
         }
     }
 
     public void OpenDoor(){
-        opened = true;
         Anim.SetBool("open", true);
         collider.enabled = false;
-        cam.GetComponent<CameraScreenShake>().Shake(0.5f, 0.25f);
+        cameraRef.GetComponent<CameraScreenShake>().Shake(0.5f, 0.25f);
     }
 
     public void CloseDoor(){
-        opened = false;
         Anim.SetBool("open", false);
         collider.enabled = true;
     }

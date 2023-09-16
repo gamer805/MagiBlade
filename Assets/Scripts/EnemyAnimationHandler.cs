@@ -6,8 +6,8 @@ using UnityEngine;
 public class EnemyAnimationHandler : MonoBehaviour
 {
     Animator anim;
-    EnemyMovementHandler npcMove;
-    EnemyAttackHandler npcAttack;
+    EnemyMovementHandler movementData;
+    EnemyAttackHandler attackData;
     public GameObject parent;
 
     // Start is called before the first frame update
@@ -15,11 +15,11 @@ public class EnemyAnimationHandler : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         if(parent == null){
-            npcMove = GetComponent<EnemyMovementHandler>();
-            npcAttack = GetComponent<EnemyAttackHandler>();
+            movementData = GetComponent<EnemyMovementHandler>();
+            attackData = GetComponent<EnemyAttackHandler>();
         } else {
-            npcMove = parent.GetComponent<EnemyMovementHandler>();
-            npcAttack = parent.GetComponent<EnemyAttackHandler>();
+            movementData = parent.GetComponent<EnemyMovementHandler>();
+            attackData = parent.GetComponent<EnemyAttackHandler>();
         }
         
     }
@@ -27,10 +27,10 @@ public class EnemyAnimationHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("IsJumping", !npcMove.grounded);
-        anim.SetFloat("Speed", Math.Abs(npcMove.vel.x));
-        if(npcAttack.animateAttack == true && npcAttack.attacking == true){
-            npcAttack.attacking = false;
+        anim.SetBool("IsJumping", !movementData.isGrounded);
+        anim.SetFloat("Speed", Math.Abs(movementData.currentVelocity.x));
+        if(attackData.animateAttack == true && attackData.isAttacking == true){
+            attackData.isAttacking = false;
             anim.SetTrigger("Attack");
         }
         

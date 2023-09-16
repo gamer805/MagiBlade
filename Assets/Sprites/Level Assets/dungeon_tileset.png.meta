@@ -44,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -1126,6 +1126,110 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: spike_right
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 40
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 0.5, y: 2.5}
+        - {x: -0.5, y: -1.5}
+        - {x: 0.5, y: -2.5}
+        - {x: 2.5, y: -2.5}
+        - {x: 2.5, y: 2.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32c9b89a1fc9e4b968b93334c72e35fc
+      internalID: 16834084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spike_left
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 35
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 3, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -2.5, y: 2.5}
+        - {x: -2.5, y: -2.5}
+        - {x: -0.5, y: -2.5}
+        - {x: 0.5, y: -0.5}
+        - {x: -0.5, y: 2.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d85e682c10aff48f0bbee2689bed86d8
+      internalID: -1272752543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spike_top
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 35
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 4, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -2.5, y: 2.5}
+        - {x: -2.5, y: 0.5}
+        - {x: -0.5, y: -0.5}
+        - {x: 2.5, y: 0.5}
+        - {x: 2.5, y: 2.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: db77038cbd24144b38dd044374dd772f
+      internalID: 1325294658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spike_bottom
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 40
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 3}
+      outline: []
+      physicsShape:
+      - - {x: -2.5, y: -0.5}
+        - {x: -2.5, y: -2.5}
+        - {x: 2.5, y: -2.5}
+        - {x: 2.5, y: -0.5}
+        - {x: 1.5, y: 0.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c614a86c6cdb14e27bc94783ca5759c0
+      internalID: 17371949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1148,6 +1252,8 @@ TextureImporter:
       dungeon_tileset_14: 2067310944
       dungeon_tileset_2: -1906599993
       dungeon_tileset_45: -1624831958
+      spike_right: 16834084
+      spike_left: -1272752543
       dungeon_tileset_17: -1734031919
       dungeon_tileset_38: 1127218193
       dungeon_tileset_32: 290170116
@@ -1176,10 +1282,12 @@ TextureImporter:
       dungeon_tileset_40: 95228940
       dungeon_tileset_24: 1602415
       dungeon_tileset_1: -183050444
+      spike_top: 1325294658
       dungeon_tileset_39: -689839581
       dungeon_tileset_46: -934642533
       dungeon_tileset_23: -2143259180
       dungeon_tileset_4: 18500631
+      spike_bottom: 17371949
       dungeon_tileset_44: 328329571
       dungeon_tileset_25: 1298222609
       dungeon_tileset_11: 651971200

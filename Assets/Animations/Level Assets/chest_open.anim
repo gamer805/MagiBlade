@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: chest_open
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -4733320092218663923, guid: c7a22fdb775aa4f9d876755e612e9d78, type: 3}
+      value: {fileID: 1058806307, guid: 90a6ffb836b05461ab7b1221d4d94b3f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -39,8 +39,9 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
-    - {fileID: -4733320092218663923, guid: c7a22fdb775aa4f9d876755e612e9d78, type: 3}
+    - {fileID: 1058806307, guid: 90a6ffb836b05461ab7b1221d4d94b3f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

@@ -8,6 +8,9 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(damageManager.enabled) transform.localScale = new Vector3( (damageManager.health/damageManager.maxHealth) * 10 , transform.localScale.y, transform.localScale.z);
+       if(damageManager.enabled) {
+        transform.localScale = new Vector3( (damageManager.health/damageManager.maxHealth) * 10 , transform.localScale.y, transform.localScale.z);
+        transform.parent.eulerAngles = Vector3.zero;
+        }
     }
 }

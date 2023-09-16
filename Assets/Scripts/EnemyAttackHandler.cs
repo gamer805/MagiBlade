@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyAttackHandler : MonoBehaviour
 {
-    public bool attackLimit = false;
-    public int attackLimitNum = 5;
 
     public float knockback = 3f;
 
@@ -13,66 +11,54 @@ public class EnemyAttackHandler : MonoBehaviour
     public float attackDamage = 20f;
     public float attackRate = 2f;
     public float attackTime = 0.1f;
+    public bool isCoolingDown = false;
 
     Animator meleeAnim;
     public GameObject meleeWeapon;
 
     public float cooldownTime = 0f;
 
-    EnemyMovementHandler npc;
-    GameObject target;
-    public bool attacking = false;
+    EnemyMovementHandler movementData;
+    GameObject playerRef;
+    public bool isAttacking = false;
     public bool animateAttack = false;
 
     void Start()
     {
-        npc = GetComponent<EnemyMovementHandler>();
-        if (meleeWeapon != null)
+        movementData = GetComponent<EnemyMovementHandler>();
+        playerRef = GameObject.Find("Player");
+        if (meleeWeapon != null) {
             meleeAnim = meleeWeapon.GetComponent<Animator>();
+        }
     }
 
     void Update()
     {
         cooldownTime += Time.deltaTime;
-        if(npc.currentTarget != null)
-            target = npc.currentTarget;
-
-        if (npc.engaged && npc.inRange)
-        {
-            if (cooldownTime >= attackRate)
-            {
-                cooldownTime = 0;
-                StartCoroutine(Attack());
-            }
-
+        if (playerRef == null) {
+            playerRef = GameObject.Find("Player");
         }
-        
-        if(attackLimitNum <= 0)
-        {
-            Destroy(gameObject);
+
+        if (movementData.inSight && movementData.inRange && cooldownTime >= attackRate) {
+            cooldownTime = 0;
+            StartCoroutine(Attack());
+
         }
     }
 
     IEnumerator Attack()
     {
-        attacking = true;
-        if(meleeWeapon != null)
+        isAttacking = true;
+        if(meleeWeapon != null) {
             meleeAnim.SetTrigger("Swing");
-        yield return new WaitForSeconds(attackTime);
-        if (npc.inRange && target != null)
-        {
-            npc.attackCooldown = true;
-            DealDamage();
-            yield return new WaitForSeconds(attackTime);
-            npc.attackCooldown = false;
         }
-    }
-    void DealDamage()
-    {
-        target.GetComponent<DamageHandler>().ApplyDamage(attackDamage, gameObject, knockback);
-        if (attackLimit)
-            attackLimitNum--;
-
+        yield return new WaitForSeconds(attackTime);
+        if (movementData.inRange && playerRef != null) {
+            isCoolingDown = true;
+            playerRef.GetComponent<DamageHandler>().ApplyDamage(attackDamage, gameObject, knockback);
+            yield return new WaitForSeconds(attackTime);
+            isCoolingDown = false;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col){

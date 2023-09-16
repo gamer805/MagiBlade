@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2191081255826157096}
   - component: {fileID: 3013723742829079203}
   m_Layer: 12
-  m_Name: JumpDmgDetector
+  m_Name: Head Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,13 +106,12 @@ GameObject:
   - component: {fileID: 7750267317683543141}
   - component: {fileID: 7750267317683543140}
   - component: {fileID: 7750267317683543131}
-  - component: {fileID: 7750267317683543128}
-  - component: {fileID: 7750267317683543135}
-  - component: {fileID: 7750267317683543134}
-  - component: {fileID: 7750267317683543133}
-  - component: {fileID: 7750267317683543132}
-  - component: {fileID: -8586992320522836997}
   - component: {fileID: 4192409878224138859}
+  - component: {fileID: 7750267317683543132}
+  - component: {fileID: 7750267317683543134}
+  - component: {fileID: 7750267317683543135}
+  - component: {fileID: 7750267317683543128}
+  - component: {fileID: -8586992320522836997}
   m_Layer: 12
   m_Name: Ghost
   m_TagString: Enemy
@@ -216,6 +215,105 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!58 &4192409878224138859
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750267317683543123}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.13720226}
+  serializedVersion: 2
+  m_Radius: 0.30056858
+--- !u!95 &7750267317683543132
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750267317683543123}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f2c509137e2a4ed98657cf5e24fda16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7750267317683543134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750267317683543123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885656710768746c5b32068575d2afd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialSpeed: 0
+  walkSpeed: 2
+  jumpSpeed: 5
+  climbSpeed: 4
+  wallBuffer: 0.27
+  inSight: 0
+  inRange: 0
+  isMoving: 0
+  canJump: 0
+  canFly: 1
+  canClimb: 0
+  detectsLedges: 1
+  hasJumped: 0
+  sightRange: {fileID: 9219864848716655594}
+  attackRange: {fileID: 7300493070544582050}
+  canWander: 1
+  decisionRate: 2
+  decisionThreshold: 0.6
+  currentVelocity: {x: 0, y: 0, z: 0}
+  groundDetector: {fileID: 7750267319245700741}
+  wallDetector: {fileID: 0}
+  bodyCollider: {fileID: 4192409878224138859}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  climbLayer:
+    serializedVersion: 2
+    m_Bits: 131072
+  isGrounded: 1
+--- !u!114 &7750267317683543135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750267317683543123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 022105e6bd1564334ac9b4b95351db79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockback: 0.75
+  attackPoint: {fileID: 7750267319218272037}
+  attackDamage: 100
+  attackRate: 1
+  attackTime: 0.1
+  isCoolingDown: 0
+  meleeWeapon: {fileID: 0}
+  cooldownTime: 0
+  isAttacking: 0
+  animateAttack: 0
 --- !u!114 &7750267317683543128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,109 +342,6 @@ MonoBehaviour:
   deathDelay: 0
   deathSprite: {fileID: 0}
   dependentAsset: {fileID: 0}
---- !u!114 &7750267317683543135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750267317683543123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022105e6bd1564334ac9b4b95351db79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackLimit: 0
-  attackLimitNum: 3
-  knockback: 0.75
-  attackPoint: {fileID: 7750267319218272037}
-  attackDamage: 100
-  attackRate: 1
-  attackTime: 0.1
-  meleeWeapon: {fileID: 0}
-  cooldownTime: 0
-  attacking: 0
-  animateAttack: 0
---- !u!114 &7750267317683543134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750267317683543123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885656710768746c5b32068575d2afd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  initSpeed: 0
-  jumpSpeed: 5
-  climbSpeed: 4
-  wallBuffer: 0.27
-  engaged: 0
-  inRange: 0
-  moving: 0
-  canJump: 0
-  canFly: 1
-  canClimb: 0
-  detectPlatformEdges: 0
-  wanders: 1
-  sightRange: {fileID: 9219864848716655594}
-  attackRange: {fileID: 7300493070544582050}
-  targets: []
-  targetCols: []
-  currentTarget: {fileID: 0}
-  avgWanderTime: 2
-  variationFactor: 3
-  targetTag: Player
-  groundDetection: {fileID: 7750267319245700741}
-  grounded: 1
-  vel: {x: 0, y: 0, z: 0}
-  bodyCollider: {fileID: 4192409878224138859}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  climbLayer:
-    serializedVersion: 2
-    m_Bits: 131072
-  attackCooldown: 0
-  attackPoint: {fileID: 7750267319218272037}
-  wallCheckpoint: {fileID: 7750267319218272037}
-  height: {fileID: 0}
---- !u!114 &7750267317683543133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750267317683543123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 897fad20c6c9543f88cd76e1c1e2ebde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 0}
---- !u!95 &7750267317683543132
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750267317683543123}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8f2c509137e2a4ed98657cf5e24fda16, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &-8586992320522836997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,22 +356,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityPrefab: {fileID: 7750267317683543123}
   initCoords: {x: 0, y: 0, z: 0}
---- !u!58 &4192409878224138859
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750267317683543123}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.13720226}
-  serializedVersion: 2
-  m_Radius: 0.30056858
 --- !u!1 &7750267317979010181
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +399,7 @@ GameObject:
   - component: {fileID: 7300493070544582050}
   - component: {fileID: 9219864848716655594}
   m_Layer: 7
-  m_Name: attack_point
+  m_Name: Attack Point
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -483,7 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7750267319245700741}
   m_Layer: 12
-  m_Name: Ground Detection
+  m_Name: Ground Detector
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -5496,6 +5475,10 @@ PrefabInstance:
     - target: {fileID: 1605327491600141300, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
       propertyPath: m_Name
       value: Health Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605327491600141300, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7740956749398001308, guid: 1a3ee2af5410e4a2abaeead6d373bf74, type: 3}
       propertyPath: damageManager
