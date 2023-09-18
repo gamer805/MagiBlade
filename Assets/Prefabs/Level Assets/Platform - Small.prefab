@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4429740711396592546}
   - component: {fileID: 4429740711396592476}
   - component: {fileID: 5862290499314726670}
+  - component: {fileID: 724807236934747606}
   - component: {fileID: 5862290500177442268}
-  - component: {fileID: 8008109346346687516}
   - component: {fileID: 101906785554333083}
   m_Layer: 18
   m_Name: Platform - Small
@@ -129,6 +129,32 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
+--- !u!61 &724807236934747606
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4429740711396592478}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4, y: 0.5}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4, y: 0.1}
+  m_EdgeRadius: 0
 --- !u!114 &5862290500177442268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,28 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPlayer: 0
   WoodThunk: {fileID: 101906785554333083}
---- !u!68 &8008109346346687516
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4429740711396592478}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.28125}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.5, y: 0}
-  - {x: 0.5, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!82 &101906785554333083
 AudioSource:
   m_ObjectHideFlags: 0

@@ -1,7 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Xml.Schema;
-using System.Threading;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -142,7 +139,8 @@ public class DamageHandler : MonoBehaviour
             
             knockedBack = true;
             baseKnockback = knockbackPower;
-            knockbackModifier = knockbackSpeed ?? new Vector2(0, 1);
+            knockbackModifier = knockbackSpeed ?? Vector2.up;
+
             if (entityType == EntityType.Player) {
                 GetComponent<PlayerMovementHandler>().enabled = false;
             } else {

@@ -5,18 +5,12 @@ using UnityEngine;
 public class Semisolid : MonoBehaviour
 {
     public bool onPlayer = false;
-    bool canReinstate = false;
     public AudioSource WoodThunk;
-
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetAxis("Vertical") < 0 && onPlayer) {
             gameObject.layer = LayerMask.NameToLayer("Semisolid");
-        }
-        if (canReinstate) {
-            canReinstate = false;
-            gameObject.layer = LayerMask.NameToLayer("Platform");
         }
     }
 
@@ -25,9 +19,15 @@ public class Semisolid : MonoBehaviour
             WoodThunk.Play();
             onPlayer = true;
         } else if (col.gameObject.tag == "PlayerFoot") {
-            canReinstate = true;
+            gameObject.layer = LayerMask.NameToLayer("Platform");
         }
             
+    }
+
+    void OnCollisionStay2D(Collision2D col) {
+        if (col.gameObject.tag == "Player") {
+            onPlayer = true;
+        }
     }
 
     void OnCollisionExit2D(Collision2D col)

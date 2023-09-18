@@ -96,7 +96,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
@@ -220,19 +220,19 @@ MonoBehaviour:
   health: 100
   maxHealth: 0
   flashTime: 0.1
-  flashNum: 2
   knockedBack: 0
-  knockValue: 6
+  baseKnockback: 3
   knockbackSpeed: {x: 6, y: 10}
   damageDealer: {fileID: 0}
+  invulnerabilityLength: 0.5
   Blood: {fileID: 527664176552501116}
-  hitHurt: {fileID: 547010161014574411}
+  hitAudio: {fileID: 0}
   sprite: {fileID: 0}
-  zoomAmt: 0.2
-  canBeHurt: 1
+  zoomAmount: 0.2
   deathDelay: 0
   deathSprite: {fileID: 0}
-  dependent: {fileID: 0}
+  dependentAsset: {fileID: 0}
+  entityType: 0
 --- !u!114 &1458582585323081007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,16 +245,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022105e6bd1564334ac9b4b95351db79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackLimit: 0
-  attackLimitNum: 3
   knockback: 0.75
   attackPoint: {fileID: 1458582586435739620}
   attackDamage: 40
   attackRate: 2
   attackTime: 0.1
+  isCoolingDown: 0
   meleeWeapon: {fileID: 0}
   cooldownTime: 0
-  attacking: 0
+  isAttacking: 0
   animateAttack: 0
 --- !u!114 &6268643070435011030
 MonoBehaviour:
@@ -268,43 +267,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885656710768746c5b32068575d2afd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  initSpeed: 0
+  initialSpeed: 0
+  walkSpeed: 0
   jumpSpeed: 5
   climbSpeed: 4
   wallBuffer: 0.28
-  engaged: 0
+  inSight: 0
   inRange: 0
-  moving: 0
+  isMoving: 0
   canJump: 1
   canFly: 0
   canClimb: 1
-  detectPlatformEdges: 1
-  wanders: 1
+  detectsLedges: 1
+  hasJumped: 0
   sightRange: {fileID: 0}
   attackRange: {fileID: 0}
-  targets: []
-  targetCols: []
-  currentTarget: {fileID: 0}
-  defaultTarget: {fileID: 0}
-  avgWanderTime: 6
-  variationFactor: 3
-  targetTag: Player
-  groundDetection: {fileID: 1458582586201272308}
-  grounded: 1
-  vel: {x: 0, y: 0, z: 0}
+  canWander: 1
+  decisionRate: 2
+  decisionThreshold: 0.6
+  currentVelocity: {x: 0, y: 0, z: 0}
+  groundDetector: {fileID: 0}
+  wallDetector: {fileID: 0}
   bodyCollider: {fileID: 1458582585323081010}
-  footCollider: {fileID: 1458582585323081009}
   groundLayer:
     serializedVersion: 2
     m_Bits: 6029312
   climbLayer:
     serializedVersion: 2
     m_Bits: 131072
-  attackCooldown: 0
-  attackPoint: {fileID: 1458582586435739620}
-  wallCheckpoint: {fileID: 0}
-  height: {fileID: 0}
+  isGrounded: 1
 --- !u!114 &8294926604179129253
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,7 +22,14 @@ public class EnemyMovementHandler : MonoBehaviour
     public bool canClimb = false;
     public bool detectsLedges = true;
     public bool hasJumped = false;
-    int movementDirection = 0;
+
+    enum Direction {
+        HORIZONTAL,
+        UP,
+        DOWN
+    }
+
+    Direction movementDirection;
 
     public Collider2D sightRange;
     public Collider2D attackRange;
@@ -51,6 +58,7 @@ public class EnemyMovementHandler : MonoBehaviour
     bool onLedge;
     bool onLadder;
     public bool isGrounded = true;
+
     void Start() {
         initialSpeed = walkSpeed;
         playerRef = GameObject.Find("Player");
@@ -88,15 +96,16 @@ public class EnemyMovementHandler : MonoBehaviour
 
     void FixedUpdate() {
 
-        
-
         if (inSight && playerRef != null) {
             Engage();
-        } else if (canFly) {
-            Fly();
         } else if (canWander) {
-            Wander();
+            if (canFly) {
+                Float();
+            } else {
+                Wander();
+            }
         } else {
+            if (canFly) currentVelocity.y = 0f;
             Patrol();
         }
         
@@ -123,27 +132,12 @@ public class EnemyMovementHandler : MonoBehaviour
         facingRight = !facingRight;
     }
 
-    void Idle()
-    {
-        isMoving = false;
-        currentVelocity.x = 0;
-        if (canFly) {
-            currentVelocity.y = 0;
-        }
-            
-    }
-
-    void Move() {
-        isMoving = true;
-        currentVelocity.x = facingRight ? walkSpeed : -walkSpeed; 
-    }
-
     void Patrol() {
 
         if ((onLedge && detectsLedges && isGrounded) || onWall) {
             Flip();
         }
-        Move();
+        currentVelocity.x = facingRight ? walkSpeed : -walkSpeed;
 
     }
 
@@ -154,84 +148,88 @@ public class EnemyMovementHandler : MonoBehaviour
             Patrol();
             if (canDecide) {
                 decisionTimer = 0f;
-                if (Random.Range(0, 1f) > 0.5f) {
-                    Flip();
-                } else {
-                    Idle();
-                }
+                MakeDecision();
             }
         } else if (canDecide) {
-            Move();
+            decisionTimer = 0f;
+            isMoving = true;
+            currentVelocity.x = facingRight ? walkSpeed : -walkSpeed;
         }
     }
 
+    void Float() {
+
+        bool canDecide = decisionTimer > decisionRate && Random.Range(0f, 1f) > decisionThreshold;
+        if (isMoving) {
+
+            if (movementDirection == Direction.HORIZONTAL) {
+                currentVelocity = new Vector2(facingRight ? walkSpeed : -walkSpeed, 0);
+            } else if (movementDirection == Direction.UP) {
+                currentVelocity.y = walkSpeed;
+            } else if (movementDirection == Direction.DOWN) {
+                currentVelocity.y = -walkSpeed;
+            }
+
+            if (canDecide) {
+                decisionTimer = 0f;
+                movementDirection = (Direction) Random.Range(0, 3);
+                MakeDecision();
+            }
+
+        } else if (canDecide) {
+            decisionTimer = 0f;
+            isMoving = true;
+            currentVelocity.x = facingRight ? walkSpeed : -walkSpeed;
+        }
+        
+
+        if (onWall) {
+            if (movementDirection == Direction.UP) {
+                movementDirection = Direction.DOWN;
+            } else if (movementDirection == Direction.DOWN) {
+                movementDirection = Direction.UP;
+            } else {
+                Flip();
+            }
+        }
+    }
+
+
     void Engage()  {
-        Vector2 targetDistance = transform.position - playerRef.transform.position;
+        
+        Vector2 targetDistance = playerRef.transform.position - transform.position;
+
         if (!inRange) {
-            Move();
+            isMoving = true;
+            currentVelocity.x = facingRight ? walkSpeed : -walkSpeed;
             if (canFly) {
-                currentVelocity.y = targetDistance.y < 0f ? walkSpeed : -walkSpeed;
-            } else if (canJump && targetDistance.y < -1.5f) {
-                Jump();
-            } else if (onLadder && canClimb && targetDistance.y < -1.5f) {
-                Climb();
+                currentVelocity.y = targetDistance.y > 0f ? walkSpeed : -walkSpeed;
+            } else if (targetDistance.y > 1.5f && !attackHandler.isCoolingDown) {
+                if (canJump && isGrounded && !hasJumped) {
+                    rb.velocity = new Vector2(0, jumpSpeed);
+                    hasJumped = true;
+                } else if (canClimb && onLadder) {
+                    rb.velocity = new Vector2(0, climbSpeed);
+                }
             }
         } else {
-            Idle();
+            isMoving = false;
+            currentVelocity.x = 0;
+            if (canFly) currentVelocity.y = 0;
         }
 
-        if ((facingRight && targetDistance.x > 0.3f) || (!facingRight && targetDistance.x < -0.3f)) {
+        if ((facingRight && targetDistance.x < -0.3f) || (!facingRight && targetDistance.x > 0.3f)) {
             Flip();
         }
 
     }
 
-    void Fly() {
-        if (canWander) {
-
-            bool canDecide = decisionTimer > decisionRate && Random.Range(0f, 1f) > decisionThreshold;
-            if (canDecide) {
-                movementDirection = Random.Range(0, 3);
-                decisionTimer = 0f;
-            }
-
-            if (movementDirection == 0) {
-                currentVelocity.y = 0;
-                Move();
-            } else if (movementDirection == 1) {
-                currentVelocity.y = walkSpeed;
-            } else {
-                currentVelocity.y = -walkSpeed;
-            }
-            if (onWall) {
-                if (Random.Range(0, 1f) > 0.5f) {
-                    movementDirection += 1;
-                    if (movementDirection == 3) movementDirection = 0;
-                } else {
-                    movementDirection -= 1;
-                    if (movementDirection == -1) movementDirection = 2;
-                }
-            }
+    void MakeDecision () {
+        if (Random.Range(0, 1f) > 0.5f) {
+            Flip();
         } else {
-            currentVelocity.y = 0;
-            if ((onLedge && detectsLedges && isGrounded) || onWall) {
-                Flip();
-            }
-            Move();
-        }
-    }
-
-    void Jump() {
-        if (isGrounded && !attackHandler.isCoolingDown && !hasJumped) {
-            rb.velocity = new Vector2(currentVelocity.x, jumpSpeed);
-            hasJumped = true;
-        }
-    }
-
-    void Climb()
-    {
-        if (!isGrounded && !attackHandler.isCoolingDown) {
-            rb.velocity = new Vector2(currentVelocity.x, climbSpeed);
+            isMoving = false;
+            currentVelocity = Vector2.zero;
         }
     }
 }
