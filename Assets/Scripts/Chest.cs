@@ -16,6 +16,10 @@ public class Chest : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    void OnEnable() {
+        if (open) anim.SetBool("open", true);
+    }
+
     public void Open(){
         openSound.Play();
         anim.SetBool("open", true);

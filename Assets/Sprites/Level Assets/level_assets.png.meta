@@ -832,6 +832,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: web_0
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 60
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 657f427e0031a4fe7b57afb50b18927c
+      internalID: -1719068275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_1
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 60
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a9ecf65a4519440b9b6e5ea4cb49ceb
+      internalID: 1626900587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 52
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c0d695b7d6164d818b534b8e585fede
+      internalID: -1419468164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: web_3
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 52
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a28949b5214142b8b2e8e5f1884210c
+      internalID: -414325568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -847,12 +931,14 @@ TextureImporter:
     nameFileIdTable:
       sawblade_small_0: 1609963431
       ladder: -447730756
+      web_0: -1719068275
       hanging_grass_1: -1849662731
       sawblade_small_3: 1871391814
       hanging_grass_2: 1546947854
       grass: 1865993554
       sawblade_large_3: 146123830
       platform: 1380623669
+      web_1: 1626900587
       gate_0: 1281966077
       falling_platform: -1154524612
       lantern_orange: -407269241
@@ -865,7 +951,9 @@ TextureImporter:
       lantern_blue: 735512745
       sawblade_large_4: 1487255375
       sawblade_small_5: -174585459
+      web_3: -414325568
       gate_2: 1191833920
+      web_2: -1419468164
       gate_5: 1147792798
       chest_closed: 1132418706
       sawblade_large_5: -2112902694
