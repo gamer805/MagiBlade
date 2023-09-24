@@ -9,22 +9,15 @@ public class AssetResetHandler : MonoBehaviour
 
     void Start(){
         initCoords = transform.position;
-        if(transform.parent.tag == "Room" && transform.tag == "Enemy"){
-            foreach(GameObject enemy in transform.parent.GetComponent<RoomResetHandler>().enemyPrefabDict){
-                if(enemy.name == entityPrefab.name){
-                    entityPrefab = enemy;
-                    break;
-                }
-            }
-        }
     }
 
-    public GameObject Reset(){
+    public GameObject GetReplacement(){
         GameObject newObj = Instantiate(entityPrefab, initCoords, Quaternion.identity);
         newObj.transform.SetParent(transform.parent);
         newObj.name = gameObject.name;
-        if(GetComponent<DamageHandler>().dependentAsset != null)
+        if(GetComponent<DamageHandler>() != null && GetComponent<DamageHandler>().dependentAsset != null) {
             newObj.GetComponent<DamageHandler>().dependentAsset = GetComponent<DamageHandler>().dependentAsset;
+        }
         return newObj;
 
     }

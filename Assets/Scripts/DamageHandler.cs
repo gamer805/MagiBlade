@@ -13,11 +13,7 @@ public class DamageHandler : MonoBehaviour
     public float flashTime = 0.1f;
     int flashNum = 3;
 
-    [HideInInspector] public bool knockedBack = false;
-    public float baseKnockback = 3f;
-    public Vector2 knockbackSpeed;
-    Vector2 knockbackModifier;
-    bool knockbackApplied = false;
+    public float knockbackResistance;
 
     float transparencyModifier = 0.5f;
     Color baseColor;
@@ -42,6 +38,8 @@ public class DamageHandler : MonoBehaviour
     public Sprite deathSprite;
 
     public GameObject dependentAsset;
+
+    public bool respawnOnDeath = true;
 
     public enum EntityType {
         Enemy,
@@ -90,25 +88,24 @@ public class DamageHandler : MonoBehaviour
         }
     }
 
-    void FixedUpdate() {
-        if (knockedBack) {
-            if(damageDealer != null){
-                if (entityType == EntityType.Player) {
-                    GetComponent<PlayerMovementHandler>().enabled = true;
-                } else {
-                    GetComponent<EnemyMovementHandler>().enabled = true;
-                }
-                float moveDirection = (transform.position - damageDealer.transform.position).normalized.x;
-                rb.velocity = new Vector2(moveDirection * baseKnockback * knockbackSpeed.x + knockbackModifier.x * knockbackSpeed.x, baseKnockback * knockbackModifier.y * knockbackSpeed.y);
-
-                StartCoroutine(cancelKnockback());
-            }
+    void Knockback(float power, GameObject enemy) {
+        if (entityType == EntityType.Player) {
+            GetComponent<PlayerMovementHandler>().enabled = false;
+        } else {
+            GetComponent<EnemyMovementHandler>().enabled = false;
         }
+        Vector2 hitDirection = (transform.position - enemy.transform.position).normalized;
+        rb.AddForce(hitDirection * (1 - knockbackResistance) * power, ForceMode2D.Impulse);
+
+        Invoke("CancelKnockback", 0.1f);
     }
 
-    IEnumerator cancelKnockback() {
-        yield return new WaitForSeconds(0.1f);
-        knockedBack = false;
+    void CancelKnockback() {
+        if (entityType == EntityType.Player) {
+            GetComponent<PlayerMovementHandler>().enabled = true;
+        } else {
+            GetComponent<EnemyMovementHandler>().enabled = true;
+        }
     }
 
     IEnumerator colorFlash(int num, float time)
@@ -122,7 +119,7 @@ public class DamageHandler : MonoBehaviour
         }
     }
 
-    public void ApplyDamage(float damage, GameObject enemy, float knockbackPower, Vector2? knockbackSpeed = null, bool applyFlash = true)
+    public void ApplyDamage(float damage, GameObject enemy, float power, bool applyFlash = true)
     {
         if(!isInvulnerable && this.enabled){
 
@@ -133,19 +130,8 @@ public class DamageHandler : MonoBehaviour
                 Blood.Play();
                 hitAudio.Play();
             }
-            damageDealer = enemy;
             health -= damage;
-
-            
-            knockedBack = true;
-            baseKnockback = knockbackPower;
-            knockbackModifier = knockbackSpeed ?? Vector2.up;
-
-            if (entityType == EntityType.Player) {
-                GetComponent<PlayerMovementHandler>().enabled = false;
-            } else {
-                GetComponent<EnemyMovementHandler>().enabled = false;
-            }
+            Knockback(power, enemy);
             
             Camera.main.GetComponent<CameraZoom>().Zoom(zoomAmount);
             Camera.main.GetComponent<CameraZoom>().Reset();

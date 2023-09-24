@@ -123,15 +123,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
-  knockback: 0.75
+  knockbackPower: 10
   targetLayer:
     serializedVersion: 2
     m_Bits: 266240
   reloadTime: 0.5
+  extensionTime: 0.1
   reloadCol: {r: 1, g: 1, b: 1, a: 0.5019608}
   defaultCol: {r: 1, g: 1, b: 1, a: 1}
-  extended: 0
-  extensionTime: 0.1
+  canDamage: 0
+  canSwing: 1
   offset: {x: 0, y: 0.3, z: 0}
   attackSound: {fileID: 0}
 --- !u!95 &-4854822027783316855

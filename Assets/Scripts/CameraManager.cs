@@ -16,6 +16,8 @@ public class CameraManager : MonoBehaviour
     public float height;
     public float width;
 
+    public int cameraID = 0;
+
     void Start()
     {
         target = GameObject.FindWithTag("Player").transform;

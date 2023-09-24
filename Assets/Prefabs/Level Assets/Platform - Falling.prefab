@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 1828323356089949517}
   - component: {fileID: 7160077435819244306}
   - component: {fileID: 1054980287731491158}
-  - component: {fileID: 6105531378101271311}
+  - component: {fileID: 1842776463371561733}
   - component: {fileID: 7726877717774982157}
   - component: {fileID: 6512773881180356920}
   - component: {fileID: 4909380499334831423}
+  - component: {fileID: -3739939042131150853}
   m_Layer: 18
   m_Name: Platform - Falling
   m_TagString: Untagged
@@ -94,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8f1956d04c241cb8ce7408a8127cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlayer: 0
   WoodThunk: {fileID: 4909380499334831423}
+  platformCollider: {fileID: 0}
 --- !u!251 &1054980287731491158
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -110,12 +111,12 @@ PlatformEffector2D:
     m_Bits: 4294967295
   m_RotationalOffset: 0
   m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
+  m_UseOneWayGrouping: 1
   m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &6105531378101271311
+--- !u!61 &1842776463371561733
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +129,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.25}
+  m_Offset: {x: 0, y: 0.175}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -139,7 +140,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8, y: 0.1}
+  m_Size: {x: 3, y: 0.25}
   m_EdgeRadius: 0
 --- !u!82 &7726877717774982157
 AudioSource:
@@ -429,6 +430,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3739939042131150853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4141591655158230686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityPrefab: {fileID: 4141591655158230686}
+  initCoords: {x: 0, y: 0, z: 0}
 --- !u!1 &8291537645841536441
 GameObject:
   m_ObjectHideFlags: 0

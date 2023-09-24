@@ -36,6 +36,8 @@ public class PlayerMovementHandler : MonoBehaviour
     public bool isClimbing;
 
     bool canDecelerate, decelerating = false;
+
+    public float jumpPower = 5f;
     
 
     void Start()

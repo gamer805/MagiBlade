@@ -4,38 +4,43 @@ using UnityEngine;
 
 public class Semisolid : MonoBehaviour
 {
-    public bool onPlayer = false;
+    private GameObject playerRef;
     public AudioSource WoodThunk;
-    // Update is called once per frame
-    void Update()
+
+    [SerializeField] private Collider2D platformCollider;
+
+    void Start() {
+        platformCollider = GetComponent<Collider2D>();
+    }
+
+    private void Update()
     {
-        if (Input.GetAxis("Vertical") < 0 && onPlayer) {
-            gameObject.layer = LayerMask.NameToLayer("Semisolid");
+        if (Input.GetAxis("Vertical") == -1f && playerRef != null) {
+            StartCoroutine(DisableCollision());
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.tag == "Player") {
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerRef = collision.gameObject;
             WoodThunk.Play();
-            onPlayer = true;
-        } else if (col.gameObject.tag == "PlayerFoot") {
-            gameObject.layer = LayerMask.NameToLayer("Platform");
-        }
-            
-    }
-
-    void OnCollisionStay2D(Collision2D col) {
-        if (col.gameObject.tag == "Player") {
-            onPlayer = true;
         }
     }
 
-    void OnCollisionExit2D(Collision2D col)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (col.gameObject.tag == "Player") {
-            onPlayer = false;
+        if (collision.gameObject.CompareTag("Player")) {
+            playerRef = null;
         }
-
     }
 
+    private IEnumerator DisableCollision()
+    {
+
+        Physics2D.IgnoreLayerCollision(platformCollider.gameObject.layer, LayerMask.NameToLayer("Player"));
+        yield return new WaitForSeconds(0.5f);
+        Physics2D.IgnoreLayerCollision(platformCollider.gameObject.layer, LayerMask.NameToLayer("Player"), false);
+    }
 }

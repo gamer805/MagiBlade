@@ -14,13 +14,18 @@ public class JumpDamageHandler : MonoBehaviour
         damageHandler = gameObject.transform.parent.gameObject.GetComponent<DamageHandler>();
     }
     void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.tag == "PlayerFoot"){
+        if(!contacting && col.gameObject.tag == "PlayerFoot"){
             contacting = true;
-
             playerMovementHandler.Jump();
             playerMovementHandler.canDoubleJump = true;
 
-            damageHandler.ApplyDamage(attackDamage, col.gameObject, 1f, new Vector2(0, 1.5f));
+            damageHandler.ApplyDamage(attackDamage, col.gameObject, playerMovementHandler.jumpPower);
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col){
+        if(contacting && col.gameObject.tag == "PlayerFoot"){
+            contacting = false;
         }
     }
 }

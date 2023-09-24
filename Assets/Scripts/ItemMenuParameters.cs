@@ -44,7 +44,7 @@ public class ItemMenuParameters : MonoBehaviour
 
             descriptionText.text += "Attack: " + prefab.GetComponent<MeleeWeapon>().damage
                 + " hp\n\n" + "Reload: " + prefab.GetComponent<MeleeWeapon>().reloadTime
-                + " s\n\n" + "Knockback: " + prefab.GetComponent<MeleeWeapon>().knockback + " m";
+                + " s\n\n" + "Knockback: " + prefab.GetComponent<MeleeWeapon>().knockbackPower + " m";
         }
         else if (type == "projectile")
         {
@@ -52,7 +52,7 @@ public class ItemMenuParameters : MonoBehaviour
 
             descriptionText.text += "Attack: " + prefab.GetComponent<Projectile>().damage
                 + " hp\n\n" + "Reload: " + prefab.GetComponent<Projectile>().reloadTime
-                + " s\n\n" + "Knockback: " + prefab.GetComponent<Projectile>().knockback + " m";
+                + " s\n\n" + "Knockback: " + prefab.GetComponent<Projectile>().knockbackPower + " m";
         }
         else if (type == "bow")
         {
@@ -60,7 +60,7 @@ public class ItemMenuParameters : MonoBehaviour
             Projectile projectileStats = prefab.transform.GetChild(0).gameObject.GetComponent<Projectile>();
             descriptionText.text += "Attack: " + projectileStats.damage
                 + " hp\n\n" + "Reload: " + projectileStats.reloadTime
-                + " s\n\n" + "Knockback: " + projectileStats.knockback + " m";
+                + " s\n\n" + "Knockback: " + projectileStats.knockbackPower + " m";
         }
         else if (type == "troop")
         {
@@ -75,7 +75,7 @@ public class ItemMenuParameters : MonoBehaviour
                 + "\n\nTroop Health: " + healthStats.health + "hp"
                 + "\n\nTroop Speed: " + mobilityStats.walkSpeed + " m"
                 + "\n\nTroop Attack Rate: " + attackStats.attackRate + " s"
-                + "\n\nTroop Knockback: " + attackStats.knockback + " m";
+                + "\n\nTroop Knockback: " + attackStats.knockbackPower + " m";
         }
 
         if(addedDescription != "")

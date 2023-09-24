@@ -22,10 +22,14 @@ public class Blockade : MonoBehaviour
         dependencyHandler = GetComponent<DependencyHandler>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(!opened && !dependencyHandler.dependencyExists){
+    void OnEnable() {
+        if(dependencyHandler != null && !dependencyHandler.dependencyExists){
+            opened = true;
+            Anim.SetBool("open", true);
+        }
+    }
+    void Update() {
+        if(!opened && !dependencyHandler.dependencyExists) {
             opened = true;
             OpenDoor();
         }

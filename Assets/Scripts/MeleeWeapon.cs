@@ -6,7 +6,7 @@ using UnityEngine;
 public class MeleeWeapon : MonoBehaviour
 {
     public float damage;
-    public float knockback;
+    public float knockbackPower;
     public LayerMask targetLayer;
 
     public float reloadTime;
@@ -76,7 +76,7 @@ public class MeleeWeapon : MonoBehaviour
         {
             
             if (col.gameObject.GetComponent<DamageHandler>() != null) {
-                col.gameObject.GetComponent<DamageHandler>().ApplyDamage(damage, gameObject, knockback);
+                col.gameObject.GetComponent<DamageHandler>().ApplyDamage(damage, gameObject, knockbackPower);
             }
                 
         }

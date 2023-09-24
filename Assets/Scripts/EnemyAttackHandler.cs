@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttackHandler : MonoBehaviour
 {
 
-    public float knockback = 3f;
+    public float knockbackPower = 3f;
 
     public Transform attackPoint;
     public float attackDamage = 20f;
@@ -55,7 +55,7 @@ public class EnemyAttackHandler : MonoBehaviour
         yield return new WaitForSeconds(attackTime);
         if (movementData.inRange && playerRef != null) {
             isCoolingDown = true;
-            playerRef.GetComponent<DamageHandler>().ApplyDamage(attackDamage, gameObject, knockback);
+            playerRef.GetComponent<DamageHandler>().ApplyDamage(attackDamage, gameObject, knockbackPower);
             yield return new WaitForSeconds(attackTime);
             isCoolingDown = false;
         }

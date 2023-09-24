@@ -124,7 +124,7 @@ PlatformEffector2D:
     m_Bits: 4294967295
   m_RotationalOffset: 0
   m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
+  m_UseOneWayGrouping: 1
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
@@ -153,7 +153,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 0.1}
+  m_Size: {x: 1.5, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &5862290500177442268
 MonoBehaviour:
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8f1956d04c241cb8ce7408a8127cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlayer: 0
   WoodThunk: {fileID: 101906785554333083}
+  platformCollider: {fileID: 0}
 --- !u!82 &101906785554333083
 AudioSource:
   m_ObjectHideFlags: 0

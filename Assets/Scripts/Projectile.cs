@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
 	ProjectileManager managerScript;
 
 	public float damage;
-	public float knockback;
+	public float knockbackPower;
 	public string source;
 	public GameObject resultPrefab;
 	public float reloadTime;
@@ -112,7 +112,7 @@ public class Projectile : MonoBehaviour
             {
 				//damage w/o color
 				if (dmgScript != null)
-					dmgScript.ApplyDamage(damage, gameObject, knockback, applyFlash:false);
+					dmgScript.ApplyDamage(damage, gameObject, knockbackPower, applyFlash:false);
 
 				//apply effect
 				if (effect == "freeze")
@@ -126,7 +126,7 @@ public class Projectile : MonoBehaviour
             {
 				//damage w/ color
 				if (dmgScript != null)
-					dmgScript.ApplyDamage(damage, gameObject, knockback);
+					dmgScript.ApplyDamage(damage, gameObject, knockbackPower);
 			}
 
 			//spawning

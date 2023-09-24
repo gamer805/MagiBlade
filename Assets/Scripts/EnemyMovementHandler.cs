@@ -117,12 +117,10 @@ public class EnemyMovementHandler : MonoBehaviour
             }
         }
 
-        if(!damageHandler.knockedBack) {
-            if (canFly) {
-                rb.velocity = currentVelocity;
-            } else {
-                rb.velocity = new Vector2(currentVelocity.x, rb.velocity.y);
-            }
+        if (canFly) {
+            rb.velocity = currentVelocity;
+        } else {
+            rb.velocity = new Vector2(currentVelocity.x, rb.velocity.y);
         }
     }
 

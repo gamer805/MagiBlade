@@ -4,107 +4,108 @@ using UnityEngine;
 
 public class RoomResetHandler : MonoBehaviour
 {
-    bool hasReset = false;
-    public GameObject checkpoint;
-    public bool activated;
-    bool activeOnLastFrame = false;
+    bool isResetting = false;
+    public GameObject roomCheckpoint;
+    public bool isActivated;
 
     public bool respawnDeadEnemies = false;
-    public List<GameObject> enemyPrefabDict;
-    public List<GameObject> enemyList;
-    public List<GameObject> enemyBackups;
-    public List<Vector3> enemyPosBackups;
-    public List<string> enemyNameBackups;
+    public bool resetEnemyHealth = false;
 
-    void Start(){
-        if(respawnDeadEnemies){
-            foreach(Transform enemy in transform){
-                if(enemy.tag == "Enemy" && enemy.GetComponent<AssetResetHandler>() != null){
-                    enemyList.Add(enemy.gameObject);
+    public List<GameObject> prefabDictionary;
+    public List<GameObject> enemyLib;
 
-                    GameObject enemyPrefab = enemy.GetComponent<AssetResetHandler>().entityPrefab;
-                    foreach(GameObject prefab in enemyPrefabDict){
-                        if(prefab.name == enemyPrefab.name.Split(new char[] { ' ' })[0]){
-                            enemyBackups.Add(prefab);
-                        }
-                    }
-                    
-                    enemyPosBackups.Add(enemy.GetComponent<AssetResetHandler>().initCoords);
-                    enemyNameBackups.Add(enemy.name);
-                }
-            }
+    public List<GameObject> enemyPrefabLib;
+    public List<Vector3> enemyPositionLib;
+    public List<string> enemyNameLib;
+    public List<bool> shouldRespawnEnemy;
+
+    public List<GameObject> entityLib;
+
+    public List<GameObject> entityPrefabLib;
+    public List<Vector3> entityPositionLib;
+    public List<string> entityNameLib;
+
+    void Start() {
+        foreach(Transform entity in transform) {
+            InitializeEntityRef(entity.gameObject);
         }
-        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        activated = checkpoint.GetComponent<Checkpoint>().checkpointCamActive;
+    void Update() {
+        
 
-        if(activated && !activeOnLastFrame){
-            if(respawnDeadEnemies) ReplaceDeadEnemies();
+        if(roomCheckpoint.GetComponent<Checkpoint>().isActivated && !isActivated) {
+
+            //StartCoroutine("ResetRoom");
             
             GameObject[] rooms = GameObject.FindGameObjectsWithTag("Room");
             foreach(GameObject room in rooms){
-                if(room != gameObject){
+                if(room != gameObject) {
                     room.SetActive(false);
                 }
             }
+
         }
 
-        if(PlayerDeathManager.dead && !hasReset && activated){
+        isActivated = roomCheckpoint.GetComponent<Checkpoint>().isActivated;
 
-            if(respawnDeadEnemies) ReplaceDeadEnemies();
-            hasReset = true;
+        if(PlayerDeathManager.dead && !isResetting && isActivated) {
 
-            List<Transform> roomEntities = new List<Transform>();
+            StartCoroutine("ResetRoom");
 
-            foreach(Transform entity in transform){
-                roomEntities.Add(entity);
+        } else if(!PlayerDeathManager.dead && isResetting && isActivated) {
+            isResetting = false;
+        }
+    }
+
+    void InitializeEntityRef(GameObject entity) {
+        if(entity.GetComponent<AssetResetHandler>() != null) {
+            string prefabRefName = entity.GetComponent<AssetResetHandler>().entityPrefab.name;
+            GameObject prefabRef = prefabDictionary.Find(x => x.name == prefabRefName);
+            if (entity.tag == "Enemy") {
+                enemyLib.Add(entity);
+                enemyPrefabLib.Add(prefabRef);
+                enemyPositionLib.Add(entity.GetComponent<AssetResetHandler>().initCoords);
+                enemyNameLib.Add(entity.name);
+                shouldRespawnEnemy.Add(entity.GetComponent<DamageHandler>().respawnOnDeath);
+            } else {
+                entityLib.Add(entity);
+                entityPrefabLib.Add(prefabRef);
+                entityPositionLib.Add(entity.GetComponent<AssetResetHandler>().initCoords);
+                entityNameLib.Add(entity.name);
             }
+        }
+    }
 
-            foreach(Transform entity in roomEntities){
+    IEnumerator ResetRoom() {
+        yield return new WaitForSeconds(0.5f);
+        isResetting = true;
 
-                if(entity.GetComponent<AssetResetHandler>() != null){
-                    StartCoroutine(DelayedReset(entity.gameObject));
+        if(respawnDeadEnemies) {
+            for(int i = 0; i < enemyLib.Count; i++) {
+                if(enemyLib[i] == null && shouldRespawnEnemy[i]){
+                    GameObject newObj = Instantiate(enemyPrefabLib[i], enemyPositionLib[i], Quaternion.identity);
+                    newObj.transform.SetParent(transform);
+                    newObj.name = enemyNameLib[i];
+                    enemyLib[i] = newObj;
+                } else if (enemyLib[i] != null && resetEnemyHealth) {
+                    GameObject newObj = enemyLib[i].GetComponent<AssetResetHandler>().GetReplacement();
+                    Destroy(enemyLib[i]);
+                    enemyLib[i] = newObj;
                 }
             }
-
-        } else if(!PlayerDeathManager.dead && hasReset && activated){
-            hasReset = false;
         }
 
-        activeOnLastFrame = activated;
-
-    }
-
-    void ReplaceDeadEnemies(){
-        foreach(GameObject enemy in enemyList){
-            if(enemy == null){
-                GameObject entityPrefab = enemyBackups[enemyList.IndexOf(enemy)];
-                Vector3 initCoords = enemyPosBackups[enemyList.IndexOf(enemy)];
-                GameObject newObj = Instantiate(entityPrefab, initCoords, Quaternion.identity);
+        for(int i = 0; i < entityLib.Count; i++) {
+            if(entityLib[i] == null) {
+                GameObject newObj = Instantiate(entityPrefabLib[i], entityPositionLib[i], Quaternion.identity);
                 newObj.transform.SetParent(transform);
-                newObj.name = enemyNameBackups[enemyList.IndexOf(enemy)];
-                enemyList[enemyList.IndexOf(enemy)] = newObj;
-            }
-        }
-    }
-
-    IEnumerator DelayedReset(GameObject entity){
-        yield return new WaitForSeconds(0.5f);
-        int listID = 0;
-        if(entity != null){
-            if(respawnDeadEnemies) {
-                listID = enemyList.IndexOf(entity);
-            }
-
-            GameObject newEntity = entity.GetComponent<AssetResetHandler>().Reset();
-            Destroy(entity);
-
-            if(respawnDeadEnemies && listID >= 0) {
-                enemyList[listID] = newEntity;
+                newObj.name = entityNameLib[i];
+                entityLib[i] = newObj;
+            } else {
+                GameObject newObj = entityLib[i].GetComponent<AssetResetHandler>().GetReplacement();
+                Destroy(entityLib[i]);
+                entityLib[i] = newObj;
             }
         }
             

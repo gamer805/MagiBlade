@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class PlayerAnimationHandler : MonoBehaviour
 {
-    Animator anim; // Animator component for the character
-    Rigidbody2D rb; // Rigidbody2D component for the character
-    PlayerMovementHandler movementData; // PlayerMovementHandler script for the character
-
-    // Reference to the character's parent GameObject, used to access the character's components if the script is attached to a child object
+    Animator anim;
+    Rigidbody2D rb;
+    PlayerMovementHandler movementData;
     public GameObject parent;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         if (parent == null) {
             rb = GetComponent<Rigidbody2D>();
             movementData = GetComponent<PlayerMovementHandler>();
@@ -25,8 +21,7 @@ public class PlayerAnimationHandler : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void Update()
-    {
+    void FixedUpdate() {
         if(!movementData.onWall) {
             anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         }

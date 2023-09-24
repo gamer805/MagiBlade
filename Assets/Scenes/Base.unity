@@ -384,7 +384,7 @@ TilemapRenderer:
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.25, y: 0.25, z: 0}
+  m_ChunkCullingBounds: {x: 0.3, y: 0.3, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -9968,7 +9968,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0.100000024, z: 0}
+  m_ChunkCullingBounds: {x: 0.100000024, y: 0.100000024, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -11539,9 +11539,10 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: -10}
   bounds: 1
   minPos: {x: 0, y: 0, z: -10}
-  maxPos: {x: 1.02, y: 0, z: -10}
+  maxPos: {x: 1, y: 0, z: -10}
   height: 14.727272
   width: 24.370823
+  cameraID: 0
 --- !u!114 &908648206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11956,7 +11957,7 @@ GameObject:
   - component: {fileID: 1182064085}
   - component: {fileID: 1182064084}
   m_Layer: 0
-  m_Name: Grid (1)
+  m_Name: Background Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11970,7 +11971,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182064083}
   m_Enabled: 1
-  m_CellSize: {x: 1.5, y: 1.5, z: 0}
+  m_CellSize: {x: 1.6, y: 1.6, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -13913,6 +13914,7 @@ MonoBehaviour:
   maxPos: {x: 5, y: 5, z: -10}
   height: 0
   width: 0
+  cameraID: 0
 --- !u!81 &1351723778
 AudioListener:
   m_ObjectHideFlags: 0
@@ -19719,6 +19721,7 @@ MonoBehaviour:
   maxPos: {x: 1.02, y: 0, z: -10}
   height: 14.727272
   width: 24.370823
+  cameraID: 0
 --- !u!114 &1718897245
 MonoBehaviour:
   m_ObjectHideFlags: 0

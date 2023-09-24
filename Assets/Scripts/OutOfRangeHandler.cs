@@ -11,18 +11,18 @@ public class OutOfRangeHandler : MonoBehaviour
     public bool roomMode = false;
     bool roomActivated = true;
     bool lastRoomState = true;
-    RoomResetHandler roomResetter;
+    RoomResetHandler roomResetHandler;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
-        if(roomMode) roomResetter = transform.parent.GetComponent<RoomResetHandler>();
+        if(roomMode) roomResetHandler = transform.parent.GetComponent<RoomResetHandler>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(roomMode) roomActivated = roomResetter.activated;
+        if(roomMode) roomActivated = roomResetHandler.isActivated;
         float dist = Vector3.Distance(player.transform.position, transform.position);
 
         if(dist > 40f && isOn && !roomMode){
