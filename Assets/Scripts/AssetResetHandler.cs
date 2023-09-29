@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class AssetResetHandler : MonoBehaviour
 {
-    public GameObject entityPrefab;
+    public string entityPrefabName;
     [HideInInspector] public Vector3 initCoords;
 
     void Start(){
         initCoords = transform.position;
     }
 
-    public GameObject GetReplacement(){
+    public GameObject GetReplacement(GameObject entityPrefab){
         GameObject newObj = Instantiate(entityPrefab, initCoords, Quaternion.identity);
         newObj.transform.SetParent(transform.parent);
         newObj.name = gameObject.name;

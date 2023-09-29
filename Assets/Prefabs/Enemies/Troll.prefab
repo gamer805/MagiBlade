@@ -5084,9 +5084,9 @@ Transform:
   - {fileID: 5124644811643539995}
   - {fileID: 2008022256774475232}
   - {fileID: 4962557079293208555}
-  - {fileID: 8506428762316687901}
   - {fileID: 7566762664686363540}
   - {fileID: 4752214631017850507}
+  - {fileID: 8506428762316687901}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5225,7 +5225,7 @@ MonoBehaviour:
   zoomAmount: 0.2
   deathDelay: 0
   deathSprite: {fileID: 0}
-  dependentAsset: {fileID: 0}
+  dependentAsset: Blockade Door
   respawnOnDeath: 0
   entityType: 0
 --- !u!114 &-5544656859873831297
@@ -5240,7 +5240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPrefab: {fileID: 5124644811037472619}
+  entityPrefabName: Troll
   initCoords: {x: 0, y: 0, z: 0}
 --- !u!114 &7815815878203851932
 MonoBehaviour:

@@ -37,7 +37,7 @@ public class DamageHandler : MonoBehaviour
     public float deathDelay = 0f;
     public Sprite deathSprite;
 
-    public GameObject dependentAsset;
+    public string dependentAsset;
 
     public bool respawnOnDeath = true;
 
@@ -146,8 +146,8 @@ public class DamageHandler : MonoBehaviour
             Instantiate(DropPrefab, transform.position, Quaternion.identity);
         }
         
-        if(dependentAsset != null) {
-            dependentAsset.GetComponent<DependencyHandler>().UseBehavior();
+        if(GameObject.Find(dependentAsset) != null) {
+            GameObject.Find(dependentAsset).GetComponent<DependencyHandler>().UseBehavior();
         }
 
         if(entityType == EntityType.Enemy) {

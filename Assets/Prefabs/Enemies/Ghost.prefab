@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022105e6bd1564334ac9b4b95351db79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback: 0.75
+  knockbackPower: 3
   attackPoint: {fileID: 7750267319218272037}
   attackDamage: 100
   attackRate: 1
@@ -330,9 +330,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 0
   flashTime: 0.1
-  knockedBack: 0
-  baseKnockback: 3
-  knockbackSpeed: {x: 3, y: 5}
+  knockbackResistance: 0
   damageDealer: {fileID: 0}
   invulnerabilityLength: 0.5
   Blood: {fileID: 8864049257138390010}
@@ -356,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPrefab: {fileID: 7750267317683543123}
+  entityPrefabName: Ghost
   initCoords: {x: 0, y: 0, z: 0}
 --- !u!1 &7750267317979010181
 GameObject:

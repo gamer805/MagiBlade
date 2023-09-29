@@ -25,9 +25,31 @@ public class RoomResetHandler : MonoBehaviour
     public List<Vector3> entityPositionLib;
     public List<string> entityNameLib;
 
+    public int refID = 0;
+
     void Start() {
         foreach(Transform entity in transform) {
-            InitializeEntityRef(entity.gameObject);
+            if(entity.GetComponent<AssetResetHandler>() != null) {
+            string prefabRefName = entity.GetComponent<AssetResetHandler>().entityPrefabName;
+            GameObject prefabRef = prefabDictionary.Find(x => x.name == prefabRefName);
+            if (entity.tag == "Enemy") {
+                enemyLib.Add(entity.gameObject);
+                enemyPrefabLib.Add(prefabRef);
+                enemyPositionLib.Add(entity.GetComponent<AssetResetHandler>().initCoords);
+                enemyNameLib.Add(entity.name);
+                shouldRespawnEnemy.Add(entity.GetComponent<DamageHandler>().respawnOnDeath ? true : false);
+            } else {
+                entityLib.Add(entity.gameObject);
+                entityPrefabLib.Add(prefabRef);
+                entityPositionLib.Add(entity.GetComponent<AssetResetHandler>().initCoords);
+                entityNameLib.Add(entity.name);
+            }
+            }
+        }
+        foreach(Checkpoint checkpoint in FindObjectsOfType(typeof(Checkpoint))) {
+            if (checkpoint.refID == refID) {
+                roomCheckpoint = checkpoint.gameObject;
+            }
         }
     }
 
@@ -36,7 +58,7 @@ public class RoomResetHandler : MonoBehaviour
 
         if(roomCheckpoint.GetComponent<Checkpoint>().isActivated && !isActivated) {
 
-            //StartCoroutine("ResetRoom");
+            ResetRoom();
             
             GameObject[] rooms = GameObject.FindGameObjectsWithTag("Room");
             foreach(GameObject room in rooms){
@@ -51,34 +73,14 @@ public class RoomResetHandler : MonoBehaviour
 
         if(PlayerDeathManager.dead && !isResetting && isActivated) {
 
-            StartCoroutine("ResetRoom");
+            Invoke("ResetRoom", 0.5f);
 
         } else if(!PlayerDeathManager.dead && isResetting && isActivated) {
             isResetting = false;
         }
     }
 
-    void InitializeEntityRef(GameObject entity) {
-        if(entity.GetComponent<AssetResetHandler>() != null) {
-            string prefabRefName = entity.GetComponent<AssetResetHandler>().entityPrefab.name;
-            GameObject prefabRef = prefabDictionary.Find(x => x.name == prefabRefName);
-            if (entity.tag == "Enemy") {
-                enemyLib.Add(entity);
-                enemyPrefabLib.Add(prefabRef);
-                enemyPositionLib.Add(entity.GetComponent<AssetResetHandler>().initCoords);
-                enemyNameLib.Add(entity.name);
-                shouldRespawnEnemy.Add(entity.GetComponent<DamageHandler>().respawnOnDeath);
-            } else {
-                entityLib.Add(entity);
-                entityPrefabLib.Add(prefabRef);
-                entityPositionLib.Add(entity.GetComponent<AssetResetHandler>().initCoords);
-                entityNameLib.Add(entity.name);
-            }
-        }
-    }
-
-    IEnumerator ResetRoom() {
-        yield return new WaitForSeconds(0.5f);
+    void ResetRoom() {
         isResetting = true;
 
         if(respawnDeadEnemies) {
@@ -88,9 +90,12 @@ public class RoomResetHandler : MonoBehaviour
                     newObj.transform.SetParent(transform);
                     newObj.name = enemyNameLib[i];
                     enemyLib[i] = newObj;
+                    
                 } else if (enemyLib[i] != null && resetEnemyHealth) {
-                    GameObject newObj = enemyLib[i].GetComponent<AssetResetHandler>().GetReplacement();
                     Destroy(enemyLib[i]);
+                    GameObject newObj = Instantiate(enemyPrefabLib[i], enemyPositionLib[i], Quaternion.identity);
+                    newObj.transform.SetParent(transform);
+                    newObj.name = enemyNameLib[i];
                     enemyLib[i] = newObj;
                 }
             }
@@ -103,8 +108,10 @@ public class RoomResetHandler : MonoBehaviour
                 newObj.name = entityNameLib[i];
                 entityLib[i] = newObj;
             } else {
-                GameObject newObj = entityLib[i].GetComponent<AssetResetHandler>().GetReplacement();
                 Destroy(entityLib[i]);
+                GameObject newObj = Instantiate(enemyPrefabLib[i], enemyPositionLib[i], Quaternion.identity);
+                newObj.transform.SetParent(transform);
+                newObj.name = enemyNameLib[i];
                 entityLib[i] = newObj;
             }
         }

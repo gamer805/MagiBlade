@@ -5,14 +5,14 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     CameraManager cameraManager;
-    public int cameraID = 0;
+    public int refID = 0;
     public BoxCollider2D col;
     public bool isActivated = false;
     public GameObject room;
 
     void Start(){
         foreach(CameraManager manager in Camera.main.gameObject.GetComponents<CameraManager>()){
-            if (manager.cameraID == cameraID) {
+            if (manager.cameraID == refID) {
                 cameraManager = manager;
             }
         }

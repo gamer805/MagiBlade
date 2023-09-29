@@ -5237,7 +5237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPrefab: {fileID: 7358574056981590486}
+  entityPrefabName: Skeleton
   initCoords: {x: 0, y: 0, z: 0}
 --- !u!1 &7358574057959760667
 GameObject:

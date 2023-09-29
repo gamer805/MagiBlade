@@ -5054,18 +5054,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.28148422}
+  m_Offset: {x: -0.04935932, y: -0.4273201}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.9375}
+    oldSize: {x: 1.6, y: 1.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.375, y: 0.35046846}
+  m_Size: {x: 0.5006428, y: 0.6421402}
   m_EdgeRadius: 0
 --- !u!95 &4787298143427262514
 Animator:
@@ -5120,9 +5120,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 0
   flashTime: 0.1
-  knockedBack: 0
-  baseKnockback: 3
-  knockbackSpeed: {x: 0, y: 0}
+  knockbackResistance: 0
   damageDealer: {fileID: 0}
   invulnerabilityLength: 0.5
   Blood: {fileID: 326969689903279358}
@@ -5132,6 +5130,7 @@ MonoBehaviour:
   deathDelay: 0
   deathSprite: {fileID: 0}
   dependentAsset: {fileID: 0}
+  respawnOnDeath: 1
   entityType: 0
 --- !u!114 &2688495743325861562
 MonoBehaviour:
@@ -5158,7 +5157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPrefab: {fileID: 4787298143427262513}
+  entityPrefabName: Bomber
   initCoords: {x: 0, y: 0, z: 0}
 --- !u!1 &4787298143782455223
 GameObject:

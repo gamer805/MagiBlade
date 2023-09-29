@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class AutoKillHandler : MonoBehaviour
 {
-    Collider2D playerCol;
-
-
-    void Start(){
-        playerCol = GameObject.Find("Player").GetComponent<BoxCollider2D>();
-    }
-
-    void Update() {
-        if (GetComponent<Collider2D>().IsTouching(playerCol)) {
-            StartCoroutine(GameObject.Find("Player").GetComponent<PlayerDeathManager>().KillPlayer());
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Player") {
+            StartCoroutine(other.gameObject.GetComponent<PlayerDeathManager>().KillPlayer());
         }
     }
 }

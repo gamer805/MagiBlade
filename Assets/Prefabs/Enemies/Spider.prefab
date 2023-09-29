@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022105e6bd1564334ac9b4b95351db79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback: 0.75
+  knockbackPower: 3
   attackPoint: {fileID: 939547484464900731}
   attackDamage: 30
   attackRate: 2
@@ -384,9 +384,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 0
   flashTime: 0.1
-  knockedBack: 0
-  baseKnockback: 3
-  knockbackSpeed: {x: 6, y: 3}
+  knockbackResistance: 0
   damageDealer: {fileID: 0}
   invulnerabilityLength: 0.5
   Blood: {fileID: 5471792228679117950}
@@ -395,8 +393,8 @@ MonoBehaviour:
   zoomAmount: 0.2
   deathDelay: 0.5
   deathSprite: {fileID: 1584264710, guid: 06f53c9c0a0fd4baa808a159c5d0328e, type: 3}
-  dependentAsset: {fileID: 0}
-  respawnOnDeath: 1
+  dependentAsset: Cobweb
+  respawnOnDeath: 0
   entityType: 0
 --- !u!114 &2895237089703190980
 MonoBehaviour:
@@ -423,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36ead07b4d44f2a95276442665ab2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPrefab: {fileID: 939547485468506289}
+  entityPrefabName: Spider
   initCoords: {x: 0, y: 0, z: 0}
 --- !u!114 &7649754962410223162
 MonoBehaviour:

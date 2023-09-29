@@ -14,8 +14,7 @@ public class Blockade : MonoBehaviour
     bool opened = false;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         cameraRef = Camera.main.gameObject;
         Anim = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
@@ -26,6 +25,7 @@ public class Blockade : MonoBehaviour
         if(dependencyHandler != null && !dependencyHandler.dependencyExists){
             opened = true;
             Anim.SetBool("open", true);
+            collider.enabled = false;
         }
     }
     void Update() {
@@ -36,12 +36,14 @@ public class Blockade : MonoBehaviour
     }
 
     public void OpenDoor(){
+        opened = true;
         Anim.SetBool("open", true);
         collider.enabled = false;
         cameraRef.GetComponent<CameraScreenShake>().Shake(0.5f, 0.25f);
     }
 
     public void CloseDoor(){
+        opened = false;
         Anim.SetBool("open", false);
         collider.enabled = true;
     }
