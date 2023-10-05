@@ -146,8 +146,8 @@ public class DamageHandler : MonoBehaviour
             Instantiate(DropPrefab, transform.position, Quaternion.identity);
         }
         
-        if(GameObject.Find(dependentAsset) != null) {
-            GameObject.Find(dependentAsset).GetComponent<DependencyHandler>().UseBehavior();
+        if(dependentAsset != "" && GameObject.Find(transform.parent.name + "/" + dependentAsset) != null) {
+            GameObject.Find(transform.parent.name + "/" + dependentAsset).GetComponent<DependencyHandler>().UseBehavior();
         }
 
         if(entityType == EntityType.Enemy) {

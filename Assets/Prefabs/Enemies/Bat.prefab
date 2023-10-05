@@ -77,9 +77,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.078389525, y: 0.064556}
+  m_Offset: {x: -0.12110904, y: 0.02022314}
   serializedVersion: 2
-  m_Radius: 0.6521678
+  m_Radius: 0.24873734
 --- !u!58 &7246241375190918745
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
   zoomAmount: 0.2
   deathDelay: 0
   deathSprite: {fileID: 0}
-  dependentAsset: {fileID: 0}
+  dependentAsset: 
   respawnOnDeath: 1
   entityType: 0
 --- !u!114 &27849254564649729
