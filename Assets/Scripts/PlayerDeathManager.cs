@@ -33,7 +33,7 @@ public class PlayerDeathManager : MonoBehaviour
         renderer = damager.sprite.GetComponent<SpriteRenderer>();
         controller = GetComponent<PlayerMovementHandler>();
         rb = GetComponent<Rigidbody2D>();
-        healthPercentage = Mathf.RoundToInt(GetComponent<DamageHandler>().health / 500) * 100;
+        healthPercentage = Mathf.RoundToInt(GetComponent<DamageHandler>().health / GetComponent<DamageHandler>().maxHealth) * 100;
         if (healthDisplay == null)
         {
 
@@ -97,7 +97,7 @@ public class PlayerDeathManager : MonoBehaviour
         transform.eulerAngles = new Vector3(0, 0, 0);
         dead = false;
         damager.enabled = true;
-        damager.health = 500f;
+        damager.health = damager.maxHealth;
         
         if(damager.damageDealer != null && damager.damageDealer.GetComponent<EnemyMovementHandler>() != null){
             damager.damageDealer.GetComponent<EnemyMovementHandler>().inRange = false;

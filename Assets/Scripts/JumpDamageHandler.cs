@@ -19,7 +19,7 @@ public class JumpDamageHandler : MonoBehaviour
             playerMovementHandler.Jump();
             playerMovementHandler.canDoubleJump = true;
 
-            damageHandler.ApplyDamage(attackDamage, col.gameObject, playerMovementHandler.jumpPower);
+            //damageHandler.ApplyDamage(attackDamage, col.gameObject, playerMovementHandler.jumpPower);
         }
     }
 

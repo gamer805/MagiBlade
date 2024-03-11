@@ -35,10 +35,7 @@ public class PlayerMovementHandler : MonoBehaviour
     public bool canDoubleJump;
     public bool isClimbing;
 
-    bool canDecelerate, decelerating = false;
-
-    public float jumpPower = 5f;
-    
+    bool canDecelerate, decelerating = false;    
 
     void Start()
     {
@@ -78,6 +75,12 @@ public class PlayerMovementHandler : MonoBehaviour
         
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0) {
             shortenJump = true;
+        }
+
+        if (onWall) {
+            rb.freezeRotation = true;
+        } else {
+            rb.freezeRotation = false;
         }
         
     }

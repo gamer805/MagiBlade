@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
-  knockbackPower: 10
+  knockbackPower: 6
   targetLayer:
     serializedVersion: 2
     m_Bits: 266240

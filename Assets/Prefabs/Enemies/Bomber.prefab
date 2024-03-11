@@ -5117,7 +5117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DropPrefab: {fileID: 0}
-  health: 100
+  health: 60
   maxHealth: 0
   flashTime: 0.1
   knockbackResistance: 0
@@ -5129,7 +5129,7 @@ MonoBehaviour:
   zoomAmount: 0.2
   deathDelay: 0
   deathSprite: {fileID: 0}
-  dependentAsset: {fileID: 0}
+  dependentAsset: 
   respawnOnDeath: 1
   entityType: 0
 --- !u!114 &2688495743325861562
